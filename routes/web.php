@@ -14,9 +14,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('landing');
 });
 
 Route::get('/register', function () {
-    return view('register');
+    return view('user-register');
+});
+
+Route::get('/cplog', function () {
+    return view('admin-login');
 });

@@ -1,0 +1,80 @@
+:root{
+    --main: #6F38C5;
+    --mainShade:#512a90;
+    --sub1: #87A2FB;
+    --sub2: #ADDDD0;
+    --sub2b: #c3efe4;
+    --bg: #EEEEEE;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Open Sans", sans-serif;;
+}
+body{
+    background-color: var(--main);
+    height: 100%;
+}
+
+h1{
+    text-align: center;
+    padding: 30px;
+    margin-top: 10%;
+    color: var(--bg);
+    font-size: 48px;
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}
+
+.container{
+    margin: 3% auto auto auto ;
+    width: 450px;
+    height: 320px;
+    background-color: var(--sub1);
+    padding: 30px;
+    border-radius: 20px;
+    color: var(--mainShade);
+}
+.container form{
+    font-size: 20px;
+}
+.container form span.error{
+    display: inline-block;
+    font-size: 15px;
+    color: rgb(205, 70, 70);
+    width: 100%;
+    text-align: right;
+}
+.container form input.text{
+    width: 100%;
+    border-style: none;
+    border-radius: 10px;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: rgb(237, 237, 237);
+    color: var(--mainShade);
+    font-size: 15px;
+}
+.submit{
+    width: fit-content;
+    margin: auto;
+    margin-top: 15px;
+}
+
+.submit input{
+    width: 200px;
+    height: 45px;
+    border-radius: 10px;
+    font-size: 20px;
+    border-style: none;
+    background-color: var(--sub2);
+    color: var(--mainShade);
+}
+
+.submit input:hover{
+    background-color: var(--sub2b);
+}

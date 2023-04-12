@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminAuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,10 +18,7 @@ Route::get('/', function () {
     return view('landing');
 });
 
-Route::get('/register', function () {
-    return view('user-register');
-});
-
-Route::get('/cplog', function () {
-    return view('admin-login');
-});
+Route::get('cp', [AdminAuthController::class, 'controlPanel']);
+Route::get('cp/login', [AdminAuthController::class, 'login'])->name('login');
+Route::post('cp/loginin', [AdminAuthController::class, 'admLogin'])->name('login-c');
+Route::get('cp/signout', [AdminAuthController::class, 'signOut'])->name('signout');

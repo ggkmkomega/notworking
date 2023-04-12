@@ -7,6 +7,7 @@
     <title>Control Panel</title>
 </head>
 <body>
-    cp
+    cp {{ $name }}
+
 </body>
 </html>

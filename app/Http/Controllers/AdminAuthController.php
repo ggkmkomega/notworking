@@ -14,6 +14,10 @@ class AdminAuthController extends Controller
 {
     public function login()
     {
+        
+        if(Auth::guard('admin')->check()){
+            return redirect("cp");
+        }
         return view('admin.auth.login');
     }
 
@@ -38,11 +42,7 @@ class AdminAuthController extends Controller
 
     public function controlPanel()
     {
-        if(Auth::guard('admin')->check()){
-            $name = Auth::guard('admin')->user()->role;
-            return view('admin.control-panel', compact('name'));
-        }
-        return redirect("cp/login")->withSuccess('You are not allowed to access');
+        return view('admin.control-panel');
     }
     
     public function signOut() {

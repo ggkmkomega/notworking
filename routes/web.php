@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminAuthController;
+use App\Http\Controllers\HardwareController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +23,6 @@ Route::get('cp', [AdminAuthController::class, 'controlPanel']);
 Route::get('cp/login', [AdminAuthController::class, 'login'])->name('login');
 Route::post('cp/loginin', [AdminAuthController::class, 'admLogin'])->name('login-c');
 Route::get('cp/signout', [AdminAuthController::class, 'signOut'])->name('signout');
+
+Route::resource('cp/product/hardwares', HardwareController::class)
+    ->only(['index', 'store', 'edit', 'update', 'destroy', 'show']);

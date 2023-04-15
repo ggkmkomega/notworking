@@ -1,8 +1,8 @@
 <ul>
-    <a href="cp/product"><li>
+    <a href="{{route('productManagement')}}"><li>
         Product Management
         <ul>
-            <a href="product/hardwares"><li>Hardwares</li></a>
+            <a href="{{route('hardwares.index')}}"><li>Hardwares</li></a>
             <a href="softwares"><li>Softwares</li></a>
             <a href="services"><li>Services</li></a>
             <a href="courses"><li>Courses</li></a>

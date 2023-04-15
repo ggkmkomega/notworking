@@ -12,7 +12,8 @@ class HardwareController extends Controller
      */
     public function index()
     {
-        return view('admin.product.hardware.index');
+        $hardwares = Hardware::all();
+        return view('admin.product.hardware.index', compact('hardwares'));    
     }
 
     /**
@@ -52,7 +53,7 @@ class HardwareController extends Controller
      */
     public function edit(Hardware $hardware)
     {
-        //
+        return view('admin.product.hardware.edit', compact('hardware'));
     }
 
     /**
@@ -60,7 +61,22 @@ class HardwareController extends Controller
      */
     public function update(Request $request, Hardware $hardware)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'header' => 'required|string|max:255',
+            'desc' => 'required',
+            'datasheet' => 'required',
+            'category' => 'required|string|max:255',
+        ]);
+
+        $hardware->name = $request->name;
+        $hardware->header = $request->header;
+        $hardware->desc = $request->desc;
+        $hardware->datasheet = $request->datasheet;
+        $hardware->category = $request->category;
+        $hardware->save();
+        
+        return redirect(route('hardwares.index'));
     }
 
     /**
@@ -68,6 +84,7 @@ class HardwareController extends Controller
      */
     public function destroy(Hardware $hardware)
     {
-        //
+        $hardware->delete();
+        return redirect(route('hardwares.index'));
     }
 }

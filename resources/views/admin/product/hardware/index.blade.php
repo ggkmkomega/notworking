@@ -12,3 +12,15 @@
     <input type="text" name="category" value="{{ old('category') }}"><br><br>
     <input type="submit" value="Ajouté">
 </form>
+<div class="content">
+    @foreach ($hardwares as $hItem)
+        <a href="hardwares/{{$hItem->id}}/"><p>{{$hItem->name}}</p></a>
+        <a href="{{ route('hardwares.edit' , $hItem) }}">Modifier</a>
+        <form action="{{ route('hardwares.destroy', $hItem) }}" method="POST">
+            @csrf
+            @method('delete')
+            <input type="submit" value="Suprimer">
+        </form>
+        
+    @endforeach
+</div>

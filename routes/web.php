@@ -28,7 +28,7 @@ Route::get('cp/signout', [AdminAuthController::class, 'signOut'])->name('signout
 
 Route::get('cp/product', function() {
     return view('admin.product.main');
-});
+})->name('productManagement');
 
 Route::resource('cp/product/hardwares', HardwareController::class)
     ->only(['index', 'store', 'edit', 'update', 'destroy', 'show'])

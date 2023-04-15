@@ -14,4 +14,8 @@ abstract class Product extends Model
         'header',
         'desc',
     ];
+    
+    protected $hidden = [
+        'prod_category',
+    ];
 }

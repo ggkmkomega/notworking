@@ -1,4 +1,4 @@
-<form action="{{ route('hardwares.store') }}" method="POST">
+<form action="{{ route('hardwares.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
     <label for="name">nom:</label><br>
     <input type="text" name="name" value="{{ old('name') }}"><br><br>
@@ -10,6 +10,10 @@
     <textarea name="datasheet" id="" cols="30" rows="10">{{ old('datasheet') }}</textarea><br><br>
     <label for="name">catégorie:</label><br>
     <input type="text" name="category" value="{{ old('category') }}"><br><br>
+
+    <label for="img">Select image:</label>
+    <input type="file" id="img" name="imgs[]" multiple accept="image/*"><br><br>
+
     <input type="submit" value="Ajouté">
 </form>
 <div class="content">

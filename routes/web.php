@@ -26,6 +26,10 @@ Route::get('cp/login', [AdminAuthController::class, 'login'])->name('login');
 Route::post('cp/loginin', [AdminAuthController::class, 'admLogin'])->name('login-c');
 Route::get('cp/signout', [AdminAuthController::class, 'signOut'])->name('signout');
 
+Route::get('cp/product', function() {
+    return view('admin.product.main');
+});
+
 Route::resource('cp/product/hardwares', HardwareController::class)
     ->only(['index', 'store', 'edit', 'update', 'destroy', 'show'])
     ->middleware([AdminAuth::class]);

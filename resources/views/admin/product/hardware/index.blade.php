@@ -1,3 +1,26 @@
+<head>
+    <link rel="stylesheet" href="{{URL::asset('style/prodstyle.css')}}">
+</head>
+
+@extends('admin.layouts.main')
+@section('main-content')
+    <div class="items-container">
+        @foreach ($hardwares as $hItem)
+            <div class="item">
+                <a href="hardwares/{{$hItem->id}}/"><p>{{$hItem->name}}</p></a>
+                <a href="{{ route('hardwares.edit' , $hItem) }}">Modifier</a>
+                <form action="{{ route('hardwares.destroy', $hItem) }}" method="POST">
+                    @csrf
+                    @method('delete')
+                    <input type="submit" value="Suprimer">
+                </form>
+            </div>    
+        @endforeach
+    </div>
+@endsection
+
+@section('left-panel')
+<h1>Add new Item</h1> <br><br>
 <form action="{{ route('hardwares.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
     <label for="name">nom:</label><br>
@@ -16,15 +39,4 @@
 
     <input type="submit" value="Ajouté">
 </form>
-<div class="content">
-    @foreach ($hardwares as $hItem)
-        <a href="hardwares/{{$hItem->id}}/"><p>{{$hItem->name}}</p></a>
-        <a href="{{ route('hardwares.edit' , $hItem) }}">Modifier</a>
-        <form action="{{ route('hardwares.destroy', $hItem) }}" method="POST">
-            @csrf
-            @method('delete')
-            <input type="submit" value="Suprimer">
-        </form>
-        
-    @endforeach
-</div>
+@endsection

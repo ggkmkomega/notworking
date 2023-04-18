@@ -1,0 +1,15 @@
+.items-container{
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    padding: 20px;
+}
+
+.items-container .item{
+    display: flex;
+    width: calc(100% - 10px);
+    justify-content: space-between;
+    padding: 5px;
+    margin: 10px 5px 10px 5px;
+    background-color: rgb(220, 220, 220);
+}

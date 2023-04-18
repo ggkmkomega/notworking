@@ -1,0 +1,104 @@
+:root{
+    --main: #6F38C5;
+    --mainShade:#512a90;
+    --sub1: #87A2FB;
+    --sub2: #ADDDD0;
+    --sub2b: #c3efe4;
+    --bg: #EEEEEE;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Open Sans", sans-serif;;
+}
+body{
+    background-color: var(--bg);;
+    height: 100vh;
+}
+
+.wrapper{
+    display: flex;
+    height: 100%;
+}
+
+/*----- right panel --------*/
+
+.right-panel{
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    height: 100%;
+    background-color: var(--sub1);
+    color: var(--bg);
+}
+.right-panel .logo{
+    padding: 40px 20px 40px 20px ;
+    background-color: var(--main);
+}
+
+.right-panel ul.nav{
+    margin-top: 70px;
+}
+
+.right-panel li.section{
+    padding: 10px;
+}
+
+.right-panel ul{
+    list-style: none;
+    
+}
+
+.right-panel a{
+    text-decoration: none;
+    color: var(--bg);
+}
+
+.right-panel li.section h1{
+    font-size: 20px;
+}
+
+ul.subsection{
+    padding: 10px;
+}
+
+.right-panel .footer{
+    width: 100%;
+    margin-top: auto;
+    bottom: 0;
+    background-color:var(--mainShade);
+}
+
+.right-panel .footer p{
+    padding: 10px;
+    width: fit-content;
+    margin: auto;
+   
+}
+
+/*----- section--------*/
+section.main{
+    width: 80%;
+}
+
+section.main .header{
+    height: 50px;
+    background-color: var(--mainShade);
+}
+
+section.sub{
+    height: calc(100% - 50px);
+    display: flex;
+}
+
+section.sub .content{
+    width: 65%;
+}
+
+section.sub .left-panel{
+    width: 35%;
+    background-color: var(--sub2);
+    padding: 10px;
+}

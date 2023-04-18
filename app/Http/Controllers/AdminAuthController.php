@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Hash;
 use Session;
-use App\Models\User;
+use App\Models\Admin;
 use Illuminate\Http\RedirectResponse;
 
 
@@ -40,9 +40,10 @@ class AdminAuthController extends Controller
         return redirect("cp/login")->withErrors('Login details are not valid');
     }
 
-    public function controlPanel()
+    public function controlPanel(Admin $admin)
     {
-        return view('admin.control-panel');
+        $admin = Auth::guard('admin')->user();
+        return view('admin.control-panel', compact('admin'));
     }
     
     public function signOut() {

@@ -21,26 +21,35 @@ function test(){
         imgItem = document.createElement("div");
         imgItem.classList.add('img-item')
         imgItem.id = file.name;
+        
+        deletebtn = document.createElement("div");
+        icon = document.createElement("i");
+        icon.classList.add('uil');
+        icon.classList.add('uil-minus');
+        deletebtn.classList.add('delete-hover');
 
+        deletebtn.appendChild(icon);
         imgItem.appendChild(img);
+        imgItem.appendChild(deletebtn);
+
         imgContainer.appendChild(imgItem);
 
-        imgItem.addEventListener('click', function () {
+        deletebtn.addEventListener('click', function () {
 
             const dt = new DataTransfer();
             const { files } = inputFiles;
             
             for (let i = 0; i < files.length; i++) {
                 const file = files[i];
-                if (file.name !== this.id){
+                if (file.name !== this.parentNode.id){
                     dt.items.add(file) // here you exclude the file. thus removing it.
                 }
             }
             
             inputFiles.files = dt.files // Assign the updates list
 
-            console.log('hh');
-            this.remove();
+            console.log(this.parentNode.id);
+            this.parentNode.remove();
         });
 
     }

@@ -119,7 +119,7 @@
     width: 120px;
     border-radius: 10px;
     cursor: pointer;
-    background-color: var(--bg);
+    background-color: rgb(235, 235, 235);
     text-align: center;
     padding: 5px;
     font-size: 14px;
@@ -127,16 +127,38 @@
 
 .form-container #img-container{
     display: flex;
+    width: fit-content;
+    max-width: 100%;
     height: 100px;
     overflow-x: auto;
     padding: 5px;
     border-radius: 15px;
-    background-color: var(--bg);
+    background-color: rgb(235, 235, 235);
+}
+
+.form-container #img-container .img-item-db ,.form-container #img-container .img-item{
+    position: relative;
+    margin-right: 10px;
+}
+
+.form-container #img-container .delete-hover{
+
+    position: absolute;
+    right: -5px;
+    top: -5px;
+    background-color: rgb(243, 83, 83);
+    border-radius: 10px;
+    cursor: pointer;
+    
+}
+
+.form-container #img-container .delete-hover i{
+    color: var(--bg);
+    font-size: large;
 }
 
 
 .form-container #img-container img{
-    border-radius: 10px;
     height: 100%;
-    margin-right: 5px;
+    border-radius: 10px;
 }

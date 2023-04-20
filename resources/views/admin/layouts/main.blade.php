@@ -16,11 +16,18 @@
             </div>
             <ul class="nav">
                 <li class="section">
-                    <h1>Statistics</h1>
-                    
+                    <a href="{{route('cp')}}">
+                        <div class="section-header">
+                            <i class="uil uil-chart-line"></i>
+                            <h1>Statistics</h1>
+                        </div>
+                    </a> 
                 </li>
                 <li class="section">
-                    <h1>Product Management</h1> 
+                    <div class="section-header">
+                        <i class="uil uil-cloud-computing"></i>
+                        <h1>Product Management</h1>
+                    </div>
                     <ul class="subsection">
                         <a href="{{route('hardwares.index')}}"><li>Hardwares</li></a>
                         <a href="#"><li>Softwares</li></a>
@@ -29,7 +36,10 @@
                     </ul>
                 </li>
                 <li class="section">
-                    <h1>Orders</h1>
+                    <div class="section-header">
+                        <i class="uil uil-clipboard-notes"></i>
+                        <h1>Orders</h1>
+                    </div>
                     <ul class="subsection">
                         <a href="#"><li>Pending</li></a>
                         <a href="#"><li>Delivering</li></a>
@@ -38,7 +48,10 @@
                     </ul>
                 </li>
                 <li class="section">
-                    <h1>Mailing</h1>
+                    <div class="section-header">
+                        <i class="uil uil-envelope"></i>
+                        <h1>Mailing</h1>
+                    </div>
                     <ul class="subsection">
                         <a href="#"><li>Incoming</li></a>
                         <a href="#"><li>being Contacted</li></a>
@@ -46,17 +59,22 @@
                     </ul>
                 </li>
                 <li class="section">
-                    <h1>Acounts</h1>
+                    <div class="section-header">
+                        <i class="uil uil-user-square"></i>
+                        <h1>Acounts</h1>
+                    </div>
                     <ul class="subsection">
                         <a href="#"><li>Users</li></a>
                         <a href="#"><li>Administrators</li></a>
                     </ul>
                 </li>
                 <li class="section">
-                    <h1>General</h1>
-                    <ul class="subsection">
-                        <a href="#"><li>todo...</li></a>
-                    </ul>
+                    <a href="#">
+                    <div class="section-header">
+                        <i class="uil uil-setting"></i>
+                        <h1>General</h1>
+                    </div>
+                    </a>
                 </li>
             </ul>
 
@@ -66,7 +84,12 @@
         </div>
         <section class="main">
             <div class="header">
-                
+                <div class="profile">
+                    <a href="{{route('adminProfile')}}"><div class="icon"><i class="uil uil-user-circle"></i></div></a> 
+                </div>
+                <div class="notification">
+                    <div class="icon"><i class="uil uil-bell"></i></div>
+                </div>
             </div>
             <section class="sub">
                 <div class="content">

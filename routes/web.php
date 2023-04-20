@@ -21,10 +21,12 @@ Route::get('/', function () {
 });
 
 Route::get('cp', [AdminAuthController::class, 'controlPanel'])
-    ->middleware([AdminAuth::class]);
+    ->middleware([AdminAuth::class])
+    ->name('cp');
 Route::get('cp/login', [AdminAuthController::class, 'login'])->name('login');
 Route::post('cp/loginin', [AdminAuthController::class, 'admLogin'])->name('login-c');
 Route::get('cp/signout', [AdminAuthController::class, 'signOut'])->name('signout');
+Route::get('cp/profile', [AdminAuthController::class, 'showProfile'])->name('adminProfile');
 
 Route::get('cp/hardwares/{hardware}/edit/dltimg/{img}', [HardwareController::class, 'deleteImg'])->name('hwdeleteImg');
 Route::resource('cp/hardwares', HardwareController::class)

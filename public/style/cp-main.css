@@ -34,16 +34,28 @@ body{
     color: var(--bg);
 }
 .right-panel .logo{
+    text-align: center;
     padding: 40px 20px 40px 20px ;
     background-color: var(--main);
 }
 
 .right-panel ul.nav{
-    margin-top: 70px;
+    overflow-y: auto;
+    margin-top: 10%;
+    margin-left: 5%;
 }
 
 .right-panel li.section{
     padding: 10px;
+}
+
+.right-panel li.section .section-header{
+    display: flex;
+}
+
+.right-panel li.section .section-header i{
+    font-size: 20px;
+    margin-right: 10px;
 }
 
 .right-panel ul{
@@ -103,4 +115,23 @@ section.sub .left-panel{
     width: fit-content;
     background-color: var(--sub2);
     padding: 10px;
+}
+
+/*------------ header --------------*/
+.wrapper .header {
+    padding-right: 5%;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+}
+
+.wrapper .header .notification{
+    margin-right: 10px;
+    position: relative;
+}
+
+.wrapper .header .icon{
+    cursor: pointer;
+    font-size: 35px;
+    color: var(--bg);
 }

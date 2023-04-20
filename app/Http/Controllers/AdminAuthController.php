@@ -52,4 +52,10 @@ class AdminAuthController extends Controller
   
         return Redirect('cp/login');
     }
+
+    public function showProfile() {
+        $admin = Auth::guard('admin')->user();
+        return view('admin.profile', compact('admin'));
+    }
+
 }

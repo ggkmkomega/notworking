@@ -94,11 +94,13 @@ section.sub{
 }
 
 section.sub .content{
-    width: 65%;
+    flex: 1 1 auto;
+    max-width: calc(100% - 20px);
 }
 
 section.sub .left-panel{
-    width: 35%;
+    overflow-y: auto;
+    width: fit-content;
     background-color: var(--sub2);
     padding: 10px;
 }

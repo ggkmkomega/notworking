@@ -1,0 +1,17 @@
+.show-wrapper{
+    padding: 20px;
+    overflow-y: scroll;
+    height: 100%;
+    width: 100%;
+}
+
+.img-container{
+    margin-bottom: 25px;
+    display: flex;
+    overflow-x: auto;
+    height: 160px;
+}
+
+.img-container .img-item img{
+    height: 100%;
+}

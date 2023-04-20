@@ -30,7 +30,6 @@ class HardwareController extends Controller
             'datasheet' => 'required',
             'category' => 'required|string|max:255',
         ]);
-
         $hardware = new Hardware;
         $hardware->prod_category = 'hardware';
         $hardware->name = $request->name;
@@ -65,9 +64,7 @@ class HardwareController extends Controller
     public function show(Hardware $hardware)
     {
         $content = $hardware->prod_images()->get();
-        foreach ($content as $imgitem){
-            error_log($imgitem->path);
-        }
+
         return view('admin.product.hardware.show', compact('hardware', 'content'));
     }
 
@@ -75,8 +72,10 @@ class HardwareController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(Hardware $hardware)
-    {
-        return view('admin.product.hardware.edit', compact('hardware'));
+    {   
+
+        $content = $hardware->prod_images()->get();
+        return view('admin.product.hardware.edit', compact('hardware', 'content'));
     }
 
     /**
@@ -91,6 +90,22 @@ class HardwareController extends Controller
             'datasheet' => 'required',
             'category' => 'required|string|max:255',
         ]);
+
+        if ($request->file('imgs')){
+            foreach($request->file('imgs') as $img)
+            {
+                //store the file to the public local storag
+                $imgName = time().rand(1,999).'.'.$img->extension();
+                $path = $img->storeAs('images/products/' . $hardware->id .'_' . $hardware->prod_category . '_' . 'imgs', $imgName, 'public');
+
+                //store a path to the db
+                $prodImage = new ProdImage;
+                $prodImage->prod_id = $hardware->id;
+                $prodImage->prod_category = 'hardware';
+                $prodImage->path = $path;
+                $prodImage->save();
+            }
+        }
 
         $hardware->name = $request->name;
         $hardware->header = $request->header;
@@ -115,5 +130,13 @@ class HardwareController extends Controller
         }
         $hardware->delete();
         return redirect(route('hardwares.index'));
+    }
+
+    public function deleteImg(Hardware $hardware, ProdImage $img)
+    {
+        error_log("deleted" . $img->path);
+        Storage::disk('public')->delete($img->path);
+        $img->delete();
+        return redirect(route('hardwares.edit', $hardware));
     }
 }

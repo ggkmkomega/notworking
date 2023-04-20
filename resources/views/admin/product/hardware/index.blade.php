@@ -7,36 +7,54 @@
     <div class="items-container">
         @foreach ($hardwares as $hItem)
             <div class="item">
-                <a href="hardwares/{{$hItem->id}}/"><p>{{$hItem->name}}</p></a>
-                <a href="{{ route('hardwares.edit' , $hItem) }}">Modifier</a>
-                <form action="{{ route('hardwares.destroy', $hItem) }}" method="POST">
-                    @csrf
-                    @method('delete')
-                    <input type="submit" value="Suprimer">
-                </form>
+                <div class="name-container">
+                    <a href="{{ route('hardwares.show' , $hItem) }}"><p>{{$hItem->name}}</p></a>
+                </div>
+                <div class="timestamps-container">
+                    <p>ajouté en: {{$hItem->created_at}}</p>
+                    <p>mis à jour en: {{$hItem->updated_at}}</p>
+                </div>
+                
+                <div class="btn-container">
+                    <a href="{{ route('hardwares.edit' , $hItem) }}">Modifier</a>
+                    <form action="{{ route('hardwares.destroy', $hItem) }}" method="POST">
+                        @csrf
+                        @method('delete')
+                        <input type="submit" value="Suprimer">
+                    </form>
+                </div>
             </div>    
         @endforeach
     </div>
 @endsection
 
 @section('left-panel')
-<h1>Add new Item</h1> <br><br>
-<form action="{{ route('hardwares.store') }}" method="POST" enctype="multipart/form-data">
-    @csrf
-    <label for="name">nom:</label><br>
-    <input type="text" name="name" value="{{ old('name') }}"><br><br>
-    <label for="name">en tete:</label><br>
-    <input type="text" name="header" value="{{ old('header') }}"><br><br>
-    <label for="name">description:</label><br>
-    <textarea name="desc" id="" cols="30" rows="10">{{ old('desc') }}</textarea><br><br>
-    <label for="name">fich technique:</label><br>
-    <textarea name="datasheet" id="" cols="30" rows="10">{{ old('datasheet') }}</textarea><br><br>
-    <label for="name">catégorie:</label><br>
-    <input type="text" name="category" value="{{ old('category') }}"><br><br>
+<div class="form-container">
+    <h1>Ajouter un nouveau produit:</h1> <br>
+    <form action="{{ route('hardwares.store') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <label for="name">nom:</label><br>
+        <input type="text" name="name" value="{{ old('name') }}"><br><br>
+        <label for="name">entête:</label><br>
+        <input type="text" name="header" value="{{ old('header') }}"><br><br>
+        <label for="name">description:</label><br>
+        <textarea name="desc" id="" >{{ old('desc') }}</textarea><br><br>
+        <label for="name">fiche technique:</label><br>
+        <textarea name="datasheet" id="">{{ old('datasheet') }}</textarea><br><br>
+        <label for="name">catégorie:</label><br>
+        <input type="text" name="category" value="{{ old('category') }}"><br><br>
 
-    <label for="img">Select image:</label>
-    <input type="file" id="img" name="imgs[]" multiple accept="image/*"><br><br>
+        <label for="img">sélectionner une liste d'images:</label><br><br>
+        <label for="img-input" class="custom-file-upload">Sélectionner</label>
+        <input type="file" id="img-input" name="imgs[]" multiple accept="image/*" onchange="test()"><br><br>
+        <div id="img-container">
 
-    <input type="submit" value="Ajouté">
-</form>
+        </div>
+        <script src="{{URL::asset('script/imgUploadPreview.js')}}"></script>
+
+        <div class="submit-btn">
+            <input class="btn" type="submit" value="Ajouté">
+        </div>
+    </form>
+</div>
 @endsection

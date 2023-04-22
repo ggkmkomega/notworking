@@ -8,8 +8,24 @@
         @foreach ($hardwares as $hItem)
             <div class="item">
                 <div class="name-container">
-                    <a href="{{ route('hardwares.show' , $hItem) }}"><p>{{$hItem->name}}</p></a>
+                    @php
+                        $content = $hItem->prod_images()->get();
+                        $imgPath = '';
+                        if(count($content) > 0){
+                            $imgPath = $content[0]->path;
+                        }else{
+                            $imgPath = 'pre_assets/img/empty-img.png';
+                        }
+                    @endphp
+                    <img src="{{URL::asset('storage/' . $imgPath)}}" alt="">
+                    
                 </div>
+
+                <div class="desc">
+                    <a href="{{ route('hardwares.show' , $hItem) }}"><p>{{$hItem->name}}</p></a><br>
+                    <p>{{$hItem->header}}</p>
+                </div>
+
                 <div class="timestamps-container">
                     <p>ajouté en: {{$hItem->created_at}}</p>
                     <p>mis à jour en: {{$hItem->updated_at}}</p>

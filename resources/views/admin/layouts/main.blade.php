@@ -30,7 +30,7 @@
                     </div>
                     <ul class="subsection">
                         <a href="{{route('hardwares.index')}}"><li>Hardwares</li></a>
-                        <a href="#"><li>Softwares</li></a>
+                        <a href="{{route('softwares.index')}}"><li>Softwares</li></a>
                         <a href="#"><li>Services</li></a>
                         <a href="#"><li>Courses</li></a>
                     </ul>

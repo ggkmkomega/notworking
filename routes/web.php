@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\HardwareController;
+use App\Http\Controllers\SoftwareController;
 use App\Http\Middleware\AdminAuth;
 
 /*
@@ -30,5 +31,10 @@ Route::get('cp/profile', [AdminAuthController::class, 'showProfile'])->name('adm
 
 Route::get('cp/hardwares/{hardware}/edit/dltimg/{img}', [HardwareController::class, 'deleteImg'])->name('hwdeleteImg');
 Route::resource('cp/hardwares', HardwareController::class)
+    ->only(['index', 'store', 'edit', 'update', 'destroy', 'show'])
+    ->middleware([AdminAuth::class]);
+
+Route::get('cp/softwares/{software}/edit/dltimg/{img}', [SoftwareController::class, 'deleteImg'])->name('swdeleteImg');
+Route::resource('cp/softwares', SoftwareController::class)
     ->only(['index', 'store', 'edit', 'update', 'destroy', 'show'])
     ->middleware([AdminAuth::class]);

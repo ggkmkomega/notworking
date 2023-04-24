@@ -26,7 +26,7 @@ class SoftwareController extends Controller
             'header' => 'required|string|max:255',
             'desc' => 'required',
             'payment' => 'required|string|max:255',
-            'price' => 'required|decimal:2',
+            'price' => 'required|numeric',
             'category' => 'required|string|max:255',
         ]);
         $software = new Software();
@@ -88,7 +88,7 @@ class SoftwareController extends Controller
             'header' => 'required|string|max:255',
             'desc' => 'required',
             'payment' => 'required|string|max:255',
-            'price' => 'required|decimal:2',
+            'price' => 'required|numeric',
             'category' => 'required|string|max:255',
         ]);
 

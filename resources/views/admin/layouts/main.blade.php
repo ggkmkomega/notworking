@@ -31,8 +31,8 @@
                     <ul class="subsection">
                         <a href="{{route('hardwares.index')}}"><li>Hardwares</li></a>
                         <a href="{{route('softwares.index')}}"><li>Softwares</li></a>
-                        <a href="#"><li>Services</li></a>
-                        <a href="#"><li>Courses</li></a>
+                        <a href="{{route('services.index')}}"><li>Services</li></a>
+                        <a href="{{route('courses.index')}}"><li>Courses</li></a>
                     </ul>
                 </li>
                 <li class="section">

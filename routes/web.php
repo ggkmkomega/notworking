@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\HardwareController;
 use App\Http\Controllers\SoftwareController;
+use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\CourseController;
 use App\Http\Middleware\AdminAuth;
 
 /*
@@ -36,5 +38,15 @@ Route::resource('cp/hardwares', HardwareController::class)
 
 Route::get('cp/softwares/{software}/edit/dltimg/{img}', [SoftwareController::class, 'deleteImg'])->name('swdeleteImg');
 Route::resource('cp/softwares', SoftwareController::class)
+    ->only(['index', 'store', 'edit', 'update', 'destroy', 'show'])
+    ->middleware([AdminAuth::class]);
+
+Route::get('cp/services/{service}/edit/dltimg/{img}', [ServiceController::class, 'deleteImg'])->name('svdeleteImg');
+Route::resource('cp/services', ServiceController::class)
+    ->only(['index', 'store', 'edit', 'update', 'destroy', 'show'])
+    ->middleware([AdminAuth::class]);
+    
+Route::get('cp/courses/{course}/edit/dltimg/{img}', [CourseController::class, 'deleteImg'])->name('crdeleteImg');
+Route::resource('cp/courses', CourseController::class)
     ->only(['index', 'store', 'edit', 'update', 'destroy', 'show'])
     ->middleware([AdminAuth::class]);

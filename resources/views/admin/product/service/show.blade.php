@@ -6,14 +6,10 @@
 @section('main-content')
     <div class="show-wrapper">
         <div class="items-container">
-            <h1>{{$hardware->name}}</h1><br>
-            <h3>{{$hardware->header}}</h3><br>
-            @php
-                echo $hardware->desc;
-            @endphp
-            @php
-                echo $hardware->datasheet;
-            @endphp
+            <h1>{{$service->name}}</h1><br>
+            <h3>{{$service->header}}</h3><br>
+            <p>{{$service->desc}}</p><br>
+            <iframe srcdoc="{{$service->page}}" frameborder="0" sandbox="allow-forms allow-popups"></iframe>
             <div class="img-container">
                 @foreach ($content as $img )
                     <div class="img-item">

@@ -18,4 +18,12 @@ class ProdImage extends Model
     public function swProd(){
         return $this->hasOne(Software::class, ['id', 'prod_category'], ['prod_id', 'prod_category']);
     }
+
+    public function svProd(){
+        return $this->hasOne(Service::class, ['id', 'prod_category'], ['prod_id', 'prod_category']);
+    }
+
+    public function crProd(){
+        return $this->hasOne(Course::class, ['id', 'prod_category'], ['prod_id', 'prod_category']);
+    }
 }

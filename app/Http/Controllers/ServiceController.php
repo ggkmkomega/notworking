@@ -63,6 +63,13 @@ class ServiceController extends Controller
 
         return view('admin.product.service.show', compact('service', 'content'));
     }
+    
+    public function siteShow(Service $service)
+    {
+        $content = $service->prod_images()->get();
+
+        return view('display.service.show', compact('service', 'content'));
+    }
 
     /**
      * Show the form for editing the specified resource.

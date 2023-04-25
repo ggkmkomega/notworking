@@ -21,16 +21,26 @@
             <nav>
                 <ul>
                     <li class="menu-item">
-                        <a href="#">Products</a>
+                        <a class="dropbtn btn" href="#">Products</a>
+                        <div class="dropdown-content">
+                            <a href="#">Software</a>
+                            <a href="{{route('hwSiteIndex')}}">Hardware</a>
+                        </div>
                     </li >
                     <li class="menu-item">
-                        <a href="#">Services</a>
+                        <a class="dropbtn btn" href="#">Services</a>
+                        <div class="dropdown-content">
+                            @foreach ($services as $service)
+                                <a href="{{route('svSiteShow', $service)}}">{{$service->name}}</a>
+                            @endforeach
+                            <a href="#">Courses</a>
+                        </div>
                     </li>
                     <li class="menu-item">
-                        <a href="#">About</a>
+                        <a class="btn" href="#">About</a>
                     </li>
                     <li class="menu-item">
-                        <a href="#">Contact</a>
+                        <a class="btn" href="#">Contact</a>
                     </li>
                 </ul>
             </nav>
@@ -92,14 +102,14 @@
                     <h2><a href="#">Services</a></h2>
                     <p><a href="#">Categorie 1</a></p>
                     <p><a href="#">Categorie 2</a></p>
-                    <p><a href="#">Categorie 3</a></p>
+                    <p><a href="#">Courses</a></p>
                     <br>
-                    <h2><a href="#">Hardware/Software</a></h2>
+                    <h2><a href="#">Hardware</a></h2>
                     <p><a href="#">Categorie 1</a></p>
                     <p><a href="#">Categorie 2</a></p>
                     <p><a href="#">Categorie 3</a></p>
                     <br>
-                    <h2><a href="#">Courses</a></h2>
+                    <h2><a href="#">Software</a></h2>
                     <p><a href="#">Categorie 1</a></p>
                     <p><a href="#">Categorie 2</a></p>
                     <p><a href="#">Categorie 3</a></p>

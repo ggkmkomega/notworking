@@ -19,6 +19,22 @@ class HardwareController extends Controller
         return view('admin.product.hardware.index', compact('hardwares'));    
     }
 
+    public function siteIndex()
+    {
+        $hardwares = Hardware::all();
+
+        $categories = array();
+
+        foreach($hardwares as $item){
+            if(!in_array($item->category, $categories))
+            {
+                $categories[] = $item->category;
+            }
+        }
+        
+        return view('display.hardware.index', compact('hardwares', 'categories'));    
+    }
+
     /**
      * Store a newly created resource in storage.
      */
@@ -67,6 +83,13 @@ class HardwareController extends Controller
         $content = $hardware->prod_images()->get();
 
         return view('admin.product.hardware.show', compact('hardware', 'content'));
+    }
+
+    public function siteShow(Hardware $hardware)
+    {
+        $content = $hardware->prod_images()->get();
+
+        return view('display.hardware.show', compact('hardware', 'content'));
     }
 
     /**

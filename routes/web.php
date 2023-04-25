@@ -50,3 +50,8 @@ Route::get('cp/courses/{course}/edit/dltimg/{img}', [CourseController::class, 'd
 Route::resource('cp/courses', CourseController::class)
     ->only(['index', 'store', 'edit', 'update', 'destroy', 'show'])
     ->middleware([AdminAuth::class]);
+
+Route::get('products/hardwares', [HardwareController::class, 'siteIndex'])->name('hwSiteIndex');
+Route::get('products/hardwares/{hardware}', [HardwareController::class, 'siteShow'])->name('hwSiteShow');
+
+Route::get('services/{service}', [ServiceController::class, 'siteShow'])->name('svSiteShow');

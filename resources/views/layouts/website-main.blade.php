@@ -14,7 +14,7 @@
         <header>
             <!--Logo-->
             <div id="logo">
-                <h1>Brand Name</h1>
+                <a href="{{route('main')}}"><h1>Brand Name</h1></a>
             </div>
 
             <!--Navigation Menu-->

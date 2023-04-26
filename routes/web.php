@@ -21,7 +21,7 @@ use App\Http\Middleware\AdminAuth;
 
 Route::get('/', function () {
     return view('landing');
-});
+})->name("main");
 
 Route::get('cp', [AdminAuthController::class, 'controlPanel'])
     ->middleware([AdminAuth::class])

@@ -8,7 +8,10 @@
     --main: #6F38C5;
     --mainShade:#512a90;
     --sub1: #87A2FB;
+    --sub2b: #B7EBDD;
     --sub2: #ADDDD0;
+    --sub2d1: #99C4B9;
+    --sub2d2: #7B9E95;
     --bg: #EEEEEE;
 }
 
@@ -35,6 +38,7 @@ body{
 }
 main{
     min-height: calc(100% - 614px);
+    padding: 20px 10%;
 }
 /*---------------------------------------*/
 /*-------------- Header -----------------*/
@@ -50,9 +54,10 @@ header{
     justify-content: space-between;
     align-items: center;
 }
-#logo{
+#logo a{
     color: var(--bg);
     height: 42px;
+    text-decoration: none;
 }
 nav ul{
     display: flex;
@@ -130,10 +135,9 @@ header.openSearch .search-bar{
 }
 .search-bar i{
     position: absolute;
-    left: 25px;
-    top: 0;
+    left: 5px;
+    top: 3px;
     color: var(--main);
-    transform: translate(-50%, -8%);
 }
 .search-bar input{
     padding-left: 50px;

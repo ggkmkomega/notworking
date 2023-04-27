@@ -1,0 +1,90 @@
+.page-container .main-container{
+    display: flex;
+    margin-top: 30px;
+}
+
+.pic-display{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: var(--grey4);
+    border-radius: 10px;
+}
+.pic-display .thumbs{
+    display: flex;
+    width: 100%;
+    overflow-x: scroll;
+    padding: 5px;
+    gap: 5px;
+}
+.pic-display .thumbs img{
+    height: 60px;
+    border-radius: 10px;
+    opacity: 0.5;
+    border-style: solid;
+    border-color: rgb(212, 212, 212);
+    background-color: rgb(212, 212, 212);;
+    border-width: 3px;
+    pointer-events: all;
+
+}
+.pic-display .thumbs img.selected{
+    opacity: 1;
+    pointer-events: none;
+    cursor:default;
+}
+.pic-display .thumbs img:hover{
+    border-color: var(--blue1);
+    cursor: pointer;
+}
+.pic-display .showcasedImg{
+    width: 500px;
+    height: 500px;
+    border-radius: 10px;
+    overflow-x: auto;
+}
+.pic-display .showcasedImg img{
+    height: 100%;
+
+}
+
+.prod-info{
+    margin-left: 40px;
+    color: gray;
+}
+
+.prod-info .prod-head{
+    font-size: large;
+    font-weight: bold;
+}
+
+.prod-info .prod-desc{
+    margin-top: 15px;
+}
+
+.more-btn{
+    margin-top: 50px;
+    width: fit-content;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: var(--sub2);
+    cursor: pointer;
+    user-select: none;
+}
+
+.datasheet{
+    background-color: rgb(219, 219, 219);
+    border-radius: 10px;
+    margin-top: 10px;
+    padding: 15px;
+    height: 0px;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.2s;
+}
+
+.datasheet.display{
+    opacity: 1;
+    height: auto;
+}

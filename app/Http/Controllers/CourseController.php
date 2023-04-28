@@ -16,6 +16,22 @@ class CourseController extends Controller
         return view('admin.product.course.index', compact('courses'));
     }
 
+    public function siteIndex()
+    {
+        $courses = Course::all();
+
+        $categories = array();
+
+        foreach($courses as $item){
+            if(!in_array($item->category, $categories))
+            {
+                $categories[] = $item->category;
+            }
+        }
+        
+        return view('display.course.index', compact('courses', 'categories'));    
+    }
+
     /**
      * Store a newly created resource in storage.
      */
@@ -23,6 +39,7 @@ class CourseController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
+            'category' => 'required|string|max:255',
             'header' => 'required|string|max:255',
             'desc' => 'required',
             'period' => 'required|string|max:255',
@@ -32,6 +49,7 @@ class CourseController extends Controller
         $course = new Course();
         $course->prod_category = 'course';
         $course->name = $validated['name'];
+        $course->category = $validated['category'];
         $course->header = $validated['header'];
         $course->desc = $validated['desc'];
         $course->period = $validated['period'];
@@ -68,6 +86,13 @@ class CourseController extends Controller
         return view('admin.product.course.show', compact('course', 'content'));
     }
 
+    public function siteShow(Course $course)
+    {
+        $content = $course->prod_images()->get();
+
+        return view('display.course.show', compact('course', 'content'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      */
@@ -85,6 +110,7 @@ class CourseController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
+            'category' => 'required|string|max:255',
             'header' => 'required|string|max:255',
             'desc' => 'required',
             'period' => 'required|string|max:255',
@@ -109,6 +135,7 @@ class CourseController extends Controller
         }
 
         $course->name = $validated['name'];
+        $course->category = $validated['category'];
         $course->header = $validated['header'];
         $course->desc = $validated['desc'];
         $course->period = $validated['period'];

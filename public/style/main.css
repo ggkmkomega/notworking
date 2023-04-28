@@ -120,7 +120,7 @@ header i{
 }
 header .search-bar{
     position: absolute;
-    right: 26%;
+    right: 25%;
     height: 34px;
     max-width: 45%;
     width: 0%;
@@ -133,11 +133,24 @@ header.openSearch .search-bar{
     width: 100%;
     pointer-events: auto;
 }
-.search-bar i{
+.search-bar button{
+    background-color: transparent;
+    border-style: none;
+
     position: absolute;
+    width: 28px;
+    height: 28px;
     left: 5px;
     top: 3px;
     color: var(--main);
+}
+
+.search-bar button i{
+    color: #512a90;
+}
+
+.search-bar form{
+    height: 100%;
 }
 .search-bar input{
     padding-left: 50px;

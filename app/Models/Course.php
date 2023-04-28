@@ -17,6 +17,7 @@ class Course extends Product
         'period',
         'prof',
         'price',
+        'category',
     ];
 
     public function prod_images(){

@@ -14,7 +14,7 @@
         <header>
             <!--Logo-->
             <div id="logo">
-                <a href="{{route('main')}}"><h1>Brand Name</h1></a>
+                <a href="{{route('main')}}"><h1>Company Name</h1></a>
             </div>
 
             <!--Navigation Menu-->
@@ -23,7 +23,7 @@
                     <li class="menu-item">
                         <a class="dropbtn btn" href="#">Products</a>
                         <div class="dropdown-content">
-                            <a href="#">Software</a>
+                            <a href="{{route('swSiteIndex')}}">Software</a>
                             <a href="{{route('hwSiteIndex')}}">Hardware</a>
                         </div>
                     </li >
@@ -33,7 +33,7 @@
                             @foreach ($services as $service)
                                 <a href="{{route('svSiteShow', $service)}}">{{$service->name}}</a>
                             @endforeach
-                            <a href="#">Courses</a>
+                            <a href="{{route('crSiteIndex')}}">Courses</a>
                         </div>
                     </li>
                     <li class="menu-item">
@@ -49,8 +49,13 @@
             <script src="{{ URL::asset('script/search-bar.js')}}" defer></script>
             <i class="uil uil-search" id="searchIcon"></i>
             <div class="search-bar">
-                <i class="uil uil-search"></i>
-                <input type="text" placeholder="Search">
+                <form action="{{url('search')}}"  method="get">
+                    @csrf
+                    <button type="submit">
+                        <i class="uil uil-search"></i>
+                    </button>
+                    <input type="search" name="search" value="" placeholder="Search">
+                </form>
             </div>
 
             <div id="account">
@@ -68,8 +73,8 @@
         <footer>
             <div id="elements-container">
                 <div class="container" id="brand-name">
-                    <h1>Brand Name</h1>
-                    <p>Brand Slogan</p>
+                    <h1>Company Name</h1>
+                    <p>Company Slogan</p>
                     <hr>
                     <i class="uil uil-envelope-alt"></i>
                     <a href="">info@brandname.com</a>
@@ -100,19 +105,16 @@
                     <h1>Products</h1>
                     <hr>
                     <h2><a href="#">Services</a></h2>
-                    <p><a href="#">Categorie 1</a></p>
-                    <p><a href="#">Categorie 2</a></p>
-                    <p><a href="#">Courses</a></p>
+                    @for ($i = 0; $i < 5; $i++)
+                        @if (isset($services[$i])) 
+                        <p><a href="{{route('svSiteShow', $services[$i])}}">{{$services[$i]->name}}</a></p>
+                        @endif
+                    @endfor
+                    <p><a href="{{route('crSiteIndex')}}">Courses</a></p>
                     <br>
-                    <h2><a href="#">Hardware</a></h2>
-                    <p><a href="#">Categorie 1</a></p>
-                    <p><a href="#">Categorie 2</a></p>
-                    <p><a href="#">Categorie 3</a></p>
+                    <h2><a href="{{route('hwSiteIndex')}}">Hardware</a></h2>
                     <br>
-                    <h2><a href="#">Software</a></h2>
-                    <p><a href="#">Categorie 1</a></p>
-                    <p><a href="#">Categorie 2</a></p>
-                    <p><a href="#">Categorie 3</a></p>
+                    <h2><a href="{{route('swSiteIndex')}}">Software</a></h2>
                 </div>
                 <div class="container" id="client">
                     <h1>Client</h1>
@@ -138,7 +140,7 @@
                 </div>
             </div>
             <div id="sub-footer">
-                <p><a href="#">@2023, Brand Name, Inc.</a></p>
+                <p><a href="#">@2023, Company Name, Inc.</a></p>
                 <p><a href="#">Terms</a></p>
                 <p><a href="#">Privacy</a></p>
                 <p><a href="#">Security</a></p>

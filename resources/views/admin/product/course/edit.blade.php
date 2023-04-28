@@ -11,6 +11,9 @@
         <label for="name">nom:</label><br>
         <input type="text" name="name" value="{{ old('name', $course->name) }}"><br><br>
 
+        <label for="name">catégorie:</label><br>
+        <input type="text" name="category" value="{{ old('category', $course->category) }}"><br><br>
+
         <label for="name">en tete:</label><br>
         <input type="text" name="header" value="{{ old('header', $course->header) }}"><br><br>
 

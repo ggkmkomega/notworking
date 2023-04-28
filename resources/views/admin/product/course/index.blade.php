@@ -53,6 +53,9 @@
         <label for="name">nom:</label><br>
         <input type="text" name="name" value="{{ old('name') }}"><br><br>
 
+        <label for="name">catégorie:</label><br>
+        <input type="text" name="category" value="{{ old('category') }}"><br><br>
+
         <label for="name">entête:</label><br>
         <input type="text" name="header" value="{{ old('header') }}"><br><br>
 

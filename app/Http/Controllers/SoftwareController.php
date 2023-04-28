@@ -16,6 +16,22 @@ class SoftwareController extends Controller
         return view('admin.product.software.index', compact('softwares'));    
     }
 
+    public function siteIndex()
+    {
+        $softwares = Software::all();
+
+        $categories = array();
+
+        foreach($softwares as $item){
+            if(!in_array($item->category, $categories))
+            {
+                $categories[] = $item->category;
+            }
+        }
+        
+        return view('display.software.index', compact('softwares', 'categories'));    
+    }
+
     /**
      * Store a newly created resource in storage.
      */
@@ -66,6 +82,13 @@ class SoftwareController extends Controller
         $content = $software->prod_images()->get();
 
         return view('admin.product.software.show', compact('software', 'content'));
+    }
+
+    public function siteShow(Software $software)
+    {
+        $content = $software->prod_images()->get();
+
+        return view('display.software.show', compact('software', 'content'));
     }
 
     /**

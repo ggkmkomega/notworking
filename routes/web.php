@@ -6,6 +6,7 @@ use App\Http\Controllers\HardwareController;
 use App\Http\Controllers\SoftwareController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\FrontendController;
 use App\Http\Middleware\AdminAuth;
 
 /*
@@ -19,9 +20,32 @@ use App\Http\Middleware\AdminAuth;
 |
 */
 
+
+/* main */
 Route::get('/', function () {
     return view('landing');
 })->name("main");
+
+
+
+Route::controller(FrontendController::class)->group(function () {
+    Route::get('search', 'searchProduct');
+});
+
+Route::get('products/hardwares', [HardwareController::class, 'siteIndex'])->name('hwSiteIndex');
+Route::get('products/hardwares/{hardware}', [HardwareController::class, 'siteShow'])->name('hwSiteShow');
+
+Route::get('products/softwares', [SoftwareController::class, 'siteIndex'])->name('swSiteIndex');
+Route::get('products/softwares/{software}', [SoftwareController::class, 'siteShow'])->name('swSiteShow');
+
+Route::get('services/{service}', [ServiceController::class, 'siteShow'])->name('svSiteShow');
+
+Route::get('products/courses', [CourseController::class, 'siteIndex'])->name('crSiteIndex');
+Route::get('products/courses/{course}', [CourseController::class, 'siteShow'])->name('crSiteShow');
+
+
+
+/* control panel*/
 
 Route::get('cp', [AdminAuthController::class, 'controlPanel'])
     ->middleware([AdminAuth::class])
@@ -51,7 +75,5 @@ Route::resource('cp/courses', CourseController::class)
     ->only(['index', 'store', 'edit', 'update', 'destroy', 'show'])
     ->middleware([AdminAuth::class]);
 
-Route::get('products/hardwares', [HardwareController::class, 'siteIndex'])->name('hwSiteIndex');
-Route::get('products/hardwares/{hardware}', [HardwareController::class, 'siteShow'])->name('hwSiteShow');
 
-Route::get('services/{service}', [ServiceController::class, 'siteShow'])->name('svSiteShow');
+

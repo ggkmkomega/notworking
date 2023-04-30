@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
 
-class AdminAuth
+class RedirectIfLogedIn
 {
     /**
      * Handle an incoming request.
@@ -16,9 +16,8 @@ class AdminAuth
      */
     public function handle(Request $request, Closure $next): Response
     {
-        
-        if(!Auth::guard('admin')->check()){
-            return redirect("cp/login")->withErrors('You are not allowed to access');
+        if(Auth::check()){
+            return redirect("/")->withErrors('loged in already!');
         }
         return $next($request);
     }

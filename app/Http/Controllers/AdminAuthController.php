@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Hash;
-use Session;
+use Illuminate\Support\Facades\Session;
 use App\Models\Admin;
 use Illuminate\Http\RedirectResponse;
 
@@ -28,15 +28,12 @@ class AdminAuthController extends Controller
             'password' => ['required'],
         ]);
 
-        $name = $request->name;
-        $password = $request->password;
-
-        if (Auth::guard('admin')->attempt(['name' => $name, 'password' => $password])) {
-            error_log("auth");
+        if (Auth::guard('admin')->attempt($credentials)) {
+            //auth
             $request->session()->regenerate();
             return redirect()->intended('cp')->withSuccess('Signed in');
         }
-        error_log("not auth");
+        //not auth
         return redirect("cp/login")->withErrors('Login details are not valid');
     }
 

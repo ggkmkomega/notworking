@@ -2,12 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminAuthController;
+use App\Http\Controllers\UserAuthController;
 use App\Http\Controllers\HardwareController;
 use App\Http\Controllers\SoftwareController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Middleware\AdminAuth;
+use App\Http\Middleware\RedirectIfLogedIn;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,17 +23,26 @@ use App\Http\Middleware\AdminAuth;
 */
 
 
-/* main */
+/*---------------- main -----------------*/
 Route::get('/', function () {
     return view('landing');
 })->name("main");
 
+/* user auth */
+Route::get('register', [UserAuthController::class, 'showRegisterForm'])->name('registerForm');
+Route::get('login', [UserAuthController::class, 'showLoginForm'])
+    ->middleware(RedirectIfLogedIn::class)
+    ->name('loginForm');
+Route::post('registering', [UserAuthController::class, 'register'])->name('userRegister');
+Route::post('logining', [UserAuthController::class, 'login'])->name('userLogin');
+Route::get('signout', [UserAuthController::class, 'signout'])->name('userSignOut');
 
-
+/* genearl */
 Route::controller(FrontendController::class)->group(function () {
     Route::get('search', 'searchProduct');
 });
 
+/* products */
 Route::get('products/hardwares', [HardwareController::class, 'siteIndex'])->name('hwSiteIndex');
 Route::get('products/hardwares/{hardware}', [HardwareController::class, 'siteShow'])->name('hwSiteShow');
 
@@ -45,8 +56,9 @@ Route::get('products/courses/{course}', [CourseController::class, 'siteShow'])->
 
 
 
-/* control panel*/
+/*----------------- control panel ---------------*/
 
+/* admin auth */
 Route::get('cp', [AdminAuthController::class, 'controlPanel'])
     ->middleware([AdminAuth::class])
     ->name('cp');
@@ -55,6 +67,7 @@ Route::post('cp/loginin', [AdminAuthController::class, 'admLogin'])->name('login
 Route::get('cp/signout', [AdminAuthController::class, 'signOut'])->name('signout');
 Route::get('cp/profile', [AdminAuthController::class, 'showProfile'])->name('adminProfile');
 
+/* products */
 Route::get('cp/hardwares/{hardware}/edit/dltimg/{img}', [HardwareController::class, 'deleteImg'])->name('hwdeleteImg');
 Route::resource('cp/hardwares', HardwareController::class)
     ->only(['index', 'store', 'edit', 'update', 'destroy', 'show'])

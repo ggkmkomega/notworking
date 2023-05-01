@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\UserAuthController;
 use App\Http\Controllers\HardwareController;
@@ -8,8 +9,13 @@ use App\Http\Controllers\SoftwareController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\FrontendController;
+
 use App\Http\Middleware\AdminAuth;
 use App\Http\Middleware\RedirectIfLogedIn;
+use App\Http\Middleware\UserLoggedIn;
+
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -24,9 +30,6 @@ use App\Http\Middleware\RedirectIfLogedIn;
 
 
 /*---------------- main -----------------*/
-Route::get('/', function () {
-    return view('landing');
-})->name("main");
 
 /* user auth */
 Route::get('register', [UserAuthController::class, 'showRegisterForm'])->name('registerForm');
@@ -37,10 +40,27 @@ Route::post('registering', [UserAuthController::class, 'register'])->name('userR
 Route::post('logining', [UserAuthController::class, 'login'])->name('userLogin');
 Route::get('signout', [UserAuthController::class, 'signout'])->name('userSignOut');
 
+/* mail verification */
+Route::get('/email/verify', function () {
+    return view('user.auth.verify-email');
+})->middleware([UserLoggedIn::class])->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+    return redirect(route('main'));
+})->middleware([UserLoggedIn::class])->name('verification.verify');
+
 /* genearl */
 Route::controller(FrontendController::class)->group(function () {
     Route::get('search', 'searchProduct');
+    Route::get('dashboard', 'showDashboard')
+        ->middleware([UserLoggedIn::class])
+        ->name('userDashboard');
 });
+
+Route::get('/', function () {
+    return view('landing');
+})->name("main");
 
 /* products */
 Route::get('products/hardwares', [HardwareController::class, 'siteIndex'])->name('hwSiteIndex');

@@ -57,10 +57,37 @@
                     <input type="search" name="search" value="" placeholder="Search">
                 </form>
             </div>
-
             <div id="account">
-                <i class="uil uil-bell"></i>
-                <a href="/pfe/public/register"><i class="uil uil-user-circle"></i></a>
+                @if (Auth::check())
+                    <i class="uil uil-bell"></i>
+                    <div class="account-menu">
+                        <div class="account-btn">
+                            <i class="uil uil-user-circle"></i>
+                        </div>
+                        
+                        <div class="dropdown-menu">
+                            <a class="ddm" href="#">settings</a>
+                            <hr>
+                            <a class='ddm' href="{{route('userDashboard')}}">dashboard</a>
+                            <hr>
+                            <a class="ddm signout" href="{{route('userSignOut')}}">signout</a>
+                        </div>
+                    </div>
+                    <script>
+                        const accBtn = document.querySelector('#account .account-menu .account-btn')
+                        const accDropMenu = document.querySelector('#account .account-menu .dropdown-menu')
+                        accBtn.addEventListener('click', () => {
+                            accDropMenu.classList.toggle('display')
+                        })
+                    </script>
+                @else
+                    <a href="{{route('loginForm')}}">
+                        <p id="login-btn" class="user-logged-out">Login</p>
+                    </a>
+                    <a href="{{route('registerForm')}}">
+                        <p id="register-btn" class="user-logged-out">Register</p>
+                    </a>
+                @endif
             </div>
         </header>
 

@@ -25,6 +25,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    user-select: none;
 }
 body{
     background-color: var(--bg);
@@ -120,9 +121,9 @@ header i{
 }
 header .search-bar{
     position: absolute;
-    right: 25%;
+    right: 30%;
     height: 34px;
-    max-width: 45%;
+    max-width: 38%;
     width: 0%;
     opacity: 0;
     pointer-events: none;
@@ -160,6 +161,61 @@ header.openSearch .search-bar{
     outline: none;
     border-radius: 10px;
 }
+
+header #account {
+    display: flex;
+}
+
+header #account a {
+    text-decoration: none;
+}
+
+header #account a.ddm:hover {
+    background-color: var(--sub2);
+}
+
+header #account .account-menu{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+}
+header #account .account-menu .dropdown-menu{
+    position: absolute;
+    display: flex;
+    opacity: 0;
+    height: 0;
+    pointer-events: none;
+    gap: 4px;
+    top: 35px;
+    right: 0;
+    padding: 10px;
+    flex-direction: column;
+    background-color: white;
+    user-select: none;
+    box-shadow: 0px 0px var(--sub2);
+    transition: all 0.2s, box-shadow 0.4s;
+}
+
+header #account .account-menu .dropdown-menu.display{
+    opacity: 1;
+    height: 160px;
+    box-shadow: 10px 10px var(--sub2);
+    pointer-events: all;
+}
+
+header #account .user-logged-out{
+    padding: 5px 20px;
+    margin: 0 5px;
+    border-radius: 10px;
+    background-color: #EEEEEE;
+    color: #512a90;
+    text-align: center;
+}
+
+
+
+
 
 
 /*---------------------------------------*/

@@ -1,0 +1,41 @@
+.title{
+    padding: 10px;
+    text-shadow: 3px 3px var(--sub2);
+    color: var(--main);
+}
+
+h3{
+    color: var(--mainShade);
+}
+
+hr{
+    height: 1px;
+    border-color: var(--mainShade);
+}
+.db-wrapper{
+    display: flex;
+}
+
+.db-wrapper .left-panel{
+    color: var(--mainShade);;
+    width: 160px;
+    background-color: var(--bg);
+    border-right: 1px solid var(--mainShade);
+
+}
+
+.db-wrapper .left-panel ul{
+    list-style: none;
+    margin-left: 10px;
+}
+a{
+    text-decoration: none;
+}
+.db-wrapper .left-panel ul li{
+    padding: 2px;
+    margin: 2px;
+    border-bottom: 1px solid;
+}
+.db-wrapper .left-panel ul li:hover{
+    background-color: var(--sub2);
+}

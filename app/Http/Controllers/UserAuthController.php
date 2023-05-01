@@ -7,6 +7,8 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Auth\Events\Registered;
+
 use Illuminate\Http\RedirectResponse;
 
 class UserAuthController extends Controller
@@ -31,7 +33,7 @@ class UserAuthController extends Controller
         ]);
         
 
-        User::create([
+        $user = User::create([
             'fname' => $validated['fname'],
             'lname' => $validated['lname'],
             'company' => $validated['company'],
@@ -43,6 +45,8 @@ class UserAuthController extends Controller
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
         ]);
+
+        event(new Registered($user));
 
 
         if (Auth::attempt(['email' => $validated['email'], 'password' => $validated['password']])) {

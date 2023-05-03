@@ -111,7 +111,6 @@ section.sub .content{
 }
 
 section.sub .left-panel{
-    overflow-y: auto;
     width: fit-content;
     background-color: var(--sub2);
     padding: 10px;

@@ -11,7 +11,7 @@ class SoftwareController extends Controller
 {
     public function index()
     {
-        $softwares = Software::all();
+        $softwares = Software::paginate(4);
         
         return view('admin.product.software.index', compact('softwares'));    
     }

@@ -22,7 +22,7 @@
                 </div>
 
                 <div class="desc">
-                    <a href="{{ route('services.show' , $svItem) }}"><p>{{$svItem->name}}</p></a><br>
+                    <a href="{{ route('svSiteShow' , $svItem) }}" target="_blank"><p>{{$svItem->name}}</p></a><br>
                     <p>{{$svItem->header}}</p>
                 </div>
 
@@ -41,6 +41,7 @@
                 </div>
             </div>    
         @endforeach
+        {{$services->links('vendor.pagination.default')}}
     </div>
 @endsection
 

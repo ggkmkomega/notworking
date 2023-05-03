@@ -64,7 +64,7 @@
                         <h1>Acounts</h1>
                     </div>
                     <ul class="subsection">
-                        <a href="#"><li>Users</li></a>
+                        <a href="{{route('users.index')}}"><li>Users</li></a>
                         <a href="#"><li>Administrators</li></a>
                     </ul>
                 </li>

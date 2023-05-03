@@ -35,7 +35,7 @@
         <div id="img-container">
             @foreach ($content as $img)
                 <div class="img-item-db">
-                    <a href="{{ route('swdeleteImg', compact('course', 'img'))}}"><div class="delete-hover"><i class="uil uil-minus"></i></div></a>
+                    <a href="{{ route('crdeleteImg', compact('course', 'img'))}}"><div class="delete-hover"><i class="uil uil-minus"></i></div></a>
                     <img src="{{URL::asset('storage/' . $img->path)}}">
                 </div>
             @endforeach

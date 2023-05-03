@@ -7,14 +7,14 @@ use App\Models\ProdImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class HardwareController extends Controller
+class  HardwareController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $hardwares = Hardware::all();
+        $hardwares = Hardware::paginate(4);
         
         return view('admin.product.hardware.index', compact('hardwares'));    
     }

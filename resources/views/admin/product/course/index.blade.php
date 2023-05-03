@@ -22,7 +22,7 @@
                 </div>
 
                 <div class="desc">
-                    <a href="{{ route('courses.show' , $cItem) }}"><p>{{$cItem->name}}</p></a><br>
+                    <a href="{{ route('crSiteShow' , $cItem) }}" target="_blank"><p>{{$cItem->name}}</p></a><br>
                     <p>{{$cItem->header}}</p>
                 </div>
 
@@ -41,6 +41,7 @@
                 </div>
             </div>    
         @endforeach
+        {{$courses->links('vendor.pagination.default')}}
     </div>
 @endsection
 

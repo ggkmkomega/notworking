@@ -22,7 +22,7 @@
                 </div>
 
                 <div class="desc">
-                    <a href="{{ route('softwares.show' , $sItem) }}"><p>{{$sItem->name}}</p></a><br>
+                    <a href="{{ route('swSiteShow' , $sItem) }}" target="_blank"><p>{{$sItem->name}}</p></a><br>
                     <p>{{$sItem->header}}</p>
                 </div>
 
@@ -41,6 +41,7 @@
                 </div>
             </div>    
         @endforeach
+        {{$softwares->links('vendor.pagination.default')}}
     </div>
 @endsection
 

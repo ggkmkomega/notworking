@@ -22,7 +22,7 @@
                 </div>
 
                 <div class="desc">
-                    <a href="{{ route('hardwares.show' , $hItem) }}"><p>{{$hItem->name}}</p></a><br>
+                    <a href="{{ route('hwSiteShow' , $hItem) }}" target="_blank"><p>{{$hItem->name}}</p></a><br>
                     <p>{{$hItem->header}}</p>
                 </div>
 
@@ -41,6 +41,8 @@
                 </div>
             </div>    
         @endforeach
+        
+        {{$hardwares->links('vendor.pagination.default')}}
     </div>
 @endsection
 

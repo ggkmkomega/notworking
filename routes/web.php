@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\UserAuthController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\HardwareController;
 use App\Http\Controllers\SoftwareController;
 use App\Http\Controllers\ServiceController;
@@ -107,6 +108,12 @@ Route::get('cp/courses/{course}/edit/dltimg/{img}', [CourseController::class, 'd
 Route::resource('cp/courses', CourseController::class)
     ->only(['index', 'store', 'edit', 'update', 'destroy', 'show'])
     ->middleware([AdminAuth::class]);
+
+/* accounts */
+Route::resource('cp/accounts/users', UserController::class)
+    ->only(['index', 'edit', 'update', 'destroy', 'show'])
+    ->middleware([AdminAuth::class]);
+
 
 
 

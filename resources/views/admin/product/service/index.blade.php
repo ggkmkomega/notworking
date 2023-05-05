@@ -58,7 +58,7 @@
         <textarea name="desc" id="" >{{ old('desc') }}</textarea><br><br>
 
         <label for="name">page HTML:</label><br>
-        <textarea name="page" id="htmlEditor" >{{ old('page' , "<style>\n\t.servicePage{\n\t\theight: 100%;\n\t\twidth: 100%;\n\t}\n</style>\n<div class='servicePage'>\n\t\n</div>") }}</textarea><br><br>
+        <textarea name="page" id="htmlEditor" >{{ old('page' , "<!DOCTYPE html>\n<html lang='en'>\n<head>\n\t<meta charset='UTF-8'>\n\t<meta http-equiv='X-UA-Compatible' content='IE=edge'>\n\t<meta name='viewport' content='width=device-width, initial-scale=1.0'>\n\t<style>\n\t\n\t</style>\n</head>\n<body>\n\n</body>\n</html>") }}</textarea><br><br>
         <script>
             const textarea = document.getElementById('htmlEditor');
           

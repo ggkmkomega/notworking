@@ -85,10 +85,14 @@
         <section class="main">
             <div class="header">
                 <div class="profile">
-                    <a href="{{route('adminProfile')}}"><div class="icon"><i class="uil uil-user-circle"></i></div></a> 
+                    <a href="{{route('adminProfile')}}">
+                        <div class="icon user-circle" style="height: 30px;">
+                            <img src="{{URL::asset('assets/icons/user-circle.svg')}}" style="height: 100%;">
+                        </div>
+                    </a> 
                 </div>
-                <div class="notification">
-                    <div class="icon"><i class="uil uil-bell"></i></div>
+                <div class="icon bell" style="height: 30px;">
+                    <img src="{{URL::asset('assets/icons/bell.svg')}}" style="height: 100%;">
                 </div>
             </div>
             <section class="sub">

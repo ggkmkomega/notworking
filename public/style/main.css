@@ -114,9 +114,8 @@ nav .menu-item:hover .dropdown-content{
     display: block;
 }
 
-header i{
-    color: var(--bg);
-    font-size: 28px;
+header .icon{
+    height: 28px;
     cursor: pointer;
 }
 header .search-bar{
@@ -144,10 +143,6 @@ header.openSearch .search-bar{
     left: 5px;
     top: 3px;
     color: var(--main);
-}
-
-.search-bar button i{
-    color: #512a90;
 }
 
 .search-bar form{
@@ -263,7 +258,8 @@ footer a{
 }
 
 #social-icons{
-    font-size: 25px;
+    display: flex;
+    height: 25px;
 }
 #lang-selector{
     margin-top: 110px;
@@ -307,8 +303,8 @@ footer a{
     cursor: pointer;
     transition: all 0.1s linear;
 }
-#lang-btn i{
-    margin-right: 20px;
+#lang-btn .icon{
+    margin-right: 25px;
 }
 #lang-selector.Opened #lang-btn{
     border-radius: 0 0 21px 21px;

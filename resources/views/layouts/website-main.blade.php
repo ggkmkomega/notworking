@@ -47,22 +47,30 @@
 
             <!--Search Bar-->
             <script src="{{ URL::asset('script/search-bar.js')}}" defer></script>
-            <i class="uil uil-search" id="searchIcon"></i>
+            <div class="icon search" id="searchIcon">
+                <img src="{{URL::asset('assets/icons/search.svg')}}" style="height: 100%;">
+            </div>
             <div class="search-bar">
                 <form action="{{url('search')}}"  method="get">
                     @csrf
                     <button type="submit">
-                        <i class="uil uil-search"></i>
+                        <div class="icon search">
+                            <img src="{{URL::asset('assets/icons/search.svg')}}" style="height: 100%;">
+                        </div>
                     </button>
                     <input type="search" name="search" value="" placeholder="Search">
                 </form>
             </div>
             <div id="account">
                 @if (Auth::check())
-                    <i class="uil uil-bell"></i>
+                <div class="icon bell">
+                    <img src="{{URL::asset('assets/icons/bell.svg')}}" style="height: 100%;">
+                </div>
                     <div class="account-menu">
                         <div class="account-btn">
-                            <i class="uil uil-user-circle"></i>
+                            <div class="icon user">
+                                <img src="{{URL::asset('assets/icons/user-circle.svg')}}" style="height: 100%;">
+                            </div>
                         </div>
                         
                         <div class="dropdown-menu">
@@ -103,8 +111,10 @@
                     <h1>Company Name</h1>
                     <p>Company Slogan</p>
                     <hr>
-                    <i class="uil uil-envelope-alt"></i>
-                    <a href="">info@brandname.com</a>
+                    <div class="icon envelope" style="height: 28px; width:fit-content;">
+                        <img src="{{URL::asset('assets/icons/envelope.svg')}}" style="height: 100%;">
+                    </div>
+                    <a href="" style="display: block;">info@brandname.com</a>
                 </div>
                 <div class="container" id="adress">
                     <h1>Adresses</h1>
@@ -122,10 +132,26 @@
                     <h1>Follow Us</h1>
                     <hr>
                     <div id="social-icons">
-                        <a href=""><i class="uil uil-twitter"></i></a>
-                        <a href=""><i class="uil uil-linkedin"></i></a>
-                        <a href=""><i class="uil uil-instagram"></i></a>
-                        <a href=""><i class="uil uil-facebook"></i></a>
+                        <a href="">
+                            <div class="icon twitter" style="height: 100%;">
+                                <img src="{{URL::asset('assets/icons/twitter.svg')}}" style="height: 100%;">
+                            </div>
+                        </a>
+                        <a href="">
+                            <div class="icon linkedin" style="height: 100%;">
+                                <img src="{{URL::asset('assets/icons/linkedin.svg')}}" style="height: 100%;">
+                            </div>
+                        </a>
+                        <a href="">
+                            <div class="icon instagram" style="height: 100%;">
+                                <img src="{{URL::asset('assets/icons/instagram-alt.svg')}}" style="height: 100%;">
+                            </div>
+                        </a>
+                        <a href="">
+                            <div class="icon facebook" style="height: 100%;">
+                                <img src="{{URL::asset('assets/icons/facebook.svg')}}" style="height: 100%;">
+                            </div>
+                        </a>
                     </div>
                 </div>
                 <div class="container" id="products">
@@ -160,7 +186,9 @@
                             </ol>
                         </div>
                         <div id="lang-btn">
-                            <i class="uil uil-globe"></i>
+                            <div class="icon globe">
+                                <img src="{{URL::asset('assets/icons/globe.svg')}}" style="height: 100%;">
+                            </div>
                             <p>English</p>
                         </div>
                     </div>

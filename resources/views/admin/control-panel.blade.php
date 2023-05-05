@@ -1,4 +1,4 @@
 @extends('admin.layouts.main')
 @section('main-content')
-    <p>hello {{$admin->name . $admin->id}}</p>
+    <p>hello {{$admin->fname .' '. $admin->lname}}</p>
 @endsection

@@ -1,5 +1,5 @@
  <head>
-    <link rel="stylesheet" href="{{URL::asset('style/prodstyle.css')}}">
+    <link rel="stylesheet" href="{{URL::asset('style/edit-prod-style.css')}}">
  </head>
  @extends('admin.layouts.main')
  @section('main-content')

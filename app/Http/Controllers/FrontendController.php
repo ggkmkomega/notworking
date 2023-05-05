@@ -18,10 +18,25 @@ class FrontendController extends Controller
         if($request->search)
         {
             $isFound = true;
-            $hwProductsList = Hardware::where('name', 'LIKE', '%' . $request->search . '%')->get();
-            $swProductsList = Software::where('name', 'LIKE', '%' . $request->search . '%')->get();
-            $crProductsList = Course::where('name', 'LIKE', '%' . $request->search . '%')->get();
-            $svProductsList = Service::where('name', 'LIKE', '%' . $request->search . '%')->get();
+            $hwProductsList = Hardware::where('name', 'LIKE', '%' . $request->search . '%')
+                                    ->orWhere('header', 'LIKE', '%' . $request->search . '%')
+                                    ->orWhere('category', 'LIKE', '%' . $request->search . '%')
+                                    ->get();
+
+            $swProductsList = Software::where('name', 'LIKE', '%' . $request->search . '%')
+                                    ->orWhere('header', 'LIKE', '%' . $request->search . '%')
+                                    ->orWhere('category', 'LIKE', '%' . $request->search . '%')
+                                    ->get();
+
+            $crProductsList = Course::where('name', 'LIKE', '%' . $request->search . '%')
+                                    ->orWhere('header', 'LIKE', '%' . $request->search . '%')
+                                    ->orWhere('category', 'LIKE', '%' . $request->search . '%')
+                                    ->orWhere('prof', 'LIKE', '%' . $request->search . '%')
+                                    ->get();
+
+            $svProductsList = Service::where('name', 'LIKE', '%' . $request->search . '%')
+                                    ->orWhere('header', 'LIKE', '%' . $request->search . '%')
+                                    ->get();
 
             if($hwProductsList->isNotEmpty() || $swProductsList->isNotEmpty() || $crProductsList->isNotEmpty() || $svProductsList->isNotEmpty() ){
                 return view('search', compact('isFound', 'hwProductsList', 'swProductsList', 'crProductsList', 'svProductsList'));

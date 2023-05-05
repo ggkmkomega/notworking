@@ -9,11 +9,29 @@ use Illuminate\Support\Facades\Storage;
 
 class SoftwareController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $softwares = Software::paginate(4);
-        
-        return view('admin.product.software.index', compact('softwares'));    
+        if($request->search)
+        {
+            $request->flash();
+            $searching = true;
+            $softwares = Software::where('name', 'LIKE', '%' . $request->search . '%')
+                            ->orWhere('category', 'LIKE', '%' . $request->search . '%')
+                            ->orWhere('header', 'LIKE', '%' . $request->search . '%')
+                            ->paginate(4);
+            if($softwares->isNotEmpty()){
+                $isFound = true;
+                return view('admin.product.software.index', compact('searching', 'isFound', 'softwares'));
+            }else{
+                $isFound = false;
+                return view('admin.product.software.index', compact('searching','isFound'));
+            }
+        }else{
+            $searching = false;
+            $softwares = Software::paginate(4);
+            return view('admin.product.software.index', compact('searching', 'softwares'));    
+        }
+
     }
 
     public function siteIndex()

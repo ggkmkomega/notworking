@@ -12,13 +12,13 @@
     <div class="container">
         <form action="{{ route('login-c') }}" method="post">
             @csrf
-            <label for="name">Name:</label><br>
-            <input class="text" type="text" name="name" id="name" placeholder="your name..."><br>
-            @if ($errors->has('name'))
-                <span class="error">{{ $errors->first('name') }}</span>
+            <label for="name">Nom d'authentification:</label><br>
+            <input class="text" type="text" name="authname" id="name" placeholder="your name..."><br>
+            @if ($errors->has('authname'))
+                <span class="error">{{ $errors->first('authname') }}</span>
             @endif
             <br>
-            <label for="password">Password:</label><br>
+            <label for="password">Mot de pass:</label><br>
             <input class="text" type="password" name="password" id="password" placeholder="your password..."><br>
             @if ($errors->has('password'))
                 <span class="error">{{ $errors->first('password') }}</span>

@@ -9,11 +9,30 @@ use Illuminate\Support\Facades\Storage;
 
 class CourseController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $courses = Course::paginate(4);
-        
-        return view('admin.product.course.index', compact('courses'));
+        if($request->search)
+        {
+            $request->flash();
+            $searching = true;
+            $courses = Course::where('name', 'LIKE', '%' . $request->search . '%')
+                            ->orWhere('header', 'LIKE', '%' . $request->search . '%')
+                            ->orWhere('category', 'LIKE', '%' . $request->search . '%')
+                            ->orWhere('prof', 'LIKE', '%' . $request->search . '%')
+                            ->paginate(4);
+            if($courses->isNotEmpty()){
+                $isFound = true;
+                return view('admin.product.course.index', compact('searching', 'isFound', 'courses'));
+            }else{
+                $isFound = false;
+                return view('admin.product.course.index', compact('searching','isFound'));
+            }
+        }else{
+            $searching = false;
+            $courses = Course::paginate(4);
+            return view('admin.product.course.index', compact('searching', 'courses'));    
+        }
+
     }
 
     public function siteIndex()

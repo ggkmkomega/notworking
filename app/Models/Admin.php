@@ -18,8 +18,11 @@ class Admin extends Model implements
     use Authorizable;
 
     protected $fillable = [
-        'name',
+        'fname',
+        'lname',
         'role',
+        'email',
+        'authname',
         'password',
     ];
 

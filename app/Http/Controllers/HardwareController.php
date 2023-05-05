@@ -12,11 +12,29 @@ class  HardwareController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $hardwares = Hardware::paginate(4);
-        
-        return view('admin.product.hardware.index', compact('hardwares'));    
+        if($request->search)
+        {
+            $request->flash();
+            $searching = true;
+            $hardwares = Hardware::where('name', 'LIKE', '%' . $request->search . '%')
+                            ->orWhere('category', 'LIKE', '%' . $request->search . '%')
+                            ->orWhere('header', 'LIKE', '%' . $request->search . '%')
+                            ->paginate(4);
+            if($hardwares->isNotEmpty()){
+                $isFound = true;
+                return view('admin.product.hardware.index', compact('searching', 'isFound', 'hardwares'));
+            }else{
+                $isFound = false;
+                return view('admin.product.hardware.index', compact('searching','isFound'));
+            }
+        }else{
+            $searching = false;
+            $hardwares = Hardware::paginate(4);
+            return view('admin.product.hardware.index', compact('searching', 'hardwares'));    
+        }
+
     }
 
     public function siteIndex()

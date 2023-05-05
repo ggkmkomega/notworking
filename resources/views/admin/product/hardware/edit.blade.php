@@ -1,5 +1,5 @@
  <head>
-    <link rel="stylesheet" href="{{URL::asset('style/prodstyle.css')}}">
+    <link rel="stylesheet" href="{{URL::asset('style/edit-prod-style.css')}}">
  </head>
  @extends('admin.layouts.main')
  @section('main-content')
@@ -9,6 +9,8 @@
         @method('put')
         <label for="name">nom:</label><br>
         <input type="text" name="name" value="{{ old('name', $hardware->name) }}"><br><br>
+        <label for="name">catégorie:</label><br>
+        <input type="text" name="category" value="{{ old('category', $hardware->category) }}"><br><br>
         <label for="name">en tete:</label><br>
         <input type="text" name="header" value="{{ old('header', $hardware->header) }}"><br><br>
         <label for="name">description:</label><br>
@@ -30,8 +32,7 @@
         </div>
         <script src="{{URL::asset('script/imgUploadPreview.js')}}"></script>
 
-        <label for="name">catégorie:</label><br>
-        <input type="text" name="category" value="{{ old('category', $hardware->category) }}"><br><br>
+        
 
         <div class="submit-btn">
             <input class="btn" type="submit" value="Enregistrer">

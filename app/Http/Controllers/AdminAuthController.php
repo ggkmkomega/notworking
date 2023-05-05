@@ -24,7 +24,7 @@ class AdminAuthController extends Controller
     public function admLogin(Request $request)
     {
         $credentials = $request->validate([
-            'name' => ['required'],
+            'authname' => ['required'],
             'password' => ['required'],
         ]);
 

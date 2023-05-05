@@ -1,8 +1,204 @@
+/*modal*/
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  border: 1px solid #888;
+  width: 55%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #ffffff;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 10px 16px;
+  background-color: var(--sub2d1);
+  color: white;
+}
+
+/*modal body*/
+.modal-body {
+    padding: 10px 16px;
+}
+
+.modal-body.edit{
+    overflow-y: auto;
+    height: 100%;
+    width: 100%;
+    background-color: white;
+}
+
+.name-cat-container{
+    display: flex;
+}
+
+.name-cat-container div{
+    width: 45%;
+    margin-right: auto;
+}
+.name-cat-container input{
+    width: 100%;
+}
+
+.modal-body.edit input ,.modal-body.edit textarea{
+    width: 50%;
+}
+
+.modal-body input ,.modal-body textarea{
+    padding: 5px 10px 5px 10px;
+    margin-top: 6px;
+    border-style: none;
+    background-color: rgb(224, 224, 224);
+}
+
+.modal-body textarea, .modal-body input.prodHeader,  .modal-body input.btn{
+    width: 100%;
+}
+
+.modal-body input.btn:hover{
+    background-color: var(--sub2b);
+}
+
+.modal-body .submit-btn{
+    margin-top: 60px;
+    width: 180px;
+    margin-left: auto;
+    margin-right: 0 ;
+}
+.modal-body .submit-btn input{
+    font-size: 16px;
+    height: 35px;
+}
+
+
+.modal-body textarea{
+    height: 220px;
+}
+
+.modal-body input[type="file"]{
+    display: none;
+}
+
+.modal-body .custom-file-upload {
+    display: inline-block;
+    width: 120px;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: rgb(235, 235, 235);
+    text-align: center;
+    padding: 5px;
+    font-size: 14px;
+}
+
+.modal-body #img-container{
+    display: grid;
+    gap: 15px;
+    grid-template-columns:repeat(auto-fit, minmax(120px, 1fr));
+    min-height: 100px;
+    padding: 15px;
+    background-color: rgb(235, 235, 235);
+}
+
+.modal-body #img-container .img-item-db ,.modal-body #img-container .img-item{
+    background-color: #cfcfcf;
+    padding: 5px;
+    position: relative;
+    width: fit-content;
+}
+
+.modal-body #img-container .delete-hover{
+
+    position: absolute;
+    right: -5px;
+    top: -5px;
+    background-color: rgb(243, 83, 83);
+    border-radius: 10px;
+    cursor: pointer;
+    
+}
+
+.modal-body #img-container .delete-hover i{
+    color: var(--bg);
+    font-size: large;
+}
+
+
+.modal-body #img-container img{
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/*---- header ----*/
+.index-header{
+    display: flex;
+    height: 40px;
+    width: 100%;
+    background-color: var(--sub2d2);
+    align-items: center;
+    padding: 0 20px;
+    justify-content: space-between;
+}
+
+.index-header button{
+    padding: 5px 10px;
+    border-radius: 7px;
+    border-style: none;
+    cursor: pointer;
+    font-size: 10pt;
+    margin-right: 10px;
+}
+.index-header .search-bar a{
+    
+    padding: 5px 10px;
+    border-radius: 7px;
+    text-decoration: none;
+    color: black;
+    background-color: white;
+    font-size: 10pt;
+}
+
+.index-header .search-bar input#search-bar{
+    width: 300px;
+    padding: 5px;
+    border-style: none;
+    border-radius: 7px;
+    margin-right: 10px;
+}
+
+/*----------- items style -----------------*/
+
 .items-container{
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 100%;
+    height: calc(100% - 40px);
     overflow-y: scroll;
     padding: 10px;
 }
@@ -74,106 +270,4 @@
 }
 .items-container .item .btn-container input{
     background-color: rgb(223, 134, 134);
-}
-
-.form-container{
-    width: 400px;
-    background-color: #94bbb1;
-    padding: 20px;
-    border-radius: 15px;
-}
-
-.form-container.edit{
-    overflow-y: auto;
-    height: 100%;
-    width: 100%;
-    background-color: white;
-}
-
-.form-container.edit input ,.form-container.edit textarea{
-    width: 50%;
-}
-
-.form-container input ,.form-container textarea{
-    margin: 10px;
-    width: calc(100% - 20px);
-    padding: 5px 10px 5px 10px;
-    border-radius: 10px;
-    border-style: none;
-    background-color: rgb(235, 235, 235);
-}
-
-.form-container input.btn:hover{
-    background-color: var(--sub2b);
-}
-
-.form-container .submit-btn{
-    margin-top: 60px;
-    width: 220px;
-    margin-left: auto;
-    margin-right: 0 ;
-}
-.form-container .submit-btn input{
-    font-size: 16px;
-    height: 35px;
-}
-
-
-.form-container textarea{
-    height: 220px;
-}
-
-
-
-.form-container input[type="file"]{
-    display: none;
-}
-
-.form-container .custom-file-upload {
-    display: inline-block;
-    width: 120px;
-    border-radius: 10px;
-    cursor: pointer;
-    background-color: rgb(235, 235, 235);
-    text-align: center;
-    padding: 5px;
-    font-size: 14px;
-}
-
-.form-container #img-container{
-    display: flex;
-    width: fit-content;
-    max-width: 100%;
-    height: 100px;
-    overflow-x: auto;
-    padding: 5px;
-    border-radius: 15px;
-    background-color: rgb(235, 235, 235);
-}
-
-.form-container #img-container .img-item-db ,.form-container #img-container .img-item{
-    position: relative;
-    margin-right: 10px;
-}
-
-.form-container #img-container .delete-hover{
-
-    position: absolute;
-    right: -5px;
-    top: -5px;
-    background-color: rgb(243, 83, 83);
-    border-radius: 10px;
-    cursor: pointer;
-    
-}
-
-.form-container #img-container .delete-hover i{
-    color: var(--bg);
-    font-size: large;
-}
-
-
-.form-container #img-container img{
-    height: 100%;
-    border-radius: 10px;
 }

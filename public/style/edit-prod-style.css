@@ -1,0 +1,97 @@
+.content{
+    overflow-y: auto;
+}
+
+.form-container{
+    margin: 0 auto;
+    padding: 20px;
+    height: 100%;
+    width: 80%;
+    background-color: white;
+}
+
+.form-container input ,.form-container textarea{
+    padding: 5px 10px 5px 10px;
+    margin-top: 6px;
+    border-style: none;
+    background-color: rgb(224, 224, 224);
+}
+
+.form-container textarea, .form-container input{
+    width: 100%;
+}
+
+.form-container input.btn:hover{
+    background-color: var(--sub2b);
+}
+
+.form-container .submit-btn{
+    margin-top: 60px;
+    width: 180px;
+    margin-left: auto;
+    margin-right: 0 ;
+}
+.form-container .submit-btn input{
+    font-size: 16px;
+    height: 35px;
+}
+
+
+.form-container textarea{
+    height: 220px;
+}
+
+
+.form-container input[type="file"]{
+    display: none;
+}
+
+.form-container .custom-file-upload {
+    display: inline-block;
+    width: 120px;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: rgb(235, 235, 235);
+    text-align: center;
+    padding: 5px;
+    font-size: 14px;
+}
+
+.form-container #img-container{
+    display: grid;
+    gap: 15px;
+    grid-template-columns:repeat(auto-fit, minmax(120px, 1fr));
+    min-height: 100px;
+    padding: 15px;
+    background-color: rgb(235, 235, 235);
+}
+
+.form-container #img-container .img-item-db ,.form-container #img-container .img-item{
+    background-color: #cfcfcf;
+    padding: 5px;
+    position: relative;
+    width: fit-content;
+}
+
+.form-container #img-container .delete-hover{
+
+    position: absolute;
+    right: -5px;
+    top: -5px;
+    background-color: rgb(243, 83, 83);
+    border-radius: 10px;
+    cursor: pointer;
+    
+}
+
+.form-container #img-container .delete-hover i{
+    color: var(--bg);
+    font-size: large;
+}
+
+
+.form-container #img-container img{
+    display: block;
+    width: 100%;
+    height: auto;
+}

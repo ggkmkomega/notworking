@@ -9,11 +9,28 @@ use Illuminate\Support\Facades\Storage;
 
 class ServiceController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $services = Service::paginate(4);
-        
-        return view('admin.product.service.index', compact('services'));
+        if($request->search)
+        {
+            $request->flash();
+            $searching = true;
+            $services = Service::where('name', 'LIKE', '%' . $request->search . '%')
+                            ->orWhere('header', 'LIKE', '%' . $request->search . '%')
+                            ->paginate(4);
+            if($services->isNotEmpty()){
+                $isFound = true;
+                return view('admin.product.service.index', compact('searching', 'isFound', 'services'));
+            }else{
+                $isFound = false;
+                return view('admin.product.service.index', compact('searching','isFound'));
+            }
+        }else{
+            $searching = false;
+            $services = Service::paginate(4);
+            return view('admin.product.service.index', compact('searching', 'services'));    
+        }
+
     }
 
     /**

@@ -1,0 +1,147 @@
+/*modal*/
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  border: 1px solid #888;
+  width: 40%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #ffffff;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 10px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+
+.modal-body {
+    padding: 10px 16px;
+}
+.modal-body form{
+    margin: 10px auto;
+    width: 85%;
+    gap: 20px;
+    display: grid;
+    grid-template-areas:    
+        'input input'
+        'input input'
+        'input input'
+        'empty submit';
+}
+
+.modal-body form .inputc input{
+    width: 100%;
+    height: 25px;
+    padding: 5px;
+}
+
+.modal-body form .submit{
+    grid-area: submit;
+    width: fit-content;
+    padding: 5px 20px;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+/* header and table */
+.index-header{
+    display: flex;
+    height: 40px;
+    width: 100%;
+    background-color: var(--sub2d2);
+    align-items: center;
+    padding: 0 20px;
+    justify-content: space-between;
+}
+
+.index-header button{
+    padding: 5px 10px;
+    border-radius: 7px;
+    border-style: none;
+    cursor: pointer;
+    font-size: 10pt;
+    margin-right: 10px;
+}
+.index-header .search-bar a{
+    
+    padding: 5px 10px;
+    border-radius: 7px;
+    text-decoration: none;
+    color: black;
+    background-color: white;
+    font-size: 10pt;
+}
+
+.index-header .search-bar input#search-bar{
+    width: 300px;
+    padding: 5px;
+    border-style: none;
+    border-radius: 7px;
+    margin-right: 10px;
+}
+
+
+table, td, th {
+    border-collapse: collapse;
+    border: 1px solid #DDDDDD;
+}
+table{
+    width: 100%;
+}
+td, th{
+    height: 35px;
+}
+th{
+    background-color: var(--sub2d1);
+    color: white;
+    font-size: 11pt;
+}
+.col_id{
+    text-align: center;
+    width: 5%;
+}
+.col_name{
+    padding-left: 10px;
+    width: 18%;
+}
+.col_role, .col_company{
+    padding-left: 10px;
+    width: 15%;
+}
+.col_created_at, .col_verified_at{
+    text-align: center;
+    width: 20%;
+}
+.col_options{
+    align-items: center;
+    justify-content: space-around;
+    display: flex;
+}

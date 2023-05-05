@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AdminAuthController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserAuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HardwareController;
@@ -91,29 +92,34 @@ Route::get('cp/profile', [AdminAuthController::class, 'showProfile'])->name('adm
 /* products */
 Route::get('cp/hardwares/{hardware}/edit/dltimg/{img}', [HardwareController::class, 'deleteImg'])->name('hwdeleteImg');
 Route::resource('cp/hardwares', HardwareController::class)
-    ->only(['index', 'store', 'edit', 'update', 'destroy', 'show'])
+    ->only(['index', 'store', 'edit', 'update', 'destroy'])
     ->middleware([AdminAuth::class]);
 
 Route::get('cp/softwares/{software}/edit/dltimg/{img}', [SoftwareController::class, 'deleteImg'])->name('swdeleteImg');
 Route::resource('cp/softwares', SoftwareController::class)
-    ->only(['index', 'store', 'edit', 'update', 'destroy', 'show'])
+    ->only(['index', 'store', 'edit', 'update', 'destroy'])
     ->middleware([AdminAuth::class]);
 
 Route::get('cp/services/{service}/edit/dltimg/{img}', [ServiceController::class, 'deleteImg'])->name('svdeleteImg');
 Route::resource('cp/services', ServiceController::class)
-    ->only(['index', 'store', 'edit', 'update', 'destroy', 'show'])
+    ->only(['index', 'store', 'edit', 'update', 'destroy'])
     ->middleware([AdminAuth::class]);
     
 Route::get('cp/courses/{course}/edit/dltimg/{img}', [CourseController::class, 'deleteImg'])->name('crdeleteImg');
 Route::resource('cp/courses', CourseController::class)
-    ->only(['index', 'store', 'edit', 'update', 'destroy', 'show'])
+    ->only(['index', 'store', 'edit', 'update', 'destroy'])
     ->middleware([AdminAuth::class]);
 
 /* accounts */
+//users
 Route::resource('cp/accounts/users', UserController::class)
     ->only(['index', 'edit', 'update', 'destroy', 'show'])
     ->middleware([AdminAuth::class]);
 
+//admins
+Route::resource('cp/accounts/admins', AdminController::class)
+    ->only(['index', 'edit', 'update', 'destroy', 'show', 'store'])
+    ->middleware([AdminAuth::class]);
 
 
 

@@ -7,11 +7,29 @@ use App\Models\User;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::paginate(15);
-        
-        return view('admin.account.user.index', compact('users'));    
+        if($request->search)
+        {
+            $request->flash();
+            $searching = true;
+            $users = User::where('fname', 'LIKE', '%' . $request->search . '%')
+                            ->orWhere('lname', 'LIKE', '%' . $request->search . '%')
+                            ->orWhere('company', 'LIKE', '%' . $request->search . '%')
+                            ->paginate(15);
+            if($users->isNotEmpty()){
+                $isFound = true;
+                return view('admin.account.user.index', compact('searching', 'isFound', 'users'));
+            }else{
+                $isFound = false;
+                return view('admin.account.user.index', compact('searching','isFound'));
+            }
+        }else{
+            $searching = false;
+            $users = User::paginate(15);
+            return view('admin.account.user.index', compact('searching', 'users'));    
+        }
+
     }
 
     public function edit(User $user)

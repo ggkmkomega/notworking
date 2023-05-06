@@ -1,5 +1,6 @@
  <head>
     <link rel="stylesheet" href="{{URL::asset('style/edit-prod-style.css')}}">
+    <script src="{{URL::asset('script/ckeditor/ckeditor.js')}}"></script>
  </head>
  @extends('admin.layouts.main')
  @section('main-content')
@@ -11,8 +12,31 @@
         <input type="text" name="name" value="{{ old('name', $software->name) }}"><br><br>
         <label for="name">en tete:</label><br>
         <input type="text" name="header" value="{{ old('header', $software->header) }}"><br><br>
+
         <label for="name">description:</label><br>
-        <textarea name="desc" id="" cols="30" rows="10">{{ old('desc', $software->desc) }}</textarea><br><br>
+        <textarea name="desc" class="ckeditor" cols="30" rows="10">{{ old('desc', $software->desc) }}</textarea><br><br>
+
+        <script>
+            const editors = document.querySelectorAll( '.ckeditor' );
+            
+            for (const editorItem of editors) {
+                ClassicEditor
+                        .create( editorItem, {
+                            
+                            licenseKey: '',
+                        } )
+                        .then( editor => {
+                            window.editor = editor; 
+                        } )
+                        .catch( error => {
+                            console.error( 'Oops, something went wrong!' );
+                            //Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:
+                            //Build id: 9ervub1d0yhe-9g3jsefq1ncx'
+                            console.error( error );
+                        } );
+            }
+        </script>
+
         <label for="name">paiement:</label><br>
 
         <select name="payment" id="payment">

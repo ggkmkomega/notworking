@@ -1,5 +1,6 @@
  <head>
     <link rel="stylesheet" href="{{URL::asset('style/edit-prod-style.css')}}">
+    <script src="{{URL::asset('script/ckeditor/ckeditor.js')}}"></script>
  </head>
  @extends('admin.layouts.main')
  @section('main-content')
@@ -13,11 +14,33 @@
         <input type="text" name="category" value="{{ old('category', $hardware->category) }}"><br><br>
         <label for="name">en tete:</label><br>
         <input type="text" name="header" value="{{ old('header', $hardware->header) }}"><br><br>
+
         <label for="name">description:</label><br>
-        <textarea name="desc" id="" cols="30" rows="10">{{ old('desc', $hardware->desc) }}</textarea><br><br>
+        <textarea name="desc" class="ckeditor" cols="30" rows="10">{{ old('desc', $hardware->desc) }}</textarea><br><br>
+
         <label for="name">fich technique:</label><br>
-        <textarea name="datasheet" id="" cols="30" rows="10">{{ old('datasheet', $hardware->datasheet) }}</textarea><br><br>
-        
+        <textarea name="datasheet" class="ckeditor" cols="30" rows="10">{{ old('datasheet', $hardware->datasheet) }}</textarea><br><br>
+
+        <script>
+            const editors = document.querySelectorAll( '.ckeditor' );
+            
+            for (const editorItem of editors) {
+                ClassicEditor
+                        .create( editorItem, {
+                            
+                            licenseKey: '',
+                        } )
+                        .then( editor => {
+                            window.editor = editor; 
+                        } )
+                        .catch( error => {
+                            console.error( 'Oops, something went wrong!' );
+                            //Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:
+                            //Build id: 9ervub1d0yhe-9g3jsefq1ncx'
+                            console.error( error );
+                        } );
+            }
+        </script>
 
         <label for="img">sélectionner une liste d'images:</label><br><br>
         <label for="img-input" class="custom-file-upload">Sélectionner</label>

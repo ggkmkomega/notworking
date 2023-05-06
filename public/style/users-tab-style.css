@@ -132,11 +132,11 @@ th{
     padding-left: 10px;
     width: 18%;
 }
-.col_role, .col_company{
+.col_authname, .col_company{
     padding-left: 10px;
     width: 15%;
 }
-.col_created_at, .col_verified_at{
+.col_created_at, .col_verified_at, .col_role{
     text-align: center;
     width: 20%;
 }

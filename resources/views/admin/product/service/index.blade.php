@@ -1,6 +1,7 @@
 @extends('admin.layouts.main')
 <head>
     <link rel="stylesheet" href="{{URL::asset('style/prodstyle.css')}}">
+    <script src="{{URL::asset('script/ckeditor/ckeditor.js')}}"></script>
 </head>
 
 @section('main-content')
@@ -39,7 +40,28 @@
                     <input type="text" class="prodHeader" name="header" value="{{ old('header') }}"><br><br>
 
                     <label for="name">description:</label><br>
-                    <textarea name="desc" id="" >{{ old('desc') }}</textarea><br><br>
+                    <textarea name="desc" class="ckeditor" >{{ old('desc') }}</textarea><br><br>
+
+                    <script>
+                        const editors = document.querySelectorAll( '.ckeditor' );
+                        
+                        for (const editorItem of editors) {
+                            ClassicEditor
+                                    .create( editorItem, {
+                                        
+                                        licenseKey: '',
+                                    } )
+                                    .then( editor => {
+                                        window.editor = editor; 
+                                    } )
+                                    .catch( error => {
+                                        console.error( 'Oops, something went wrong!' );
+                                        //Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:
+                                        //Build id: 9ervub1d0yhe-9g3jsefq1ncx'
+                                        console.error( error );
+                                    } );
+                        }
+                    </script>
 
                     <label for="name">page HTML:</label><br>
                     <textarea name="page" id="htmlEditor" >{{ old('page' , "<!DOCTYPE html>\n<html lang='en'>\n<head>\n\t<meta charset='UTF-8'>\n\t<meta http-equiv='X-UA-Compatible' content='IE=edge'>\n\t<meta name='viewport' content='width=device-width, initial-scale=1.0'>\n\t<style>\n\t\n\t</style>\n</head>\n<body>\n\n</body>\n</html>") }}</textarea><br><br>

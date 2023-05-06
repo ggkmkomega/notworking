@@ -92,8 +92,9 @@
             <tr>
                 <th>ID</th>
                 <th>Nom et Prenom</th>
-                <th>Role</th>
+                <th>Nom d'Authentification</th>
                 <th>Date Création</th>
+                <th>Role</th>
                 <th>Options</th>
             </tr>
         @if (($searching && $isFound) || (!$searching))
@@ -101,8 +102,9 @@
             <tr>
                 <td class="col_id">{{$item->id}}</td>
                 <td class="col_name">{{$item->fname . ' ' . $item->lname}}</td>
-                <td class="col_role">{{$item->role}}</td>
+                <td class="col_authname">{{$item->authname}}</td>
                 <td class="col_created_at">{{$item->created_at}}</td>
+                <td class="col_role">{{$item->role}}</td>
                 <td class="col_options">
                     <a href="{{ route('admins.show' , $item) }}">Afficher</a>
                     <a href="{{ route('admins.edit' , $item) }}">Modifier</a>

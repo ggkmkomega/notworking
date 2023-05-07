@@ -3,28 +3,36 @@
 </head>
 @extends('layouts.website-main')
 @section('content')
-    <h1 class="title">User Dashboard</h1>
+    <h1 class="title">Tableau de Bord Utilisateur</h1>
     <hr>
     <div class="db-wrapper">
         <div class="left-panel">
 
             <br>
-            <h3>Account</h3>
+            <h3>Compte</h3>
             <ul>
-                <a href="#"><li>Account Settings</li></a>
-                <a href="#"><li>Verify Email</li></a>
-                <a href="#"><li>Notification Settings</li></a>
+                <a href="{{route('userAccountSettings')}}"><li>Paramètres du Compte</li></a>
+                <a href="#"><li>Vérifier l'E-mail</li></a>
+                <a href="#"><li>Paramètres de Notification</li></a>
             </ul>
             <br>
 
-            <h3>Orders</h3>
+            <h3>Commands</h3>
             <ul>
-                <a href="#"><li>New Order</li></a>
-                <a href="#"><li>Order Tracker</li></a>
+                <a href="#"><li>Nouvelle Commande</li></a>
+                <a href="#"><li>Suivi les Commandes</li></a>
             </ul>
             <br>
 
-            <a href=""><h3>Subscription</h3></a>
+            <a href=""><h3>Abonnement</h3></a>
+            <br>
+
+            <h3>Assistance</h3>
+            <ul>
+                <a href="#"><li>Nouveau Ticket</li></a>
+                <a href="#"><li>En Cours</li></a>
+                <a href="#"><li>Ticket Résolu</li></a>
+            </ul>
             <br>
 
         </div>

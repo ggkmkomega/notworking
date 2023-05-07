@@ -52,12 +52,23 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
     return redirect(route('main'));
 })->middleware([UserLoggedIn::class])->name('verification.verify');
 
+
 /* genearl */
 Route::controller(FrontendController::class)->group(function () {
+
+    //Search
     Route::get('search', 'searchProduct');
+
+    //Dashboard
     Route::get('dashboard', 'showDashboard')
         ->middleware([UserLoggedIn::class])
+        ->middleware('verified')
         ->name('userDashboard');
+    Route::get('dashboard/account', 'accountSettings')->name('userAccountSettings');
+    Route::post('dashboard/account/updateInfo', 'updateUserInfo')->name('updateUserInfo');
+    Route::post('dashboard/account/updateEmail', 'updateUserEmail')->name('updateUserEmail');
+    Route::post('dashboard/account/updatePassword', 'updateUserPassword')->name('updateUserPassword');
+    Route::get('dashboard/account/resendVerificationMail', 'resendVerificationMail')->name('resendVerificationMail');
 });
 
 Route::get('/', function () {

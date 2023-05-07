@@ -18,7 +18,7 @@ hr{
 
 .db-wrapper .left-panel{
     color: var(--mainShade);;
-    width: 160px;
+    width: 300px;
     background-color: var(--bg);
     border-right: 1px solid var(--mainShade);
 
@@ -38,4 +38,19 @@ a{
 }
 .db-wrapper .left-panel ul li:hover{
     background-color: var(--sub2);
+    
+}
+
+/*--------- content ------------*/
+.content {
+    padding: 10px;
+}
+
+.content .mailnpw{
+    display: flex;
+}
+
+.mail, .pw, .others {
+    padding: 0 30px;
+
 }

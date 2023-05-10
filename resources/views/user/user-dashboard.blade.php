@@ -19,8 +19,8 @@
 
             <h3>Commands</h3>
             <ul>
-                <a href="#"><li>Nouvelle Commande</li></a>
-                <a href="#"><li>Suivi les Commandes</li></a>
+                <a href="{{route('newOrderForm')}}"><li>Nouvelle Commande</li></a>
+                <a href="{{route('displayAllOrders')}}"><li>Suivi les Commandes</li></a>
             </ul>
             <br>
 

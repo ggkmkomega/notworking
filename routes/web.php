@@ -6,11 +6,15 @@ use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserAuthController;
 use App\Http\Controllers\UserController;
+
 use App\Http\Controllers\HardwareController;
 use App\Http\Controllers\SoftwareController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\CourseController;
+
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\OrderController;
+
 
 use App\Http\Middleware\AdminAuth;
 use App\Http\Middleware\RedirectIfLogedIn;
@@ -62,13 +66,33 @@ Route::controller(FrontendController::class)->group(function () {
     //Dashboard
     Route::get('dashboard', 'showDashboard')
         ->middleware([UserLoggedIn::class])
-        ->middleware('verified')
         ->name('userDashboard');
+    //Account Settings
     Route::get('dashboard/account', 'accountSettings')->name('userAccountSettings');
-    Route::post('dashboard/account/updateInfo', 'updateUserInfo')->name('updateUserInfo');
-    Route::post('dashboard/account/updateEmail', 'updateUserEmail')->name('updateUserEmail');
-    Route::post('dashboard/account/updatePassword', 'updateUserPassword')->name('updateUserPassword');
-    Route::get('dashboard/account/resendVerificationMail', 'resendVerificationMail')->name('resendVerificationMail');
+    Route::post('dashboard/account/update-info', 'updateUserInfo')->name('updateUserInfo');
+    Route::post('dashboard/account/update-email', 'updateUserEmail')->name('updateUserEmail');
+    Route::post('dashboard/account/update-password', 'updateUserPassword')->name('updateUserPassword');
+    Route::get('dashboard/account/resend-verification-mail', 'resendVerificationMail')->name('resendVerificationMail');
+});
+
+//Orders
+Route::controller(OrderController::class)->group( function () {
+    Route::get('dashboard/orders/new', 'NewOrderForm')
+        ->middleware([UserLoggedIn::class])
+        ->middleware('verified')
+        ->name('newOrderForm');
+    Route::post('dashboard/orders/new/submit', 'NewOrder')
+        ->middleware([UserLoggedIn::class])
+        ->middleware('verified')
+        ->name('newOrder');
+    Route::get('dashboard/orders', 'DisplayAllOrders')
+        ->middleware([UserLoggedIn::class])
+        ->middleware('verified')
+        ->name('displayAllOrders');
+    Route::get('dashboard/orders/{order}', 'DisplayOrder')
+        ->middleware([UserLoggedIn::class])
+        ->middleware('verified')
+        ->name('displayOrder');
 });
 
 Route::get('/', function () {
@@ -132,5 +156,52 @@ Route::resource('cp/accounts/admins', AdminController::class)
     ->only(['index', 'edit', 'update', 'destroy', 'show', 'store'])
     ->middleware([AdminAuth::class]);
 
+Route::controller(OrderController::class)->group( function () {
 
+    //Orders Indexing
+    Route::get('cp/orders/pending', 'IndexPendingOrders')
+        ->middleware([AdminAuth::class])
+        ->name('indexPendingOrders');
+
+    Route::get('cp/orders/delivering', 'IndexDeliveringOrders')
+        ->middleware([AdminAuth::class])
+        ->name('indexDeliveringOrders');
+
+    Route::get('cp/orders/completed', 'IndexCompletedOrders')
+        ->middleware([AdminAuth::class])
+        ->name('indexCompletedOrders');
+
+    Route::get('cp/orders/archived', 'IndexArchivedOrders')
+        ->middleware([AdminAuth::class])
+        ->name('indexArchivedOrders');
+
+
+    //Order Management
+    Route::get('cp/orders/{order}', 'ShowOrder')
+        ->middleware([AdminAuth::class])
+        ->name('showOrder');
+
+    Route::get('cp/orders/{order}/status={status}', 'ChangeOrderStatus')
+        ->middleware([AdminAuth::class])
+        ->name('changeOrderStatus');
+
+    Route::get('cp/orders/{order}/archive', 'ArchiveOrder')
+        ->middleware([AdminAuth::class])
+        ->name('archiveOrder');
+    
+    Route::get('cp/orders/{order}/unarchive', 'UnarchiveOrder')
+        ->middleware([AdminAuth::class])
+        ->name('unarchiveOrder');
+
+
+    //Task Management
+    Route::post('cp/orders/{order}/addTask', 'AddTask')
+        ->middleware([AdminAuth::class])
+        ->name('addTask');
+
+    Route::post('cp/orders/{order}/editTask/{task}', 'EditTask')
+        ->middleware([AdminAuth::class])
+        ->name('editTask');
+
+});
 

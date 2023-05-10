@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{URL::asset('style/cp-main.css')}}">
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
     <title>@yield('title')</title>
 </head>
 <body>
@@ -41,10 +40,10 @@
                         <h1>Orders</h1>
                     </div>
                     <ul class="subsection">
-                        <a href="#"><li>Pending</li></a>
-                        <a href="#"><li>Delivering</li></a>
-                        <a href="#"><li>Completed</li></a>
-                        <a href="#"><li>Archived</li></a>
+                        <a href="{{route('indexPendingOrders')}}"><li>Pending</li></a>
+                        <a href="{{route('indexDeliveringOrders')}}"><li>Delivering</li></a>
+                        <a href="{{route('indexCompletedOrders')}}"><li>Completed</li></a>
+                        <a href="{{route('indexArchivedOrders')}}"><li>Archived</li></a>
                     </ul>
                 </li>
                 <li class="section">

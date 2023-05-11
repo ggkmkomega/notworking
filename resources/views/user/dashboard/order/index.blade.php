@@ -21,7 +21,7 @@
                     <td><p>{{$order->status}}%</p></td>
                     <td><p>{{$order->order_status}}</p></td>
                     @if ($order->order_status == 'pending')
-                    <td><a href="">Annuler</a></td>
+                    <td><a href="{{route('cancelOrder', $order)}}">Annuler</a></td>
                     @else
                     <td><p>Annuler</p></td>
                     @endif

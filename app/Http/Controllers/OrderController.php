@@ -41,7 +41,9 @@ class OrderController extends Controller
     }
 
     public function DisplayAllOrders(){
-        $orders = Auth::user()->Orders()->where('is_archived', '=', false)->get();
+        $orders = Auth::user()->Orders()->where('is_archived', '=', false)
+                                        ->where('is_canceled', '=', false)
+                                        ->get();
         return view('user.dashboard.order.index', compact('orders'));
     }
 
@@ -60,8 +62,9 @@ class OrderController extends Controller
 
     public function CancelOrder(Order $order){
         $order->is_canceled = true;
+        $order->is_archived = true;
         $order->save();
-        return redirect(route('dispalyAllOrders'));
+        return redirect(route('displayAllOrders'));
     }
 
     public function DisplayInvoice(Order $order){

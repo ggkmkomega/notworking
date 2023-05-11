@@ -89,10 +89,16 @@ Route::controller(OrderController::class)->group( function () {
         ->middleware([UserLoggedIn::class])
         ->middleware('verified')
         ->name('displayAllOrders');
+        
     Route::get('dashboard/orders/{order}', 'DisplayOrder')
         ->middleware([UserLoggedIn::class])
         ->middleware('verified')
         ->name('displayOrder');
+    
+    Route::get('cp/orders/{order}/cancel', 'CancelOrder')
+        ->middleware([UserLoggedIn::class])
+        ->middleware('verified')
+        ->name('cancelOrder');
 });
 
 Route::get('/', function () {

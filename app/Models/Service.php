@@ -11,7 +11,7 @@ class Service extends Product
     use HasFactory;
     use Compoships;
 
-    protected $table = 'services';
+    public $table = 'services';
 
     protected $fillable = [
         'page',

@@ -9,7 +9,7 @@
         <div class="left-panel">
 
             <br>
-            <h3>Compte</h3>
+            <h3 class="db-h3">Compte</h3>
             <ul>
                 <a href="{{route('userAccountSettings')}}"><li>Paramètres du Compte</li></a>
                 <a href="#"><li>Vérifier l'E-mail</li></a>
@@ -17,17 +17,17 @@
             </ul>
             <br>
 
-            <h3>Commands</h3>
+            <h3 class="db-h3">Commands</h3>
             <ul>
                 <a href="{{route('newOrderForm')}}"><li>Nouvelle Commande</li></a>
                 <a href="{{route('displayAllOrders')}}"><li>Suivi les Commandes</li></a>
             </ul>
             <br>
 
-            <a href=""><h3>Abonnement</h3></a>
+            <a href=""><h3 class="db-h3">Abonnement</h3></a>
             <br>
 
-            <h3>Assistance</h3>
+            <h3 class="db-h3">Assistance</h3>
             <ul>
                 <a href="#"><li>Nouveau Ticket</li></a>
                 <a href="#"><li>En Cours</li></a>

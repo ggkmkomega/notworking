@@ -11,8 +11,10 @@ class ProdImage extends Model
     use HasFactory;
     use Compoships;
 
+    public $table = 'prod_images';
+
     public function hwProd(){
-        return $this->hasOne(Hardware::class, ['id', 'prod_category'], ['prod_id', 'prod_category']);
+        return $this->hasOne(Hardware::class ,  ['id', 'prod_category'], ['prod_id', 'prod_category']);
     }
 
     public function swProd(){

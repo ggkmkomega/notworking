@@ -1,4 +1,6 @@
 <head>
+
+    
     <script>
         function submitTaskStatus(taskId)
         {
@@ -24,12 +26,13 @@
     <h3 href='#'>{{$client->id.' '.$client->fname.' '.$client->lname}}</h3>
     <p>{{$order->created_at}}</p>
     <p>{{$order->order_status}}</p>
+    <p>{{$order->status}}</p>
+    <br>
     
     @php
         echo $order->description;
         @endphp
 
-    <p>{{$order->status}}</p>
 
     <h2>Taches</h2>
     <form action="{{route('addTask', $order)}}" method="post">
@@ -43,10 +46,10 @@
     <h4>{{$group}}</h4>
     @foreach ($tasks as $task)
         @if ($task->group == $group)
-        <form action="{{route('editTask', compact('order', 'task'))}}" method="post" id='cbitem{{$task->id}}'>
+        <form style="display: flex;" action="{{route('editTask', compact('order', 'task'))}}" method="post" id='cbitem{{$task->id}}'>
             @csrf
             <p>
-                {{$task->title}} .......... {{$task->cost}}
+                {{$task->title}} .......... {{$task->cost}}  .
             </p>
             <input type="checkbox" id="taskCheckbox{{$task->id}}" onclick="submitTaskStatus({{$task->id}})"
                 @if ($task->is_done)

@@ -4,7 +4,7 @@
     color: var(--main);
 }
 
-h3{
+h3.db-h3{
     color: var(--mainShade);
 }
 
@@ -45,7 +45,8 @@ a{
 /*--------- content ------------*/
 .content {
     padding: 10px;
-    width: 100%;
+    width: 80%;
+    margin: 0 auto;
 }
 
 .content .mailnpw{

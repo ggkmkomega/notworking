@@ -20,4 +20,8 @@ class Hardware extends Product
     public function prod_images(){
         return $this->hasMany(ProdImage::class, ['prod_id', 'prod_category'], ['id', 'prod_category']);
     }
+
+    public function OrderItem(){
+        return $this->hasMany(OrderList::class, ['prod_id', 'prod_category'], ['id', 'prod_category']);
+    }
 }

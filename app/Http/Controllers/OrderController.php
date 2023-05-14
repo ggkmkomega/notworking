@@ -4,22 +4,35 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 use App\Models\Order;
+use App\Models\Product;
+use App\Models\OrderList;
 use App\Models\Task;
 use App\Models\Invoice;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
 
     //-----------user dashboard-------------
 
+    //-----------Management
     public function NewOrderForm(){
-        return view('user.dashboard.order.new');
+        $orderList = OrderList::where('user_id', '=', Auth::user()->id)
+            ->where('order_id', '=', null)->get();
+        
+        return view('user.dashboard.order.new', compact('orderList'));
     }
 
     public function NewOrder(Request $request){
+        $orderList = OrderList::where('user_id', '=', Auth::user()->id)
+            ->where('order_id', '=', null)->get();
+
         $user = Auth::user();
+
         $validated = $request->validate(
             [
                 'title' => 'required|string|max:255',
@@ -36,6 +49,11 @@ class OrderController extends Controller
         $newOrder->is_archived = false;
         $newOrder->is_canceled = false;
         $newOrder->save();
+        
+        foreach ($orderList as $item) {
+            $item->order_id = $newOrder->id;
+            $item->save();
+        }
 
         return redirect(route('displayOrder', $newOrder));
     }
@@ -48,7 +66,9 @@ class OrderController extends Controller
     }
 
     public function DisplayOrder(Order $order){
+
         $tasks = $order->Tasks()->get();
+        $orderList = $order->OrderList()->get();
         $taskGroups = array();
 
         foreach($tasks as $item){
@@ -57,7 +77,7 @@ class OrderController extends Controller
                 $taskGroups[] = $item->group;
             }
         }
-        return view('user.dashboard.order.show', compact('order', 'tasks', 'taskGroups'));
+        return view('user.dashboard.order.show', compact('order', 'tasks', 'taskGroups', 'orderList'));
     }
 
     public function CancelOrder(Order $order){
@@ -74,8 +94,26 @@ class OrderController extends Controller
         return view('user.dashboard.invoice', compact('user , order, tasks, invoice'));
     }
 
-    //-----------control panel-------------
 
+    public function AddProductToList(Request $request, $category, $id){
+
+        $orderList = new OrderList;
+        $orderList->order_id = null;
+        $orderList->user_id = Auth::user()->id;
+        $orderList->prod_id = $id;
+        $orderList->prod_category = $category;
+        $orderList->volume = $request->volume;
+        $orderList->save();
+        return redirect('products/'.$category.'s/'.$id);
+    }
+
+    public function RemoveProductFromList(OrderList $listItem){
+        $listItem->delete();
+        return redirect(route('main'));
+    }
+
+    //-----------control panel-------------
+    //-----------Management
     public function IndexPendingOrders(Request $request){
 
         if($request->search)
@@ -103,7 +141,7 @@ class OrderController extends Controller
             $orders = Order::where('is_archived', '=', false)
                             ->where('order_status', '=', 'pending')
                             ->paginate(15);
-            return view('admin.order.index-pending', compact('searching', 'orders'));    
+            return view('admin.order.index-pending', compact('searching', 'orders'));
         }
         
     }
@@ -211,7 +249,7 @@ class OrderController extends Controller
 
     public function ShowOrder(Order $order){
         $client = $order->Client()->get()[0];
-
+        $orderList = $order->OrderList()->get();
         $tasks = $order->Tasks()->get();
         $taskGroups = array();
         foreach($tasks as $item){
@@ -221,7 +259,7 @@ class OrderController extends Controller
             }
         }
 
-        return view('admin.order.show', compact('order', 'tasks', 'client', 'taskGroups'));
+        return view('admin.order.show', compact('order', 'tasks', 'client', 'taskGroups', 'orderList'));
     }
 
     public function ArchiveOrder(Order $order){
@@ -241,7 +279,7 @@ class OrderController extends Controller
     }
 
     
-
+    //-----------Tasks
     public function AddTask(Request $request, Order $order){
         //add task
         $valid = $request->validate([
@@ -299,9 +337,10 @@ class OrderController extends Controller
         $order->status = ($doneTasks->count() / $tasks->count()) * 100;
         $order->save();
         
-
     }
 
+
+    //-----------Invoice
     public function BuildInvoice(Order $order){
         
     }

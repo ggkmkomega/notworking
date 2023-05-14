@@ -62,30 +62,70 @@
             </div>
             <div id="account">
                 @if (Auth::check())
-                <div class="icon bell">
-                    <img src="{{URL::asset('assets/icons/bell.svg')}}" style="height: 100%;">
-                </div>
-                    <div class="account-menu">
-                        <div class="account-btn">
-                            <div class="icon user">
-                                <img src="{{URL::asset('assets/icons/user-circle.svg')}}" style="height: 100%;">
+                    <div class="orderList menu">
+                        <div class="orderList btn oldm">
+                                <img src="{{URL::asset('assets/icons/clipboard-notes.svg')}}" style="height: 100%;">
+                        </div>
+                        <div class="dropdown-menu" id="oldm">
+                            <div class="ol-header">
+                                <h4>Order List</h4>
+                                <a href="{{route('newOrderForm')}}">Order</a>
+                            </div>
+                            <hr>    
+                            <div class="ol-body">
+                                @if ($orderList)
+                                    
+                                @foreach ($orderList as $item)
+                                    @php
+                                        $product = $item->Product($item->prod_category)->get()[0];
+                                        $img = $product->prod_images()->get();
+                                            $imgPath = '';
+                                            if(count($img) > 0){
+                                                $imgPath = $img[0]->path;
+                                            }else{
+                                                $imgPath = 'pre_assets/img/empty-img.png';
+                                            }
+                                    @endphp
+                                    <div class='ol-item'>
+                                        <div class="upper-content">
+                                            <img src="{{URL::asset('storage/' . $imgPath)}}" alt="">
+                                            <p>{{$product->name}}</p>
+                                            <p>{{$item->volume}}</p>
+                                        </div>
+                                        <div class="lower-content">
+                                            <a href="{{url('products/'.$item->prod_category.'s/'.$product->id)}}">Show</a>
+                                            <a href="{{route('removeProductFromList', $item)}}">Delete</a>
+                                        </div>
+                                    </div>
+                                @endforeach
+                                @endif
                             </div>
                         </div>
+                    </div>
+
+                    <div class="account menu">
+                        <div class="account btn acdm">
+                                <img src="{{URL::asset('assets/icons/user-circle.svg')}}" style="height: 100%;">
+                        </div>
                         
-                        <div class="dropdown-menu">
-                            <a class="ddm" href="#">settings</a>
+                        <div class="dropdown-menu" id="acdm">
+                            <a class="ddm" href="#">Account Settings</a>
                             <hr>
-                            <a class='ddm' href="{{route('userDashboard')}}">dashboard</a>
+                            <a class='ddm' href="{{route('userDashboard')}}">Dashboard</a>
                             <hr>
-                            <a class="ddm signout" href="{{route('userSignOut')}}">signout</a>
+                            <a class="ddm signout" href="{{route('userSignOut')}}">Sign Out</a>
                         </div>
                     </div>
                     <script>
-                        const accBtn = document.querySelector('#account .account-menu .account-btn')
-                        const accDropMenu = document.querySelector('#account .account-menu .dropdown-menu')
-                        accBtn.addEventListener('click', () => {
-                            accDropMenu.classList.toggle('display')
-                        })
+                        const accBtns = document.querySelectorAll('#account .menu .btn')
+                        
+                        for (const accbtn of accBtns) {
+                            var id = accbtn.classList[2]
+                            const accDropMenu = document.querySelector('#account .menu .dropdown-menu#'+id)
+                            accbtn.addEventListener('click', () => {
+                                accDropMenu.classList.toggle('display')
+                            })
+                        }
                     </script>
                 @else
                     <a href="{{route('loginForm')}}">

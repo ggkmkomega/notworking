@@ -37,12 +37,10 @@ tr{
     padding: 15px;
 }
 
-.task-group{
-    margin-left: 30px;
-}
+
 .task-item{
     padding: 5px;
-    margin-left: 60px;
+    margin-left: 30px;
     display: flex;
 }
 .task-item .line{
@@ -69,4 +67,91 @@ span.delivering{
 
 span.completed{
     background-color: rgb(81, 207, 123);
+}
+
+.order-status{
+    display: flex;
+    gap: 20px;
+}
+
+.status-details{
+    display: none;
+    position: fixed;
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */   
+}
+.status-container{
+    width: 50%;
+    margin: 200px auto;
+    background-color: var(--bg);
+}
+.status-header{
+    display: flex;
+    align-items: center;
+    padding: 10px 40px;
+    justify-content: space-between;
+    background-color: var(--sub2);
+}
+.status-header span{
+    font-size: 39px;
+    color: var(--sub2d2);
+}
+
+.status-header span:hover{
+    color: var(--mainShade);
+}
+
+.status-content{
+    padding: 30px;
+}
+
+.prod-list td a.btn{
+    color: white;
+    background-color: rgb(233, 78, 78);
+    padding: 10px;
+    border-radius: 2px;
+}
+.prod-list-t td img{
+    height: 60px;
+    border-radius: 2px;
+}
+
+.prod-list-t, .prod-list-t th, .prod-list-t td{
+    padding: 10px;
+    border-collapse: collapse;
+}
+
+.prod-list-t td.option{
+    text-align: center;
+}
+
+.prod-list-t thead tr{
+    border-bottom: 10px solid var(--bg);
+}
+.prod-list-t tr{
+    background-color: rgb(231, 231, 231);
+    border-bottom: 3px solid var(--bg);
+    border-radius: 10px;
+}
+
+.submit-btn{
+    margin-top: 50px;
+    border-radius: 3px;
+    border: 3px solid var(--sub2);
+    background-color: var(--bg);
+    width: 120px;
+    height: 35px;
+    color: var(--mainShade);
+    cursor: pointer;
+}
+
+.submit-btn:hover{
+    background-color: var(--sub2);
+    color: white    ;
 }

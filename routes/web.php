@@ -95,10 +95,18 @@ Route::controller(OrderController::class)->group( function () {
         ->middleware('verified')
         ->name('displayOrder');
     
-    Route::get('cp/orders/{order}/cancel', 'CancelOrder')
+    Route::get('dashboard/orders/{order}/cancel', 'CancelOrder')
         ->middleware([UserLoggedIn::class])
         ->middleware('verified')
         ->name('cancelOrder');
+
+    Route::get('products/{category}/{id}/addProductToList', 'AddProductToList')
+        ->middleware([UserLoggedIn::class])
+        ->name('addProductToList');
+
+    Route::get('orderList/removeItem={listItem}', 'RemoveProductFromList')
+        ->middleware([UserLoggedIn::class])
+        ->name('removeProductFromList');
 });
 
 Route::get('/', function () {
@@ -112,7 +120,7 @@ Route::get('products/hardwares/{hardware}', [HardwareController::class, 'siteSho
 Route::get('products/softwares', [SoftwareController::class, 'siteIndex'])->name('swSiteIndex');
 Route::get('products/softwares/{software}', [SoftwareController::class, 'siteShow'])->name('swSiteShow');
 
-Route::get('services/{service}', [ServiceController::class, 'siteShow'])->name('svSiteShow');
+Route::get('products/services/{service}', [ServiceController::class, 'siteShow'])->name('svSiteShow');
 
 Route::get('products/courses', [CourseController::class, 'siteIndex'])->name('crSiteIndex');
 Route::get('products/courses/{course}', [CourseController::class, 'siteShow'])->name('crSiteShow');

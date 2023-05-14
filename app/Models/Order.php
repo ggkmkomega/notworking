@@ -30,4 +30,8 @@ class Order extends Model
     public function Client(){
         return $this->hasOne(User::class, 'id', 'client_id');
     }
+    
+    public function OrderList(){
+        return $this->hasMany(OrderList::class, 'order_id', 'id');
+    }
 }

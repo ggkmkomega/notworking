@@ -40,7 +40,15 @@
                     @endif
                     </span>
                 </h1>
-                <a href="#">Buy</a>
+                @php
+                    $category = $software->prod_category;
+                    $id = $software->id;
+                @endphp
+                <form action="{{route('addProductToList', compact('category', 'id'))}}" method="get">
+                    <label>Number of Licences</label><br>
+                    <input type="number" name="volume"><br><br>
+                    <input type="submit" value="Place Order">
+                </form>
             </div>
         </div>
     </div>

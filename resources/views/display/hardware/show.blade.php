@@ -50,5 +50,14 @@
                 })
             </script>
         </div>
+        @php
+                    $category = $hardware->prod_category;
+                    $id = $hardware->id;
+                @endphp
+        <form action="{{route('addProductToList', compact('category', 'id'))}}" method="get">
+            <label>Volume:</label><br>
+            <input type="number" name="volume"><br><br>
+            <input type="submit" value="Place Order">
+        </form>
     </div>
 @endsection

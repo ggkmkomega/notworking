@@ -32,5 +32,14 @@
                 </div>
             </div>
         </div>
+        @php
+                    $category = $course->prod_category;
+                    $id = $course->id;
+                @endphp
+        <form action="{{route('addProductToList', compact('category', 'id'))}}" method="get">
+            <label>Number of Licences</label><br>
+            <input type="number" name="volume"><br><br>
+            <input type="submit" value="Place Order">
+        </form>
     </div>
 @endsection

@@ -159,6 +159,10 @@ header #account {
     display: flex;
 }
 
+header #account .btn{
+    height: 28px;
+}
+
 header #account a {
     text-decoration: none;
 }
@@ -167,13 +171,18 @@ header #account a.ddm:hover {
     background-color: var(--sub2);
 }
 
-header #account .account-menu{
+header #account a.ddm.signout{
+    margin-top: auto;
+    margin-bottom: 0;
+}
+
+header #account .menu{
     position: relative;
     display: flex;
     flex-direction: column;
 
 }
-header #account .account-menu .dropdown-menu{
+header #account .menu .dropdown-menu{
     position: absolute;
     display: flex;
     opacity: 0;
@@ -184,17 +193,56 @@ header #account .account-menu .dropdown-menu{
     right: 0;
     padding: 10px;
     flex-direction: column;
-    background-color: white;
+    background-color: rgb(235, 235, 235);
     user-select: none;
     box-shadow: 0px 0px var(--sub2);
     transition: all 0.2s, box-shadow 0.4s;
 }
 
-header #account .account-menu .dropdown-menu.display{
+#oldm{
+    width: 380px;
+}
+
+#oldm .ol-header{
+    display: flex;
+    padding: 10px;
+}
+
+#oldm .ol-header a{
+    margin-left: auto;
+    margin-right: 0;
+}
+#oldm .ol-body{
+    overflow-y: scroll;
+}
+
+#oldm .ol-body img{
+    height: 40px;
+}
+
+
+header #account .menu .dropdown-menu.display{
     opacity: 1;
-    height: 160px;
+    height: 200px;
+
     box-shadow: 10px 10px var(--sub2);
     pointer-events: all;
+}
+
+.orderList.menu .upper-content, .orderList.menu .lower-content{
+    display: flex;
+    gap: 5px;
+    margin-bottom: 5px;
+}
+
+.ol-item{
+    padding: 5px;
+    background-color: white;
+    margin: 5px;
+}
+.orderList.menu .upper-content{
+
+    justify-content: space-between;
 }
 
 header #account .user-logged-out{

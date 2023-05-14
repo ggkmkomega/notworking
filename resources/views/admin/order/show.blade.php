@@ -18,6 +18,36 @@
             form.submit();
         }
     </script>
+    <style>
+        .prod-list td a.btn{
+            color: white;
+            background-color: rgb(78, 145, 233);
+            padding: 10px;
+            border-radius: 2px;
+        }
+        .prod-list-t td img{
+            height: 60px;
+            border-radius: 2px;
+        }
+
+        .prod-list-t, .prod-list-t th, .prod-list-t td{
+            padding: 10px;
+            border-collapse: collapse;
+        }
+
+        .prod-list-t td.option{
+            text-align: center;
+        }
+
+        .prod-list-t thead tr{
+            border-bottom: 10px solid var(--bg);
+        }
+        .prod-list-t tr{
+            background-color: rgb(231, 231, 231);
+            border-bottom: 3px solid var(--bg);
+            border-radius: 10px;
+        }
+    </style>
 </head>
 
 @extends('admin.layouts.main')
@@ -61,5 +91,48 @@
         @endif
     @endforeach
     @endforeach
+
+    <br><h3 class="db-h3">Products List</h3>
+    <div class="prod-list">
+        <table class='prod-list-t'>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Type</th>
+                    <th>Nom</th>
+                    <th>Catégorie</th>
+                    <th>Volume</th>
+                    <th>Option</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($orderList as $item)
+                    @php
+                        $product = $item->Product($item->prod_category)->get()[0];
+                        $img = $product->prod_images()->get();
+                            $imgPath = '';
+                            if(count($img) > 0){
+                                $imgPath = $img[0]->path;
+                            }else{
+                                $imgPath = 'pre_assets/img/empty-img.png';
+                            }
+                    @endphp
+                
+                    <tr class="prod-item">
+                        <td>
+                            <img src="{{URL::asset('storage/' . $imgPath)}}" alt="">
+                        </td>
+                        <td>{{$product->prod_category}}</td>
+                        <td>{{$product->name}}</td>
+                        <td>{{$product->category}}</td>
+                        <td>{{$item->volume}}</td>
+                        <td class="option">
+                            <a class="btn " href="{{url('cp/'.$product->prod_category.'s?search='.$product->name)}}">Show</a>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
         
 @endsection

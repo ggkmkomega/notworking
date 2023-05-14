@@ -1,5 +1,19 @@
 <head>
     <link rel="stylesheet" href="{{ URL::asset('style/orders-style.css')}}">
+
+    <script>
+        
+        
+        function showMore(){
+            const elm = document.querySelector('.status-details');
+            elm.style.display = 'block';
+        }
+
+        function closeMore(){
+            const elm = document.querySelector('.status-details');
+            elm.style.display = 'none';
+        }
+    </script>
 </head>
       
       
@@ -7,6 +21,9 @@
 @extends('user.user-dashboard')
 
 @section('section-content')
+<div class="wrapper-show">
+
+
     <div class="order-header">
         <h2>{{$order->title}}</h2>
         <p class="created_at">{{$order->created_at}}</p>
@@ -35,50 +52,112 @@
             echo $order->description;
         @endphp
     </div>
+
     <br><h3 class="db-h3">Statut</h3>
-    <div class="progress">
-        <div id="myBar" class="bar" style="width:10%" >0</div>
+    <div class="order-status">
+
+        <div class="progress">
+            <div id="myBar" class="bar" style="width:10%" >0</div>
+        </div>
+
+        <button id="showDetails" onclick="showMore()">Afficher Les Details</button>
+
+        <script defer>
+            
+            initPB({{$order->status}});
+            function initPB(maxValue) {
+            var elem = document.getElementById("myBar");
+            var id = setInterval(frame, 15);
+            var width = 0;
+            function frame() {
+            if (width >= 100) {
+                clearInterval(id);
+            } else {
+                if(width < maxValue)
+                {
+                    width++; 
+                    elem.style.width = width + '%'; 
+                    elem.innerHTML = width * 1  + '%';
+                }
+            }
+            }
+        }
+        </script>
     </div>
 
-    <script defer>
+    <div class="status-details" style="">
+        <div class="status-container">
 
-        initPB({{$order->status}});
-        function initPB(maxValue) {
-        var elem = document.getElementById("myBar");
-        var id = setInterval(frame, 15);
-        var width = 0;
-        function frame() {
-          if (width >= 100) {
-            clearInterval(id);
-          } else {
-            if(width < maxValue)
-            {
-                width++; 
-                elem.style.width = width + '%'; 
-                elem.innerHTML = width * 1  + '%';
-            }
-          }
-        }
-      }
-      </script>
-
-
-
-    <br><br><h3 class="db-h3">Taches</h3><br>
-    @foreach ($taskGroups as $group)
-        <h4 class="task-group">{{$group}}</h4>
-        @foreach ($tasks as $task)
-            @if ($task->group == $group)
-            <div class="task-item">
-                <p class="task-title">{{$task->title}}</p>
-                <div class="line"></div>
-                @if ($task->is_done)
-                    <p class="status">Complete</p>
-                @else
-                    <p class="status">En Attend </p>
-                @endif
+            <div class="status-header">
+                <h3 class="db-h3">Taches</h3>
+                <span onclick="closeMore()">&times;</span>
             </div>
-            @endif
-        @endforeach
-    @endforeach
+            <div class="status-content">
+    
+                @foreach ($taskGroups as $group)
+                    <h4 class="task-group">{{$group}}</h4>
+                    @foreach ($tasks as $task)
+                        @if ($task->group == $group)
+                        <div class="task-item">
+                            <p class="task-title">{{$task->title}}</p>
+                            <div class="line"></div>
+                            @if ($task->is_done)
+                                <p class="status">Complete</p>
+                            @else
+                                <p class="status">En Attend </p>
+                            @endif
+                        </div>
+                        @endif
+                    @endforeach
+                @endforeach
+            </div>
+        </div>
+
+        
+    </div>
+
+    <br><h3 class="db-h3">Products List</h3>
+    <div class="prod-list">
+        <table class='prod-list-t'>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Type</th>
+                    <th>Nom</th>
+                    <th>Catégorie</th>
+                    <th>Volume</th>
+                    <th>Option</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($orderList as $item)
+                    @php
+                        $product = $item->Product($item->prod_category)->get()[0];
+                        $img = $product->prod_images()->get();
+                            $imgPath = '';
+                            if(count($img) > 0){
+                                $imgPath = $img[0]->path;
+                            }else{
+                                $imgPath = 'pre_assets/img/empty-img.png';
+                            }
+                    @endphp
+                
+                    <tr class="prod-item">
+                        <td>
+                            <img src="{{URL::asset('storage/' . $imgPath)}}" alt="">
+                        </td>
+                        <td>{{$product->prod_category}}</td>
+                        <td>{{$product->name}}</td>
+                        <td>{{$product->category}}</td>
+                        <td>{{$item->volume}}</td>
+                        <td class="option">
+                            <a class="btn " href="{{route('removeProductFromList', $item)}}">delete</a>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+
+</div>
 @endsection

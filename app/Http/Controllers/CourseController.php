@@ -98,18 +98,13 @@ class CourseController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Course $course)
-    {
-        $content = $course->prod_images()->get();
-
-        return view('admin.product.course.show', compact('course', 'content'));
-    }
-
     public function siteShow(Course $course)
     {
         $content = $course->prod_images()->get();
+        $reviews = $course->Reviews()->where('is_approved', '=', true)
+        ->get();
 
-        return view('display.course.show', compact('course', 'content'));
+        return view('display.course.show', compact('course', 'content', 'reviews'));
     }
 
     /**

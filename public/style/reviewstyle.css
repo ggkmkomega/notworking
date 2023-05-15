@@ -1,0 +1,194 @@
+.order-section{
+    background-color: rgb(50, 120, 205);
+    height: 360px;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 10px;
+}
+
+.sep{
+    height: 300px;
+    width: 7px;
+    border-radius: 0 0 5px 5px;
+    background-color: var(--bg);
+}
+
+.order-form, .reviews-area{
+    width: 48%;
+    padding: 30px;
+    
+}
+
+.order-form p{
+    font-size: 20px;
+    margin: 10px;
+    color: var(--bg);
+}
+
+.order-form input{
+    margin: 30px 0;
+    width: 220px;
+    height: 36px;
+    background-color: rgb(52, 57, 149);
+    color: var(--bg);
+    border-style: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.2s;
+
+}
+
+.order-form input:hover{
+    background-color: rgb(42, 45, 97);
+}
+
+.reviews-area h2{
+    margin: 10px 0 10px 0;
+    color: var(--bg);
+}
+.reviews-area .content{
+    height: 66%;
+    width: 95%;
+    background-color: var(--bg);
+    border-radius: 3px;
+}
+
+.reviews-area button{
+    margin: 20px 0;
+    width: 120px;
+    height: 30px;
+    border-style: none;
+    border-radius: 3px;
+    cursor: pointer;
+    background-color: rgb(52, 57, 149);
+    color: var(--bg);
+    transition: all 0.2s;
+}
+
+.reviews-area button:hover{
+    background-color: rgb(241, 241, 243);
+    color: rgb(42, 45, 97);
+}
+
+
+/*modal*/
+/* The Modal (background) */
+.modal {
+display: none; /* Hidden by default */
+position: fixed; /* Stay in place */
+z-index: 1; /* Sit on top */
+left: 0;
+top: 0;
+width: 100%; /* Full width */
+height: 100%; /* Full height */
+overflow: auto; /* Enable scroll if needed */
+background-color: rgb(0,0,0); /* Fallback color */
+background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+background-color: #fefefe;
+margin: 15% auto; /* 15% from the top and centered */
+border: 1px solid #888;
+width: fit-content; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+color: #ffffff;
+float: right;
+font-size: 28px;
+font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+color: black;
+text-decoration: none;
+cursor: pointer;
+}
+
+.modal-header {
+padding: 10px 16px;
+background-color: rgb(52, 57, 149);
+color: white;
+}
+
+/*modal body*/
+.modal-body {
+    padding: 10px 16px;
+}
+
+.modal-body form{
+    display: block;
+    width:fit-content;
+    margin: 20px auto
+}
+
+.modal-body form textarea{
+    padding: 7px;
+    margin-top: 5px;
+}
+
+.modal-body form input[type='submit']{
+    width: 120px;
+    height: 30px;
+}
+
+.reviews-area .content{
+    overflow-y: scroll;
+    padding: 10px;
+}
+
+.rev-container{
+    padding: 10px;
+    margin-bottom: 30px;
+    width: 100%;
+    height: calc( 100% - 10px);
+    position: sticky;
+    top: 0;
+    border-radius: 3px;
+    background-color: #e2e2e2;
+}
+
+.rev-container .rev-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.rev-container .rev-header p{
+    background-color: #a7a7a7;
+    padding: 3px 20px;
+    border-radius: 3px;
+}
+
+.rev-container .review{
+    padding: 5px;
+    border-radius: 3px;
+    margin-top: 10px;
+    background-color: #cfcfcf;
+    display: block;
+    width: 100%;
+    height: calc(100% - 30px);
+}
+
+.stars-widget{
+    display: flex;
+    flex-direction: row-reverse
+}
+.stars-widget label svg{
+    height: 20px;
+    color : #888;
+}
+.stars-widget input{
+    display: none;
+}
+
+.stars-widget input:not(:checked) ~ label:hover svg, .stars-widget input:not(:checked) ~ label:hover ~ label svg{
+    color: #f3ca15;
+}
+.stars-widget input:checked ~ label svg{
+    color: #f3ca15;
+}

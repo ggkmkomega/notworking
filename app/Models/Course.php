@@ -26,4 +26,8 @@ class Course extends Product
     public function OrderItem(){
         return $this->hasMany(OrderList::class, ['prod_id', 'prod_category'], ['id', 'prod_category']);
     }
+
+    public function Reviews(){
+        return $this->hasMany(Review::class, ['prod_id', 'prod_category'], ['id', 'prod_category']);
+    }
 }

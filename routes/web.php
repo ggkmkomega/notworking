@@ -14,8 +14,7 @@ use App\Http\Controllers\CourseController;
 
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\OrderController;
-
-
+use App\Http\Controllers\ReviewController;
 use App\Http\Middleware\AdminAuth;
 use App\Http\Middleware\RedirectIfLogedIn;
 use App\Http\Middleware\UserLoggedIn;
@@ -125,6 +124,28 @@ Route::get('products/services/{service}', [ServiceController::class, 'siteShow']
 Route::get('products/courses', [CourseController::class, 'siteIndex'])->name('crSiteIndex');
 Route::get('products/courses/{course}', [CourseController::class, 'siteShow'])->name('crSiteShow');
 
+
+Route::controller(ReviewController::class)->group( function () {
+    Route::post('review/new.cat={prod_category}.id={prod_id}', 'Add')
+        ->middleware([UserLoggedIn::class])
+        ->middleware('verified')
+        ->name('addNewReview');
+    
+    Route::get('review/{review}', 'Remove')
+        ->middleware([UserLoggedIn::class])
+        ->middleware('verified')
+        ->name('removeReview');
+
+    Route::put('review/{review}', 'Edit')
+        ->middleware([UserLoggedIn::class])
+        ->middleware('verified')
+        ->name('editReview');
+
+    Route::get('dashboard/reviews', 'IndexForUser')
+        ->middleware([UserLoggedIn::class])
+        ->middleware('verified')
+        ->name('indexForUser');
+});
 
 
 /*----------------- control panel ---------------*/

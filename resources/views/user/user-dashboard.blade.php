@@ -35,6 +35,9 @@
             </ul>
             <br>
 
+            <a href="{{route('indexForUser')}}"><h3 class="db-h3">Your Reviews</h3></a>
+            <br>
+
         </div>
         <div class="content">
             @yield('section-content')   

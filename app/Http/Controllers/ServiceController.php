@@ -74,18 +74,13 @@ class ServiceController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Service $service)
-    {
-        $content = $service->prod_images()->get();
-
-        return view('admin.product.service.show', compact('service', 'content'));
-    }
     
     public function siteShow(Service $service)
     {
         $content = $service->prod_images()->get();
+        $reviews = $service->Reviews()->where('is_approved', '=', true)->get();
 
-        return view('display.service.show', compact('service', 'content'));
+        return view('display.service.show', compact('service', 'content', 'reviews'));
     }
 
     /**

@@ -34,15 +34,16 @@ class AppServiceProvider extends ServiceProvider
             error_log('Unable to get services table');
         }
 
-        if(DB::table('order_list') && Auth::check()){
+        if(DB::table('order_list')){
 
+            $auth = $this->app['auth'];
             //compose all the views....
-            view()->composer('layouts.website-main', function ($view) 
+            view()->composer('layouts.website-main', function ($view) use($auth)
             {
-                $orderList = OrderList::where('user_id', '=', Auth::user()->id)
+                $orderList = OrderList::where('user_id', '=', $auth->user()->id)
                     ->where('order_id', '=', null)->get();
                 //...with this variable
-                $view->with(compact('orderList')); 
+                $view->with(compact('orderList'));
             }); 
 
         }else{

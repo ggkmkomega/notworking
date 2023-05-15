@@ -40,20 +40,14 @@ class AppServiceProvider extends ServiceProvider
             //compose all the views....
             view()->composer('layouts.website-main', function ($view) use($auth)
             {
-                $orderList = OrderList::where('user_id', '=', $auth->user()->id)
-                    ->where('order_id', '=', null)->get();
-                //...with this variable
-                $view->with(compact('orderList'));
+                if($auth->user()){
+                    $orderList = OrderList::where('user_id', '=', $auth->user()->id)
+                        ->where('order_id', '=', null)->get();
+                    //...with this variable
+                    $view->with(compact('orderList'));
+                }
             }); 
 
-        }else{
-            error_log('Unable to get orderList');
-            view()->composer('layouts.website-main', function ($view) 
-            {
-                $orderList = null;
-                //...with this variable
-                $view->with(compact('orderList')); 
-            }); 
         }
     }
 }

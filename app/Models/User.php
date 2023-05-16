@@ -57,4 +57,9 @@ class User extends Authenticatable implements MustVerifyEmail
     public function Reviews(){
         return $this->hasMany(Review::class, 'client_id', 'id');
     }
+
+    public function Tickets(){
+        return $this->hasMany(Ticket::class, 'client_id', 'id');
+    }
+
 }

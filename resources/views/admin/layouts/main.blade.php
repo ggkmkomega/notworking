@@ -52,9 +52,9 @@
                         <h1>Mailing</h1>
                     </div>
                     <ul class="subsection">
-                        <a href="#"><li>Incoming</li></a>
-                        <a href="#"><li>being Contacted</li></a>
-                        <a href="#"><li>Archived</li></a>
+                        <a href="{{route('adminIndexOngoingTickets')}}"><li>Ongoing</li></a>
+                        <a href="{{route('adminIndexClosedTickets')}}"><li>Closed</li></a>
+                        <a href="{{route('adminIndexArchivedTickets')}}"><li>Archived</li></a>
                     </ul>
                 </li>
                 <li class="section">

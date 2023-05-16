@@ -15,6 +15,7 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\TicketController;
 use App\Http\Middleware\AdminAuth;
 use App\Http\Middleware\RedirectIfLogedIn;
 use App\Http\Middleware\UserLoggedIn;
@@ -147,6 +148,41 @@ Route::controller(ReviewController::class)->group( function () {
         ->name('indexForUser');
 });
 
+Route::controller(TicketController::class)->group( function () {
+
+    Route::get('dashboard/tickets/new', 'NewTicketForm')
+        ->middleware([UserLoggedIn::class])
+        ->middleware('verified')
+        ->name('newTicketForm');
+
+    Route::get('dashboard/tickets/new/submit', 'NewTicket')
+        ->middleware([UserLoggedIn::class])
+        ->middleware('verified')
+        ->name('newTicket');
+
+    Route::get('dashboard/tickets/{ticket}', 'UserShowTicket')
+        ->middleware([UserLoggedIn::class])
+        ->middleware('verified')
+        ->name('userShowTicket');
+
+    Route::post('dashboard/tickets/{ticket}/send', 'UserSendMessage')
+        ->middleware([UserLoggedIn::class])
+        ->middleware('verified')
+        ->name('userSendMessage');
+
+    Route::get('dashboard/tickets&status=ongoing', 'UserIndexOngoingTickets')
+        ->middleware([UserLoggedIn::class])
+        ->middleware('verified')
+        ->name('userIndexOngoingTickets');
+    
+    Route::any('dashboard/tickets&status=closed', 'UserIndexClosedTickets')
+        ->middleware([UserLoggedIn::class])
+        ->middleware('verified')
+        ->name('userIndexClosedTickets');
+
+    
+});
+
 
 /*----------------- control panel ---------------*/
 
@@ -238,5 +274,52 @@ Route::controller(OrderController::class)->group( function () {
         ->middleware([AdminAuth::class])
         ->name('editTask');
 
+});
+
+Route::controller(TicketController::class)->group( function () {
+
+    Route::get('cp/tickets/{ticket}', 'AdminShowTicket')
+        ->middleware([AdminAuth::class])
+        ->name('adminShowTicket');
+
+    Route::post('cp/tickets/{ticket}/send', 'AdminSendMessage')
+        ->middleware([AdminAuth::class])
+        ->name('adminSendMessage');
+
+    Route::get('cp/tickets/{ticket}/update', 'UpdateMessageData')
+        ->middleware([AdminAuth::class])
+        ->name('updateMessageData');
+
+    Route::get('cp/tickets&status=ongoing', 'AdminIndexOngoingTickets')
+        ->middleware([UserLoggedIn::class])
+        ->middleware('verified')
+        ->name('adminIndexOngoingTickets');
+
+    Route::get('cp/tickets&status=closed', 'AdminIndexClosedTickets')
+        ->middleware([UserLoggedIn::class])
+        ->middleware('verified')
+        ->name('adminIndexClosedTickets');
+
+    Route::get('cp/tickets&status=archived', 'AdminIndexArchivedTickets')
+        ->middleware([UserLoggedIn::class])
+        ->middleware('verified')
+        ->name('adminIndexArchivedTickets');
+
+    Route::post('cp/tickets/{ticket}/statusUpdate', 'UpdateTicketStatus')
+        ->middleware([UserLoggedIn::class])
+        ->middleware('verified')
+        ->name('updateTicketStatus');
+
+    Route::get('cp/tickets/{ticket}/archive', 'ArchiveTicket')
+        ->middleware([UserLoggedIn::class])
+        ->middleware('verified')
+        ->name('archiveTicket');
+
+    Route::get('cp/tickets/{ticket}/unarchive', 'UnarchiveTicket')
+        ->middleware([UserLoggedIn::class])
+        ->middleware('verified')
+        ->name('unarchiveTicket');
+
+    
 });
 

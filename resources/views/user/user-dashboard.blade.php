@@ -29,9 +29,9 @@
 
             <h3 class="db-h3">Assistance</h3>
             <ul>
-                <a href="#"><li>Nouveau Ticket</li></a>
-                <a href="#"><li>En Cours</li></a>
-                <a href="#"><li>Ticket Résolu</li></a>
+                <a href="{{route('newTicketForm')}}"><li>Nouveau Ticket</li></a>
+                <a href="{{route('userIndexOngoingTickets')}}"><li>En Cours</li></a>
+                <a href="{{route('userIndexClosedTickets')}}"><li>Ticket Résolu</li></a>
             </ul>
             <br>
 

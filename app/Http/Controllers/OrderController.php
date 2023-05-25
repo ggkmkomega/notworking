@@ -91,7 +91,8 @@ class OrderController extends Controller
         $user = Auth::user();
         $invoice = $order->Invoice()->get();
         $tasks = $order->Tasks()->get();
-        return view('user.dashboard.invoice', compact('user , order, tasks, invoice'));
+        $orderList = $order->OrderList();
+        return view('user.dashboard.invoice', compact('user , order, tasks, invoice, orderList'));
     }
 
 
@@ -238,11 +239,46 @@ class OrderController extends Controller
         }
     }
 
-    public function ChangeOrderStatus(Order $order, $status)
+    public function ChangeOrderStatus(Request $request, Order $order, $status)
     {
         
         $order->order_status = $status;
         $order->save();
+
+        //building the invoice
+        if($status == 'completed'){
+            $invoice = new Invoice;
+            $invoice->order_id = $order->id;
+            $invoice->discount_percentage = 10;
+            $invoice->fees = 2;
+
+            $total = 0.0;
+            $productsTotal = 0.0;
+            $tasksTotal = 0.0;
+
+            $orderList = $order->OrderList()->get();
+            $paidTasks = $order->Tasks()->where('is_paid', '=', true);
+            $tasksTotal = $paidTasks->sum('cost');  
+
+            foreach ($orderList as $item) {
+                $prod = $item->Product($item->prod_category)->get()[0];
+                $productsTotal += $prod->price * $item->volume; 
+            }
+
+            //total wo fees or discounts
+            $total = $productsTotal + $tasksTotal;
+            //calc fee
+            $fees = ($total * 2)/100;
+            //total w discounts
+            $total = $total - ($total * 10)/100;
+            //total w fees
+            $total = $total + $fees;
+
+
+            $invoice->total_price = $total;
+            $invoice->save();
+
+        }
 
         return redirect(route('indexPendingOrders'));
     }
@@ -336,12 +372,6 @@ class OrderController extends Controller
         $doneTasks = $order->Tasks()->where('is_done', '=', 'true')->get();
         $order->status = ($doneTasks->count() / $tasks->count()) * 100;
         $order->save();
-        
-    }
-
-
-    //-----------Invoice
-    public function BuildInvoice(Order $order){
         
     }
 

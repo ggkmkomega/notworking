@@ -11,7 +11,7 @@ class Invoice extends Model
     use HasFactory;
     use Compoships;
     
-    protected $table = 'Invoice';
+    protected $table = 'invoices';
 
     protected $fillable = [
         'order_id',

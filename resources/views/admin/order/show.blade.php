@@ -1,5 +1,5 @@
 <head>
-
+    <link rel="stylesheet" href="{{ URL::asset('style/showOrderAdm.css')}}">
     
     <script>
         function submitTaskStatus(taskId)
@@ -52,26 +52,47 @@
 
 @extends('admin.layouts.main')
 @section('main-content')
-    <h2>{{$order->title}}</h2>
-    <h3 href='#'>{{$client->id.' '.$client->fname.' '.$client->lname}}</h3>
-    <p>{{$order->created_at}}</p>
-    <p>{{$order->order_status}}</p>
-    <p>{{$order->status}}</p>
+<div id="order-container">
+
+    <h1 id="order-name">Commande N° {{$order->id}}: {{$order->title}}</h1>
+    <h2 id="order-client" href='#'>Par le Client: {{$client->fname.' '.$client->lname}}</h2>
+    <p class="created_at">{{$order->created_at}}</p>
+    <div>Statut: <span>
+        @switch($order->order_status)
+                            @case('pending')
+                            En Attente
+                                @break
+                            @case('delivering')
+                            En Livraison
+                                @break
+                            @case('completed')
+                            Complèté
+                            @break
+                        @endswitch
+    </span>
+    </div>
+    <p>état d'avancement: {{$order->status}}%</p>
     <br>
     
+    <div class="desc">
+
     @php
         echo $order->description;
-        @endphp
+    @endphp
+    </div>
 
+    <br>
+    <h2>Tâches</h2>
 
-    <h2>Taches</h2>
     <form action="{{route('addTask', $order)}}" method="post">
         @csrf
-        <input type="text" name="title" id="" placeholder="Task Title">
-        <input type="text" name="group" id="" placeholder="Task Group">
-        <input type="number" name="cost" id="" placeholder="Task Cost">
-        <input type="submit" value="Add">
+        <input type="text" name="title" id="" placeholder="tâche titre">
+        <input type="text" name="group" id="" placeholder="tâche groupe">
+        <input type="number" name="cost" id="" placeholder="tâche coût">
+        <input type="checkbox" name="is_paid" id="is_paid"> <label for="is_paid">Tach Facturer ?</label>
+        <input type="submit" value="Ajouter">
     </form>
+
     @foreach ($taskGroups as $group)
     <h4>{{$group}}</h4>
     @foreach ($tasks as $task)
@@ -92,7 +113,7 @@
     @endforeach
     @endforeach
 
-    <br><h3 class="db-h3">Products List</h3>
+    <br><h3 class="db-h3">Liste de Produits</h3>
     <div class="prod-list">
         <table class='prod-list-t'>
             <thead>
@@ -101,7 +122,7 @@
                     <th>Type</th>
                     <th>Nom</th>
                     <th>Catégorie</th>
-                    <th>Volume</th>
+                    <th>Qté</th>
                     <th>Option</th>
                 </tr>
             </thead>
@@ -122,17 +143,35 @@
                         <td>
                             <img src="{{URL::asset('storage/' . $imgPath)}}" alt="">
                         </td>
-                        <td>{{$product->prod_category}}</td>
+                        <td>
+                            @switch($product->prod_category)
+                            @case('software')
+                            Logiciel
+                                @break
+                            @case('hardware')
+                            Matériel
+                                @break
+                            @case('service')
+                            Service
+                            @break
+                            @case('course')
+                            Formation
+                                
+                                @break
+                                
+                        @endswitch
+                        </td>
                         <td>{{$product->name}}</td>
                         <td>{{$product->category}}</td>
                         <td>{{$item->volume}}</td>
                         <td class="option">
-                            <a class="btn " href="{{url('cp/'.$product->prod_category.'s?search='.$product->name)}}">Show</a>
+                            <a class="btn " href="{{url('cp/'.$product->prod_category.'s?search='.$product->name)}}">Afficher</a>
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
+</div>
         
 @endsection

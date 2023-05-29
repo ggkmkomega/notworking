@@ -95,6 +95,11 @@ Route::controller(OrderController::class)->group( function () {
         ->middleware('verified')
         ->name('displayOrder');
     
+    Route::get('dashboard/orders/{order}/invoice', 'DisplayInvoice')
+        ->middleware([UserLoggedIn::class])
+        ->middleware('verified')
+        ->name('displayInvoice');
+    
     Route::get('dashboard/orders/{order}/cancel', 'CancelOrder')
         ->middleware([UserLoggedIn::class])
         ->middleware('verified')
@@ -107,6 +112,9 @@ Route::controller(OrderController::class)->group( function () {
     Route::get('orderList/removeItem={listItem}', 'RemoveProductFromList')
         ->middleware([UserLoggedIn::class])
         ->name('removeProductFromList');
+
+    
+    
 });
 
 Route::get('/', function () {
@@ -291,33 +299,27 @@ Route::controller(TicketController::class)->group( function () {
         ->name('updateMessageData');
 
     Route::get('cp/tickets&status=ongoing', 'AdminIndexOngoingTickets')
-        ->middleware([UserLoggedIn::class])
-        ->middleware('verified')
+        ->middleware([AdminAuth::class])
         ->name('adminIndexOngoingTickets');
 
     Route::get('cp/tickets&status=closed', 'AdminIndexClosedTickets')
-        ->middleware([UserLoggedIn::class])
-        ->middleware('verified')
+        ->middleware([AdminAuth::class])
         ->name('adminIndexClosedTickets');
 
     Route::get('cp/tickets&status=archived', 'AdminIndexArchivedTickets')
-        ->middleware([UserLoggedIn::class])
-        ->middleware('verified')
+        ->middleware([AdminAuth::class])
         ->name('adminIndexArchivedTickets');
 
     Route::post('cp/tickets/{ticket}/statusUpdate', 'UpdateTicketStatus')
-        ->middleware([UserLoggedIn::class])
-        ->middleware('verified')
+        ->middleware([AdminAuth::class])
         ->name('updateTicketStatus');
 
     Route::get('cp/tickets/{ticket}/archive', 'ArchiveTicket')
-        ->middleware([UserLoggedIn::class])
-        ->middleware('verified')
+        ->middleware([AdminAuth::class])
         ->name('archiveTicket');
 
     Route::get('cp/tickets/{ticket}/unarchive', 'UnarchiveTicket')
-        ->middleware([UserLoggedIn::class])
-        ->middleware('verified')
+        ->middleware([AdminAuth::class])
         ->name('unarchiveTicket');
 
     

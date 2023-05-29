@@ -82,8 +82,7 @@ class TicketController extends Controller
 
     public function AdminIndexOngoingTickets()
     {
-        $tickets = Ticket::where('user_id', '=', Auth::user()->id)
-                ->where('status', '=', 'ongoing')
+        $tickets = Ticket::where('status', '=', 'ongoing')
                 ->where('isArchived', '=', false)
                 ->get();
         return view('admin.ticket.ongoing', compact('tickets'));
@@ -91,8 +90,7 @@ class TicketController extends Controller
 
     public function AdminIndexClosedTickets()
     {
-        $tickets = Ticket::where('user_id', '=', Auth::user()->id)
-                ->where('closed_at', '!=', null)
+        $tickets = Ticket::where('closed_at', '!=', null)
                 ->where('isArchived', '=', false)
                 ->get();
         return view('admin.ticket.closed', compact('tickets'));
@@ -100,8 +98,7 @@ class TicketController extends Controller
 
     public function AdminIndexArchivedTickets()
     {
-        $tickets = Ticket::where('user_id', '=', Auth::user()->id)
-                ->where('isArchived', '=', true)
+        $tickets = Ticket::where('isArchived', '=', true)
                 ->get();
         return view('admin.ticket.archived', compact('tickets'));
     }

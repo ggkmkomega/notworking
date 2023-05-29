@@ -1,0 +1,24 @@
+#order-container{
+    padding: 10px;
+    height: 100%;
+    overflow-y: scroll;
+}
+
+#order-name{
+    font-size: 25px;
+}
+#order-client{
+    font-size: 15px;
+    color: grey;
+}
+
+#order-container p.created_at{
+    font-size: 12px;
+}
+#order-container .desc{
+    padding: 25px;
+    margin: 10px;
+    background-color: rgb(218, 218, 218);
+    height: 200px;
+    overflow-y: scroll;
+}

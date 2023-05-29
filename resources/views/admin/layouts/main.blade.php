@@ -11,50 +11,50 @@
     <div class="wrapper">
         <div class="right-panel">
             <div class="logo">
-                <h1>Company Name</h1>
+                <h1>U-Tech</h1>
             </div>
             <ul class="nav">
                 <li class="section">
                     <a href="{{route('cp')}}">
                         <div class="section-header">
                             <i class="uil uil-chart-line"></i>
-                            <h1>Statistics</h1>
+                            <h1>Accueil</h1>
                         </div>
                     </a> 
                 </li>
                 <li class="section">
                     <div class="section-header">
                         <i class="uil uil-cloud-computing"></i>
-                        <h1>Product Management</h1>
+                        <h1>Gestion des Produits</h1>
                     </div>
                     <ul class="subsection">
-                        <a href="{{route('hardwares.index')}}"><li>Hardwares</li></a>
-                        <a href="{{route('softwares.index')}}"><li>Softwares</li></a>
+                        <a href="{{route('hardwares.index')}}"><li>Matériel</li></a>
+                        <a href="{{route('softwares.index')}}"><li>Logiciel</li></a>
                         <a href="{{route('services.index')}}"><li>Services</li></a>
-                        <a href="{{route('courses.index')}}"><li>Courses</li></a>
+                        <a href="{{route('courses.index')}}"><li>Formations</li></a>
                     </ul>
                 </li>
                 <li class="section">
                     <div class="section-header">
                         <i class="uil uil-clipboard-notes"></i>
-                        <h1>Orders</h1>
+                        <h1>Gestion des Commandes</h1>
                     </div>
                     <ul class="subsection">
-                        <a href="{{route('indexPendingOrders')}}"><li>Pending</li></a>
-                        <a href="{{route('indexDeliveringOrders')}}"><li>Delivering</li></a>
-                        <a href="{{route('indexCompletedOrders')}}"><li>Completed</li></a>
-                        <a href="{{route('indexArchivedOrders')}}"><li>Archived</li></a>
+                        <a href="{{route('indexPendingOrders')}}"><li>En Attente</li></a>
+                        <a href="{{route('indexDeliveringOrders')}}"><li>En Livraison</li></a>
+                        <a href="{{route('indexCompletedOrders')}}"><li>Complèté</li></a>
+                        <a href="{{route('indexArchivedOrders')}}"><li>Archivé</li></a>
                     </ul>
                 </li>
                 <li class="section">
                     <div class="section-header">
                         <i class="uil uil-envelope"></i>
-                        <h1>Mailing</h1>
+                        <h1>Support Client</h1>
                     </div>
                     <ul class="subsection">
-                        <a href="{{route('adminIndexOngoingTickets')}}"><li>Ongoing</li></a>
-                        <a href="{{route('adminIndexClosedTickets')}}"><li>Closed</li></a>
-                        <a href="{{route('adminIndexArchivedTickets')}}"><li>Archived</li></a>
+                        <a href="{{route('adminIndexOngoingTickets')}}"><li>En Cours</li></a>
+                        <a href="{{route('adminIndexClosedTickets')}}"><li>Fermé</li></a>
+                        <a href="{{route('adminIndexArchivedTickets')}}"><li>Archivé</li></a>
                     </ul>
                 </li>
                 <li class="section">
@@ -63,17 +63,9 @@
                         <h1>Acounts</h1>
                     </div>
                     <ul class="subsection">
-                        <a href="{{route('users.index')}}"><li>Users</li></a>
-                        <a href="{{route('admins.index')}}"><li>Administrators</li></a>
+                        <a href="{{route('users.index')}}"><li>Utilisateurs</li></a>
+                        <a href="{{route('admins.index')}}"><li>Administrateurs</li></a>
                     </ul>
-                </li>
-                <li class="section">
-                    <a href="#">
-                    <div class="section-header">
-                        <i class="uil uil-setting"></i>
-                        <h1>General</h1>
-                    </div>
-                    </a>
                 </li>
             </ul>
 

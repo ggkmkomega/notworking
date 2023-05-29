@@ -8,7 +8,7 @@
     <title>Control Panel: Login</title>
 </head>
 <body>
-    <h1>Control Panel</h1>
+    <h1>U-Tech Control Panel</h1>
     <div class="container">
         <form action="{{ route('login-c') }}" method="post">
             @csrf

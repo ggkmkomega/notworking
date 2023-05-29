@@ -89,10 +89,10 @@ class OrderController extends Controller
 
     public function DisplayInvoice(Order $order){
         $user = Auth::user();
-        $invoice = $order->Invoice()->get();
+        $invoice = $order->Invoice()->get()[0];
         $tasks = $order->Tasks()->get();
-        $orderList = $order->OrderList();
-        return view('user.dashboard.invoice', compact('user , order, tasks, invoice, orderList'));
+        $orderList = $order->OrderList()->get();
+        return view('user.dashboard.invoice', compact('user' , 'order', 'tasks', 'invoice', 'orderList'));
     }
 
 
@@ -321,7 +321,8 @@ class OrderController extends Controller
         $valid = $request->validate([
             'title' => 'required',
             'group' => 'required',
-            'cost' => 'required',
+            'cost' => '',
+            'is_paid' => '',
         ]);
 
         $task = new Task;
@@ -330,6 +331,8 @@ class OrderController extends Controller
         $task->group = $valid['group'];
         $task->cost = $valid['cost'];
         $task->is_done = false;
+        if(array_key_exists('is_paid', $valid))
+            $task->is_paid = true;
         $task->save();
 
         //update order status

@@ -27,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
         if(DB::table('services')){
             $services = Service::all();
 
-            View::composer('layouts.website-main', function ($view) use ($services) {
+            View::composer('*', function ($view) use ($services) {
                 $view->with(compact('services'));
             });
         }else{

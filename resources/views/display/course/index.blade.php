@@ -1,46 +1,76 @@
-<head>
-    <link rel="stylesheet" href="{{URL::asset('style/indexProducts.css')}}">
-    <script src="{{ URL::asset('script/indexByCategory.js')}}" defer></script>
-</head>
-
 @extends('layouts.website-main')
+<head>
+    <link rel="stylesheet" href="{{ URL::asset('css/formation.css')}}" >
+</head>
+@section('title')
+Formation
+@endsection
 @section('content')
-    <div class="wrapper">
-        <div class="category-container">
-            @foreach ($categories as $cat)
-                <div class="btn-cat {{$cat}}">
-                    <p>{{$cat}}</p>
-                </div>
-            @endforeach
+
+    <div class="main">
+        
+           <div class="container conseil animate-on-visit animate__delay-0.5s" data-aos="fadeInLeft" data-aos-once="true">
+            <h1>Service <br>
+             formation
+            </h1>
+            <p><i class="fa-solid fa-check"></i> des formateurs qualifié</p>
+            <p><i class="fa-solid fa-check"></i>des formations dans plusieurs domaines</p>
+            <p><i class="fa-solid fa-check"></i>programmes de formation sur mesuree</p>
+            <a class="conseil-btn" href="#formation">savoir plus</a>
+    
+            </div>
+        
         </div>
-        <div class="items-container">
-            @foreach ($categories as $cat)
-                @foreach ($courses as $item)
-                    @if ($item->category == $cat)
+
+        <div class="container conseilpara">
+            <div >
+             <p>on offre une large gamme des formations pratique 
+                et interactive et dans plusieurs domaines, 
+                nos formateurs sont hautement qualifiés
+                 pour vous aider à maîtriser les compétences nécessaires pour réussir
+              </p>
+           </div>
+        </div>
+
+       <!--formations section-->
+       <div class="formation-section " id="formation">
+        <div class="formation">
+          <h1>Nos Formations</h1>
+          <div class="formations container">
+            @foreach ($courses as $item)
                     
-                        <div class="item-container {{$cat}}">
-                            <a href="{{route('crSiteShow', $item)}}">
-                            <div>
-                                @php
-                                    $content = $item->prod_images()->get();
-                                    $imgPath = '';
-                                    if(count($content) > 0){
-                                        $imgPath = $content[0]->path;
-                                    }else{
-                                        $imgPath = 'pre_assets/img/empty-img.png';
-                                    }
-                                @endphp
-                                <img src="{{URL::asset('storage/' . $imgPath)}}" alt="">
-                                <h1>{{$item->name}}</h1>
-                                <p>{{$item->header}}</p>
-                            </div>
-                            </a>
-                        </div>
                     
-                    @endif
+                        @php
+                            $content = $item->prod_images()->get();
+                            $imgPath = '';
+                            if(count($content) > 0){
+                                $imgPath = $content[0]->path;
+                            }else{
+                                $imgPath = 'pre_assets/img/empty-img.png';
+                            }
+                        @endphp
+                        <a href="{{route('crSiteShow', $item)}}"> 
+              
+                           <div class="formation-card">
+                              <img src="{{URL::asset('storage/' . $imgPath)}}" class="formation-photo">
+                              <div>
+                                 
+                                 <h2>{{$item->name}}</h2>
+                                 <p>{{$item->header}}</p>
+                                 <span>{{$item->price}} DA - {{$item->period}}</span><br>
+                                 <span class="prof">présenté par: {{$item->prof}}</span>
+                                 
+                                 
+                               </div>
+                           </div>
+                        </a>
                 @endforeach
-            @endforeach
+          
+         </div>    
+
+         
         </div>
     </div>
-    
+       <!--end formation -->
+
 @endsection

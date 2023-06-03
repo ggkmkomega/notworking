@@ -2,13 +2,31 @@
 
 
 var usererror = document.getElementById('user-error');
-
+var emailerror = document.getElementById('email-error');
 var pwderror = document.getElementById('pwd-error');
-var userlabel=document.getElementById('user-label');
 
+var userlabel=document.getElementById('user-label');
+var emaillabel=document.getElementById('email-label');
 var pwdlabel=document.getElementById('pwd-label');
 
 var submiterror = document.getElementById('submit-error');
+
+
+
+function validateemail(){
+    emaillabel.style.bottom="25px";
+    var email = document.getElementById('email').value;
+    if(email.length == 0){
+        emailerror.innerHTML = 'email est obligatoire';
+        return false;
+    }
+    if(!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)){
+        emailerror.innerHTML= ' email invalide';
+        return false;
+    }
+    emailerror.innerHTML='<i class="fa-solid fa-circle-check"></i>';
+   return true;
+}
 
 function validateuser(){
     
@@ -39,7 +57,7 @@ function validatepwd(){
     return false;
    }
 
-   if(!pwd.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d\S]{8,}$/)){
+   if(!pwd.match(/^((?=.*[a-z])|(?=.*[A-Z]))(?=.*\d)[a-zA-Z\d\S]{6,}$/)){
        pwderror.innerHTML="mot de passe invalide";
        return false;
    }

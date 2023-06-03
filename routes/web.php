@@ -68,11 +68,13 @@ Route::controller(FrontendController::class)->group(function () {
         ->middleware([UserLoggedIn::class])
         ->name('userDashboard');
     //Account Settings
-    Route::get('dashboard/account', 'accountSettings')->name('userAccountSettings');
-    Route::post('dashboard/account/update-info', 'updateUserInfo')->name('updateUserInfo');
-    Route::post('dashboard/account/update-email', 'updateUserEmail')->name('updateUserEmail');
-    Route::post('dashboard/account/update-password', 'updateUserPassword')->name('updateUserPassword');
-    Route::get('dashboard/account/resend-verification-mail', 'resendVerificationMail')->name('resendVerificationMail');
+    Route::get('dashboard/account', 'accountSettings')
+    ->middleware([UserLoggedIn::class])
+    ->name('userAccountSettings');
+    Route::post('dashboard/account/update-info', 'updateUserInfo')->middleware([UserLoggedIn::class])->name('updateUserInfo');
+    Route::post('dashboard/account/update-email', 'updateUserEmail')->middleware([UserLoggedIn::class])->name('updateUserEmail');
+    Route::post('dashboard/account/update-password', 'updateUserPassword')->middleware([UserLoggedIn::class])->name('updateUserPassword');
+    Route::get('dashboard/account/resend-verification-mail', 'resendVerificationMail')->middleware([UserLoggedIn::class])->name('resendVerificationMail');
 });
 
 //Orders

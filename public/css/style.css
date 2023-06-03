@@ -706,7 +706,7 @@ footer{
     width:260px
 }
 .bottom{
-    background-color: #3e1f92ec;
+    background-color: #1f468b;
     padding-left: 300px;
     height:45px;
     padding-top:10px;
@@ -717,7 +717,7 @@ footer{
     font-weight: 400;
 }
 .bottom p{
-    color:black;
+    color:#b8d2ff;
 }
 .flex-box img{
     width:70px;

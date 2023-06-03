@@ -4,243 +4,126 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{{ URL::asset('style/main.css')}}">
+    <link rel="stylesheet" href="{{ URL::asset('css/main.css')}}">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.polyfills.min.js"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <script type="text/javascript" src="slick.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" integrity="sha512-17EgCFERpgZKcm0j0fEq1YCJuyAWdz9KUtv1EjVuaOz8pDnh/0nZxmU6BBXwaaxqoi9PQXnRWqlcDB027hgv9A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css" integrity="sha512-wR4oNhLBHf7smjy0K4oqzdWumd+r5/+6QO/vDda76MW5iug4PT7v86FoEkySIJft3XA0Ae6axhIvHrqwm793Nw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+      var scroll = new SmoothScroll('a[href*="#"]');
+    </script>
     <title>@yield('title')</title>
 </head>
 <body>
     <div id="wrapper">
         <!--Header-->
         <header>
-            <!--Logo-->
-            <div id="logo">
-                <a href="{{route('main')}}"><h1>Company Name</h1></a>
-            </div>
-
-            <!--Navigation Menu-->
-            <nav>
-                <ul>
-                    <li class="menu-item">
-                        <a class="dropbtn btn" href="#">Products</a>
-                        <div class="dropdown-content">
-                            <a href="{{route('swSiteIndex')}}">Software</a>
-                            <a href="{{route('hwSiteIndex')}}">Hardware</a>
-                        </div>
-                    </li >
-                    <li class="menu-item">
-                        <a class="dropbtn btn" href="#">Services</a>
-                        <div class="dropdown-content">
-                            @foreach ($services as $service)
-                                <a href="{{route('svSiteShow', $service)}}">{{$service->name}}</a>
-                            @endforeach
-                            <a href="{{route('crSiteIndex')}}">Courses</a>
-                        </div>
-                    </li>
-                    <li class="menu-item">
-                        <a class="btn" href="#">About</a>
-                    </li>
-                    <li class="menu-item">
-                        <a class="btn" href="#">Contact</a>
-                    </li>
-                </ul>
-            </nav>
-
-            <!--Search Bar-->
-            <script src="{{ URL::asset('script/search-bar.js')}}" defer></script>
-            <div class="icon search" id="searchIcon">
-                <img src="{{URL::asset('assets/icons/search.svg')}}" style="height: 100%;">
-            </div>
-            <div class="search-bar">
-                <form action="{{url('search')}}"  method="get">
-                    @csrf
-                    <button type="submit">
-                        <div class="icon search">
-                            <img src="{{URL::asset('assets/icons/search.svg')}}" style="height: 100%;">
-                        </div>
-                    </button>
-                    <input type="search" name="search" value="" placeholder="Search">
-                </form>
-            </div>
-            <div id="account">
-                @if (Auth::check())
-                    <div class="orderList menu">
-                        <div class="orderList btn oldm">
-                                <img src="{{URL::asset('assets/icons/clipboard-notes.svg')}}" style="height: 100%;">
-                        </div>
-                        <div class="dropdown-menu" id="oldm">
-                            <div class="ol-header">
-                                <h4>Order List</h4>
-                                <a href="{{route('newOrderForm')}}">Order</a>
-                            </div>
-                            <hr>    
-                            <div class="ol-body">
-                                @if ($orderList)
-                                    
-                                @foreach ($orderList as $item)
-                                    @php
-                                        $product = $item->Product($item->prod_category)->get()[0];
-                                        $img = $product->prod_images()->get();
-                                            $imgPath = '';
-                                            if(count($img) > 0){
-                                                $imgPath = $img[0]->path;
-                                            }else{
-                                                $imgPath = 'pre_assets/img/empty-img.png';
-                                            }
-                                    @endphp
-                                    <div class='ol-item'>
-                                        <div class="upper-content">
-                                            <img src="{{URL::asset('storage/' . $imgPath)}}" alt="">
-                                            <p>{{$product->name}}</p>
-                                            <p>{{$item->volume}}</p>
-                                        </div>
-                                        <div class="lower-content">
-                                            <a href="{{url('products/'.$item->prod_category.'s/'.$product->id)}}">Show</a>
-                                            <a href="{{route('removeProductFromList', $item)}}">Delete</a>
-                                        </div>
-                                    </div>
-                                @endforeach
-                                @endif
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="account menu">
-                        <div class="account btn acdm">
-                                <img src="{{URL::asset('assets/icons/user-circle.svg')}}" style="height: 100%;">
-                        </div>
-                        
-                        <div class="dropdown-menu" id="acdm">
-                            <a class="ddm" href="#">Account Settings</a>
-                            <hr>
-                            <a class='ddm' href="{{route('userDashboard')}}">Dashboard</a>
-                            <hr>
-                            <a class="ddm signout" href="{{route('userSignOut')}}">Sign Out</a>
-                        </div>
-                    </div>
-                    <script>
-                        const accBtns = document.querySelectorAll('#account .menu .btn')
-                        
-                        for (const accbtn of accBtns) {
-                            var id = accbtn.classList[2]
-                            const accDropMenu = document.querySelector('#account .menu .dropdown-menu#'+id)
-                            accbtn.addEventListener('click', () => {
-                                accDropMenu.classList.toggle('display')
-                            })
-                        }
-                    </script>
-                @else
-                    <a href="{{route('loginForm')}}">
-                        <p id="login-btn" class="user-logged-out">Login</p>
-                    </a>
-                    <a href="{{route('registerForm')}}">
-                        <p id="register-btn" class="user-logged-out">Register</p>
-                    </a>
-                @endif
-            </div>
-        </header>
-
+            <div class="container">
+              
+               
+               <a href="{{route('main')}}"><img class="logo" src="{{ URL::asset('images/logo.png')}}"></a>
+               
+               
+               <nav class="navigation">
+                   <ul>
+                       <li><a href="{{route('main')}}" class="home"> Acceuil</a></li>
+                       <li class="menu"><a href="{{route('main')}}#services" class="services"> Services</a> <i class="fa-sharp fa-solid fa-caret-down fa-xs dropicon" onclick="toggleDropdown()"></i>
+                        <ul class="dropdown" id="dropdown">
+                          <li><a href="{{route('hwSiteIndex')}}">Vente Matériel</a></li>
+                          <li><a href="{{route('swSiteIndex')}}">Vente Logiciel</a></li>
+                           @foreach ($servicesList as $service)
+                           <li><a href="{{route('svSiteShow', $service)}}">{{$service->name}}</a></li>
+                           @endforeach
+                           <li><a href="{{route('crSiteIndex')}}">Formation</a></li>
+                       </ul>
+                       </li>    
+                       <li><a href="{{route('newTicketForm')}}">Contact</a></li>
+                       <li><a href="{{route('main')}}#about"> À propos</a></li>
+                   </ul>
+               </nav>
+       
+               <div class="icons">
+                 <ul>
+                   <li>
+                     <!--<a href="#" ><i class="fa-solid fa-magnifying-glass"></i></a>-->
+                     <div class="content">
+                       
+                       <form action="{{url('search')}}"  method="get">
+                        @csrf
+                        <div class="search">
+                            <input type="text" name="search" value="" class="search__input" aria-label="search" placeholder="enter your search">
+                            <button class="search__submit" aria-label="submit search"><i class="fa-solid fa-magnifying-glass"></i></button>
+                          </div>
+                        </form>
+                     </div>
+                   </li>
+                   <li><a href="{{route('newOrderForm')}}"><i class="fas fa-shopping-bag"></i></a></li>
+                   <li><a href="{{route('userAccountSettings')}}"><i class="fa-solid fa-user"></i></a></li>
+                   @if (Auth::check())
+                       
+                   <li><a href="{{route('userSignOut')}}"><i class="fa-solid fa-right-from-bracket"></i></a></li>
+                   @endif
+                   <li><a href="#"> |EN</a></li>
+                 </ul>
+                </div>
+           </div>
+         
+           </header>
+        
         <!--Main Content-->
         <main>
             @yield('content')
         </main>
 
         <!--Footer-->
+        <hr>
         <footer>
-            <div id="elements-container">
-                <div class="container" id="brand-name">
-                    <h1>Company Name</h1>
-                    <p>Company Slogan</p>
-                    <hr>
-                    <div class="icon envelope" style="height: 28px; width:fit-content;">
-                        <img src="{{URL::asset('assets/icons/envelope.svg')}}" style="height: 100%;">
-                    </div>
-                    <a href="" style="display: block;">info@brandname.com</a>
+            <div class="container">
+                <div class="flex-box">
+                      <div class="img">
+                          <img src="{{ URL::asset('images/logo.png')}}" >
+                      </div>
+     
+                      <div class="contact-foot">
+                         <h2>Contact</h2>
+                         <p>Bonjour, nous sommes toujours
+                            ouverts à la coopération et aux suggestions
+                            . Contactez-nous de l'une des manières suivantes :
+                         </p>
+                         <span>Adresse</span>
+                         <p>USTHB Bab-zouar</p>
+                         <span>phone</span>
+                         <p>+0123 4567 8910</p>
+                         <span>Email</span>
+                         <p>pfe@usthb.dz</p>
+                         <span>equipe technique</span>
+                         <p><a href="{{route('newTicketForm')}}" class="footer-contact">contactez-nous</a> </p>
+                      </div>
+                      <div class="pages">
+                         <h2> Nos pages</h2>
+                         <p><a href="{{route('main')}}#about">à propos</a></p>
+                         <p><a href="{{route('swSiteIndex')}}">Vente Logiciels </a></p>
+                         <p><a href="{{route('hwSiteIndex')}}">Vente Matériels </a></p>
+                         <p><a href="{{route('crSiteIndex')}}">Fomations</a></p>
+                         @foreach ($servicesList as $service)
+                           <p><a href="{{route('svSiteShow', $service)}}">{{$service->name}}</a></p>
+                           @endforeach
+                      </div>
                 </div>
-                <div class="container" id="adress">
-                    <h1>Adresses</h1>
-                    <hr>
-                    <h2>Country - City</h2>
-                    <p>Full Adress</p>
-                    <p>Zip Code</p>
-                    <p>Phone</p>
-                    <br>
-                    <h2>Country - City</h2>
-                    <p>Full Adress</p>
-                    <p>Zip Code</p>
-                    <p>Phone</p>
-                    <br>
-                    <h1>Follow Us</h1>
-                    <hr>
-                    <div id="social-icons">
-                        <a href="">
-                            <div class="icon twitter" style="height: 100%;">
-                                <img src="{{URL::asset('assets/icons/twitter.svg')}}" style="height: 100%;">
-                            </div>
-                        </a>
-                        <a href="">
-                            <div class="icon linkedin" style="height: 100%;">
-                                <img src="{{URL::asset('assets/icons/linkedin.svg')}}" style="height: 100%;">
-                            </div>
-                        </a>
-                        <a href="">
-                            <div class="icon instagram" style="height: 100%;">
-                                <img src="{{URL::asset('assets/icons/instagram-alt.svg')}}" style="height: 100%;">
-                            </div>
-                        </a>
-                        <a href="">
-                            <div class="icon facebook" style="height: 100%;">
-                                <img src="{{URL::asset('assets/icons/facebook.svg')}}" style="height: 100%;">
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="container" id="products">
-                    <h1>Products</h1>
-                    <hr>
-                    <h2><a href="#">Services</a></h2>
-                    @for ($i = 0; $i < 5; $i++)
-                        @if (isset($services[$i])) 
-                        <p><a href="{{route('svSiteShow', $services[$i])}}">{{$services[$i]->name}}</a></p>
-                        @endif
-                    @endfor
-                    <p><a href="{{route('crSiteIndex')}}">Courses</a></p>
-                    <br>
-                    <h2><a href="{{route('hwSiteIndex')}}">Hardware</a></h2>
-                    <br>
-                    <h2><a href="{{route('swSiteIndex')}}">Software</a></h2>
-                </div>
-                <div class="container" id="client">
-                    <h1>Client</h1>
-                    <hr>
-                    <p><a href="#">Login</a></p>
-                    <p><a href="#">Register</a></p>
-                    <p><a href="#">Dashboard</a></p>
-                    <p><a href="#">Reviews</a></p>
-                    <div id="lang-selector">
-                        <script src="{{ URL::asset('script/lang-selector.js')}}" defer></script>
-                        <div id="lang-options">
-                            <ol>
-                                <li value="french">French</li>
-                                <li value="french">Arabic</li>
-                                <li value="french">German</li>
-                            </ol>
-                        </div>
-                        <div id="lang-btn">
-                            <div class="icon globe">
-                                <img src="{{URL::asset('assets/icons/globe.svg')}}" style="height: 100%;">
-                            </div>
-                            <p>English</p>
-                        </div>
-                    </div>
-                </div>
+     
             </div>
-            <div id="sub-footer">
-                <p><a href="#">@2023, Company Name, Inc.</a></p>
-                <p><a href="#">Terms</a></p>
-                <p><a href="#">Privacy</a></p>
-                <p><a href="#">Security</a></p>
-                <p><a href="#">Careers</a></p>
-            </div>
+            
+            <div class="bottom">
+             <p>Powered by <span>Tech</span> - Designed by <span>Algerian students</span></p>
+          </div>
         </footer>
+        <!--end footer-->
+        <script src="{{ URL::asset('js/homepage.js')}}"></script>
     </div>
 </body>
 </html>

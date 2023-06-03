@@ -146,3 +146,20 @@ input[type="submit"]:hover{
   top:-30px;
   left:180px;
 }
+
+.iconemail{
+  margin-right: 7px;
+}
+
+#email-error{
+  color:red;
+  position: relative;
+  font-weight: 500;
+  top:-30px;
+  left:240px;
+}
+#email-error i{
+  color:seagreen;
+  position:relative;
+  left:80px;
+}

@@ -25,10 +25,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {   
         if(DB::table('services')){
-            $services = Service::all();
+            $servicesList = Service::all();
 
-            View::composer('*', function ($view) use ($services) {
-                $view->with(compact('services'));
+            View::composer('*', function ($view) use ($servicesList) {
+                $view->with(compact('servicesList'));
             });
         }else{
             error_log('Unable to get services table');

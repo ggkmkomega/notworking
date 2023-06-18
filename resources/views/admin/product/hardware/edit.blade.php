@@ -41,6 +41,8 @@
                         } );
             }
         </script>
+        <label for="name">prix:</label><br>
+        <input type="number" step="0.01" name="price" placeholder="0.00" min="0" max="9999999999" value="{{ old('desc', $hardware->price) }}"><br><br>
 
         <label for="img">sélectionner une liste d'images:</label><br><br>
         <label for="img-input" class="custom-file-upload">Sélectionner</label>
@@ -48,7 +50,7 @@
         <div id="img-container">
             @foreach ($content as $img)
                 <div class="img-item-db">
-                    <a href="{{ route('hwdeleteImg', compact('hardware', 'img'))}}"><div class="delete-hover"><i class="uil uil-minus"></i></div></a>
+                    <a href="{{ route('hwdeleteImg', compact('hardware', 'img'))}}"><div class="delete-hover"><i class="fa-regular fa-circle-xmark"></i></div></a>
                     <img src="{{URL::asset('storage/' . $img->path)}}">
                 </div>
             @endforeach

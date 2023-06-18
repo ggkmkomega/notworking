@@ -2,78 +2,84 @@
 
 @section('section-content')
     <div class="mailnpw">
-        <div class="mail">
+        <div class="input-section mail">
             <h3>Email</h3>
             <form action="{{route("updateUserEmail")}}" method="post">
                 @csrf
 
                 @php
                     $hiddenEmail = preg_replace('/(?<=.{3})(.*)(?=@)/', '***', $user->email);
+                    $user = Auth::user();
+
+                    
                 @endphp
 
-                <a href="{{route('resendVerificationMail')}}">Resend Verification Email</a> 
-
-                <label for="email">Email</label><br>
-                <input type="email" name="email" id="email" value="{{$hiddenEmail}}"><br><br>
+                @if ($user->hasVerifiedEmail())
+                    <p>Email verifié <i class="fa-solid fa-circle-check"></i></p>
+                @else
+                <a href="{{route('resendVerificationMail')}}">Resend Verification Email</a>
+                @endif
+                
+                <div><input type="email" name="email" id="email"  value="{{$hiddenEmail}}"></div>
                 
 
-                <button type="submit" id="mailSave">Sauvegarder</button>
+                <button type="submit" id="mailSave" class="send-btn">Sauvegarder</button>
             </form>
-            <button id="mailEditBtn">Modifier</button>
+            <button id="mailEditBtn" class="send-btn">Modifier</button>
         </div>
 
-        <div class="pw">
+        <div class="input-section pw">
             <h3>Mot de Passe</h3>
             <form action="{{route("updateUserPassword")}}" method="post">
                 @csrf
                 <label for="pw">Ancien Mot de Passe</label><br>
-                <input type="password" name="old_password" id="" placeholder="*************"><br><br>
+                <div><input type="password" name="old_password" id="" placeholder="*************"></div>
 
                 <div class="new_pw">
                     <label for="pw">Nouveau Mot de Passe</label><br>
-                    <input type="password" name="new_password" id="new_password"><br><br>
+                    <div><input type="password" name="new_password" id="new_password"></div>
     
                     <label for="pw">Re-taper le Nouveau Mot de Passe</label><br>
-                    <input type="password" id="re_new_password"><br><br>
+                    <div><input type="password" id="re_new_password"></div>
                 </div>
 
-                <button type="submit" id="pwSave">Sauvegarder</button>
+                <button type="submit" id="pwSave" class="send-btn">Sauvegarder</button>
             </form>
-            <button id="pwEditBtn">Modifier</button>
+            <button id="pwEditBtn" class="send-btn">Modifier</button>
         </div>
     </div>
     <br><hr><br>
-    <div class="others">
+    <div class="input-section others">
         <h3>General</h3><br>
         <form action="{{route("updateUserInfo")}}" method="post">
             @csrf
-            <label for="">Nom</label><br>
-            <input type="text" name="fname" id="" value="{{$user->fname}}"><br><br>
+            <label for="">Nom:</label><br>
+            <div><input style="width: 100%" type="text" name="fname" id="" value="{{$user->fname}}"></div>
 
-            <label for="">Prénom</label><br>
-            <input type="text" name="lname" id="" value="{{$user->lname}}"><br><br>
+            <label for="">Prénom:</label><br>
+            <div><input style="width: 100%" type="text" name="lname" id="" value="{{$user->lname}}"></div>
 
-            <label for="">Entreprise</label><br>
-            <input type="text" name="company" id="" value="{{$user->company}}"><br><br>
+            <label for="">Entreprise:</label><br>
+            <div><input style="width: 100%" type="text" name="company" id="" value="{{$user->company}}"></div>
 
-            <label for="">Pays</label><br>
-            <input type="text" name="country" id="" value="{{$user->country}}"><br><br>
+            <label for="">Pays:</label><br>
+            <div><input style="width: 100%" type="text" name="country" id="" value="{{$user->country}}"></div>
 
-            <label for="">Ville</label><br>
-            <input type="text" name="city" id="" value="{{$user->city}}"><br><br>
+            <label for="">Ville:</label><br>
+            <div><input style="width: 100%" type="text" name="city" id="" value="{{$user->city}}"><br></div>
 
-            <label for="">Adress</label><br>
-            <input type="text" name="adress" id="" value="{{$user->adress}}"><br><br>
+            <label for="">Adress:</label><br>
+            <div><input style="width: 100%" type="text" name="adress" id="" value="{{$user->adress}}"></div>
 
-            <label for="">Code ZIP</label><br>
-            <input type="number" name="zip" id="" value="{{$user->zip}}"><br><br>
+            <label for="">Code ZIP:</label><br>
+            <div><input style="width: 100%" type="number" name="zip" id="" value="{{$user->zip}}"></div>
 
-            <label for="">Téléphone</label><br>
-            <input type="text" name="phone" id="" value="{{$user->phone}}"><br><br>
+            <label for="">Téléphone:</label><br>
+            <div><input style="width: 100%" type="text" name="phone" id="" value="{{$user->phone}}"></div>
 
-            <button type="submit" id="genSave">Sauvegarder</button>
+            <button type="submit" id="genSave" class="send-btn">Sauvegarder</button>
         </form>
-        <button id="genEditBtn">Modifier</button>
+        <button id="genEditBtn" class="send-btn">Modifier</button>
     </div>
 
     <script>
@@ -147,10 +153,10 @@
         reNewPwInput.oninput = function () {
             if(reNewPwInput.value == newPwInput.value)
             {
-                reNewPwInput.style.borderColor = 'green';
+                reNewPwInput.style.backgroundColor = '#84fab5   ';
                 pwSaveBtn.removeAttribute('disabled');
             }else{
-                reNewPwInput.style.borderColor = 'red';
+                reNewPwInput.style.backgroundColor = '#fa8484';
                 if(!pwSaveBtn.hasAttribute('disabled')){
                     pwSaveBtn.setAttribute('disabled', '');
                 }

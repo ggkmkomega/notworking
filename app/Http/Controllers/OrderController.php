@@ -13,6 +13,7 @@ use App\Models\Task;
 use App\Models\Invoice;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 
 class OrderController extends Controller
 {
@@ -110,7 +111,7 @@ class OrderController extends Controller
 
     public function RemoveProductFromList(OrderList $listItem){
         $listItem->delete();
-        return redirect(route('main'));
+        return Redirect::back();
     }
 
     //-----------control panel-------------

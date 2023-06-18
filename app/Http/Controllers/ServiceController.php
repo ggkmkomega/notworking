@@ -43,11 +43,13 @@ class ServiceController extends Controller
             'header' => 'required|string|max:255',
             'desc' => 'required',
             'page' => 'required',
+            'price' => 'required|numeric',
         ]);
         $service = new Service();
         $service->prod_category = 'service';
         $service->name = $validated['name'];
         $service->header = $validated['header'];
+        $service->price = $validated['price'];
         $service->desc = $validated['desc'];
         $service->page = $validated['page'];
         $service->save();
@@ -103,6 +105,7 @@ class ServiceController extends Controller
             'header' => 'required|string|max:255',
             'desc' => 'required',
             'page' => 'required',
+            'price' => 'required|numeric',
         ]);
 
         if ($request->file('imgs')){
@@ -122,6 +125,7 @@ class ServiceController extends Controller
         }
 
         $service->name = $validated['name'];
+        $service->price = $validated['price'];
         $service->header = $validated['header'];
         $service->desc = $validated['desc'];
         $service->page = $validated['page'];

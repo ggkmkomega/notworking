@@ -48,6 +48,7 @@
 
                     <label for="name">fiche technique:</label><br>
                     <textarea name="datasheet" class="ckeditor">{{ old('datasheet') }}</textarea><br><br>
+
                     
                     <script>
                         const editors = document.querySelectorAll( '.ckeditor' );
@@ -69,6 +70,9 @@
                                     } );
                         }
                     </script>
+
+                    <label for="name">prix:</label><br>
+                    <input type="number" step="0.01" name="price" placeholder="0.00" min="0" max="9999999999"><br><br>
                     
                     <label for="img">sélectionner une liste d'images:</label><br><br>
                     <label for="img-input" class="custom-file-upload">Sélectionner</label>

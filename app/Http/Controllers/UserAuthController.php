@@ -75,7 +75,7 @@ class UserAuthController extends Controller
             return redirect()->intended(route('main'))->withSuccess('Signed in');
         }
         
-        return redirect(route('userLogin'));
+        return redirect(route('loginForm'))->withErrors( ['login' => 'Login details are not valid']);
     }
 
     public function signout() {

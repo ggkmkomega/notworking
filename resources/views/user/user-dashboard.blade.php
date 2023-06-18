@@ -15,7 +15,6 @@
             <h3 class="db-h3">Compte</h3>
             <ul>
                 <a href="{{route('userAccountSettings')}}"><li>Paramètres du Compte</li></a>
-                <a href="#"><li>Vérifier l'E-mail</li></a>
             </ul>
             <br>
 
@@ -34,7 +33,7 @@
             </ul>
             <br>
 
-            <a href="{{route('indexForUser')}}"><h3 class="db-h3">Your Reviews</h3></a>
+            <a href="{{route('indexForUser')}}"><h3 class="db-h3">Vos Avis</h3></a>
             <br>
 
         </div>

@@ -1,0 +1,21 @@
+.profile-wrapper{
+    padding: 60px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.profile-wrapper .profile_pic img{
+    border-radius: 50%;
+}
+
+.profile-wrapper .info{
+    width: 60%;
+}
+
+h1{
+    font-size: 40px;
+}
+
+h2{
+    margin-bottom: 160px;
+}

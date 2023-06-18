@@ -8,10 +8,12 @@
 @section('section-content')
 
 <h3 class="db-h3">Send New Order:</h3><br>
+<div class="input-section">
+
+
 <form action="{{route('newOrder')}}" method="post">
     @csrf
-    <label for="title">Titre</label>
-    <input type="text" name="title"><br><br>
+    <div><input type="text" name="title" placeholder="Titre"></div><br>
 
     <label for="desc">Description:</label><br><br>
     <textarea name="description" class="ckeditor" cols="30" rows="10">{{ old('description') }}</textarea><br><br>
@@ -31,7 +33,12 @@
             }
         </script>
 
-    <br><h3 class="db-h3">Products List</h3><br>
+    
+    
+    <input class="send-btn" type="submit" value="Send">
+</form>
+</div>
+<br><h3 class="db-h3">Liste de Produits</h3><br>
     <div class="prod-list">
         <table class='prod-list-t'>
             <thead>
@@ -40,7 +47,7 @@
                     <th>Type</th>
                     <th>Nom</th>
                     <th>Catégorie</th>
-                    <th>Volume</th>
+                    <th>Qté</th>
                     <th>Option</th>
                 </tr>
             </thead>
@@ -61,19 +68,38 @@
                         <td>
                             <img src="{{URL::asset('storage/' . $imgPath)}}" alt="">
                         </td>
-                        <td>{{$product->prod_category}}</td>
+                        <td>
+                            @switch($product->prod_category)
+                                @case('software')
+                                Logiciel
+                                    @break
+                                @case('hardware')
+                                Matériel
+                                    @break
+                                @case('service')
+                                Service
+                                    @break
+                                @case('course')
+                                Formation
+                                    @break
+                            @endswitch
+                        </td>
                         <td>{{$product->name}}</td>
                         <td>{{$product->category}}</td>
-                        <td>{{$item->volume}}</td>
+                        <td>
+                            @if ($product->prod_category == 'service')
+                                -
+                            @else
+                                
+                            {{$item->volume}}
+                            @endif
+                        </td>
                         <td class="option">
-                            <a class="btn " href="{{route('removeProductFromList', $item)}}">delete</a>
+                            <a class="btn " href="{{route('removeProductFromList', $item)}}">Retirer</a>
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
-    
-    <input class="submit-btn" type="submit" value="Send">
-</form>
 @endsection

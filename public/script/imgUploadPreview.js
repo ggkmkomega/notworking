@@ -24,8 +24,8 @@ function test(){
         
         deletebtn = document.createElement("div");
         icon = document.createElement("i");
-        icon.classList.add('uil');
-        icon.classList.add('uil-minus');
+        icon.classList.add('fa-regular');
+        icon.classList.add('fa-circle-xmark');
         deletebtn.classList.add('delete-hover');
 
         deletebtn.appendChild(icon);

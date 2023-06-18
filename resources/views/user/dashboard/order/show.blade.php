@@ -45,7 +45,11 @@
                     ...
             @endswitch
         </span>
+
     </p>
+    @if ($order->order_status == 'completed')
+        <br><a href="{{route('displayInvoice', $order)}}">Afficher la Facture</a>
+    @endif
     <div class="description">
         <br><h3 class="db-h3">Description: </h3><br>
         @php
@@ -60,7 +64,7 @@
             <div id="myBar" class="bar" style="width:10%" >0</div>
         </div>
 
-        <button id="showDetails" onclick="showMore()">Afficher Les Details</button>
+        <button id="showDetails" onclick="showMore()" class="details-btn">Afficher Les Details</button>
 
         <script defer>
             
@@ -102,9 +106,9 @@
                             <p class="task-title">{{$task->title}}</p>
                             <div class="line"></div>
                             @if ($task->is_done)
-                                <p class="status">Complete</p>
+                                <p class="status">Complété</p>
                             @else
-                                <p class="status">En Attend </p>
+                                <p class="status">En Attend</p>
                             @endif
                         </div>
                         @endif
@@ -116,7 +120,7 @@
         
     </div>
 
-    <br><h3 class="db-h3">Products List</h3>
+    <br><h3 class="db-h3">Liste de Produits</h3>
     <div class="prod-list">
         <table class='prod-list-t'>
             <thead>
@@ -125,7 +129,7 @@
                     <th>Type</th>
                     <th>Nom</th>
                     <th>Catégorie</th>
-                    <th>Volume</th>
+                    <th>Qté</th>
                     <th>Option</th>
                 </tr>
             </thead>
@@ -146,12 +150,34 @@
                         <td>
                             <img src="{{URL::asset('storage/' . $imgPath)}}" alt="">
                         </td>
-                        <td>{{$product->prod_category}}</td>
+                        <td>
+                            @switch($product->prod_category)
+                                @case('software')
+                                Logiciel
+                                    @break
+                                @case('hardware')
+                                Matériel
+                                    @break
+                                @case('service')
+                                Service
+                                    @break
+                                @case('course')
+                                Formation
+                                    @break
+                            @endswitch
+                        </td>
                         <td>{{$product->name}}</td>
                         <td>{{$product->category}}</td>
-                        <td>{{$item->volume}}</td>
+                        <td>
+                            @if ($product->prod_category == 'service')
+                                -
+                            @else
+                                
+                            {{$item->volume}}
+                            @endif
+                        </td>
                         <td class="option">
-                            <a class="btn " href="{{route('removeProductFromList', $item)}}">delete</a>
+                            <a class="btn " href="{{url('/products/'.$product->prod_category.'s/'.$product->id)}}">Afficher</a>
                         </td>
                     </tr>
                 @endforeach

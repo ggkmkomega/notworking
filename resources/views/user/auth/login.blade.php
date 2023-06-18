@@ -32,7 +32,9 @@
         
          <div class="pass"><a>Mot de passe oublié?</a></div>
          <input type="submit" name="" value="Se connecter" onclick="return validateform()">
-         <span id="submit-error"></span>
+         @if ($errors->has('login'))
+            <span id="submit-error">{{ $errors->first('login') }}</span>
+        @endif
         
         <div class="signin_lnk">
             pas de compte? <a href="{{route('registerForm')}}">S'inscrire</a>

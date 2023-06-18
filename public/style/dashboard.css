@@ -60,3 +60,52 @@ a{
     padding: 0 30px;
 
 }
+
+.input-section form div input,
+.input-section form div textarea{
+    height:50px;
+    margin:10px;
+    padding:10px;
+    font-size: 17px;
+    background-color: #e0e0e0;
+    border: none;
+    border-radius:7px;
+}
+.input-section form div textarea{
+    
+     height:150px;
+     border-radius:7px;
+     line-height:1;
+     resize:none;
+     outline:none;
+     padding:1rem;
+     font-size: 16px;
+     font-weight: 500;
+}
+.send-btn{
+    cursor: pointer;
+    
+    border-radius: 25px;
+    background-color:#3e1f92;
+    margin-top:20px;
+    margin-left: 20px;
+    display: inline-block;
+    text-align: center;
+    padding:10px;
+    color:white;
+    font-size: 16px;
+    border: none;
+    outline: none;
+}
+
+.details-btn{
+    cursor: pointer;
+    
+    background-color:#1f468b;
+    display: inline-block;
+    text-align: center;
+    color:white;
+    font-size: 16px;
+    border: none;
+    outline: none;
+}

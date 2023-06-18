@@ -30,10 +30,10 @@ tr{
     padding: 2px;
 }
 .progress .bar{
-    background-color: var(--sub2d2);
+    background-color: #1f468b;
     align-items: center;
     text-align: center;
-    color: var(--bg);
+    color: white;
     padding: 15px;
 }
 
@@ -89,22 +89,24 @@ span.completed{
 .status-container{
     width: 50%;
     margin: 200px auto;
-    background-color: var(--bg);
+    background-color: white;
 }
 .status-header{
+    color: white;
     display: flex;
     align-items: center;
     padding: 10px 40px;
     justify-content: space-between;
-    background-color: var(--sub2);
+    background-color: #1f468b;
 }
 .status-header span{
     font-size: 39px;
-    color: var(--sub2d2);
+    color: white;
 }
 
 .status-header span:hover{
-    color: var(--mainShade);
+    color: #102447;
+    cursor: pointer;
 }
 
 .status-content{

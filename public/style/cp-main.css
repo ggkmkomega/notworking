@@ -57,7 +57,7 @@ body{
 
 .right-panel li.section .section-header i{
     font-size: 20px;
-    margin-right: 10px;
+    margin-right: 5px;
 }
 
 .right-panel ul{
@@ -66,8 +66,14 @@ body{
 }
 
 .right-panel a{
+    display: block;
+    padding: 5px;
     text-decoration: none;
     color: var(--bg);
+    transition: all 0.3s;
+}
+.right-panel a:hover{
+    background-color: var(--main);
 }
 
 .right-panel li.section h1{

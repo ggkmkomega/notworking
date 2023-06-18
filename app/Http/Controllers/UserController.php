@@ -70,7 +70,7 @@ class UserController extends Controller
 
     public function show(User $user)
     {
-        return view('admin.product.hardware.show', compact('user'));
+        return view('admin.account.user.show', compact('user'));
     }
 
     public function destroy(User $user)

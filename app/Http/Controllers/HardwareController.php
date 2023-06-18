@@ -64,12 +64,14 @@ class  HardwareController extends Controller
             'desc' => 'required',
             'datasheet' => 'required',
             'category' => 'required|string|max:255',
+            'price' => 'required|numeric',
         ]);
         $hardware = new Hardware;
         $hardware->prod_category = 'hardware';
         $hardware->name = $request->name;
         $hardware->header = $request->header;
         $hardware->desc = $request->desc;
+        $hardware->price = $request->price;
         $hardware->datasheet = $request->datasheet;
         $hardware->category = $request->category;
         $hardware->save();
@@ -131,6 +133,7 @@ class  HardwareController extends Controller
             'desc' => 'required',
             'datasheet' => 'required',
             'category' => 'required|string|max:255',
+            'price' => 'required|numeric',
         ]);
 
         if ($request->file('imgs')){
@@ -151,6 +154,7 @@ class  HardwareController extends Controller
 
         $hardware->name = $request->name;
         $hardware->header = $request->header;
+        $hardware->price = $request->price;
         $hardware->desc = $request->desc;
         $hardware->datasheet = $request->datasheet;
         $hardware->category = $request->category;

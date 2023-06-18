@@ -47,9 +47,10 @@
                 data: formData,
                 dataType: 'json',
                 success:function(data) {
-                    var msg = '<div class="message-container right"><strong>'+ data.sender_name +'</strong><p>' + data.created_at.replace('T', ' ').replace('.000000Z', '') +'</p><div class="msg-body">'+ data.body +'</div</div>';
+                    var msg = '<div class="message-container right"><strong>'+ data.sender_name +'</strong><p>' + data.created_at.replace('T', ' ').replace('.000000Z', '') +'</p><div class="msg-body">'+ data.body +'</div></div>';
                     $('.messages-container').append(msg);
                     editor.setData('');
+                    $('.messages-container').scrollTop($('.messages-container')[0].scrollHeight - $('.messages-container')[0].clientHeight);
                 }
 
             });
@@ -66,11 +67,32 @@
 
                     $('.messages-container').empty();
                     if(!jQuery.isEmptyObject(data)){
+                        var firstUser = data[0].sender_name;
+                        var mainSide = '';
+                        var secondSide = '';
+                        
+
+                        if(firstUser == "{{Auth::user()->fname.' '.Auth::user()->lname}}")
+                        {   
+                            mainSide = 'right';
+                            secondSide = 'left';
+                        }else{
+                            mainSide = 'left';
+                            secondSide = 'right';
+                        }
+
                         for (i = 0; i < data.length; i++) {
                             
-                            var msg = '<div class="message-container right"><strong>'+ data[i].sender_name +'</strong><p>' + data[i].created_at.replace('T', ' ').replace('.000000Z', '') +'</p><div class="msg-body">'+ data[i].body +'</div</div>';
+                            if(firstUser == data[i].sender_name)
+                            {
+
+                                var msg = '<div class="message-container '+ mainSide +'"><strong><p>'+ data[i].sender_name +'</p></strong><p>' + data[i].created_at.replace('T', ' ').replace('.000000Z', '') +'</p><div class="msg-body">'+ data[i].body +'</div></div>';
+                            }else{
+                                var msg = '<div class="message-container '+ secondSide +'"><strong><p>'+ data[i].sender_name +'</p></strong><p>' + data[i].created_at.replace('T', ' ').replace('.000000Z', '') +'</p><div class="msg-body">'+ data[i].body +'</div></div>';
+                            }
                             $('.messages-container').append(msg);
                         }
+                        $('.messages-container').scrollTop($('.messages-container')[0].scrollHeight - $('.messages-container')[0].clientHeight);
                     }else{
                         console.log('no new messages.');
                     }

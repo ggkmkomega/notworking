@@ -38,7 +38,6 @@
                         @endif
                     </td>
                     <td class="col_options">
-                        <a href="{{ route('admins.show' , $item) }}">Afficher</a>
                         <a href="{{ route('users.edit' , $item) }}">Modifier</a>
                         <form action="{{ route('users.destroy', $item) }}" method="POST">
                             @csrf

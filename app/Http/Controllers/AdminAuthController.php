@@ -34,7 +34,7 @@ class AdminAuthController extends Controller
             return redirect()->intended('cp')->withSuccess('Signed in');
         }
         //not auth
-        return redirect("cp/login")->withErrors('Login details are not valid');
+        return redirect("cp/login")->withErrors( ['login' => 'Login details are not valid']);
     }
 
     public function controlPanel(Admin $admin)

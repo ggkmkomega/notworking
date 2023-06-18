@@ -23,6 +23,9 @@
             @if ($errors->has('password'))
                 <span class="error">{{ $errors->first('password') }}</span>
             @endif
+            @if ($errors->has('login'))
+            <span class="error">{{ $errors->first('login') }}</span>
+            @endif
             <br><br>
             <div class="submit">
                 <input type="submit" value="Log In">

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{URL::asset('style/cp-main.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <title>@yield('title')</title>
 </head>
 <body>
@@ -17,15 +18,13 @@
                 <li class="section">
                     <a href="{{route('cp')}}">
                         <div class="section-header">
-                            <i class="uil uil-chart-line"></i>
-                            <h1>Accueil</h1>
+                        <h1><i class="fa-solid fa-house"></i> Accueil</h1>
                         </div>
                     </a> 
                 </li>
                 <li class="section">
                     <div class="section-header">
-                        <i class="uil uil-cloud-computing"></i>
-                        <h1>Gestion des Produits</h1>
+                        <h1><i class="fa-solid fa-server"></i> Gestion des Produits</h1>
                     </div>
                     <ul class="subsection">
                         <a href="{{route('hardwares.index')}}"><li>Matériel</li></a>
@@ -36,8 +35,7 @@
                 </li>
                 <li class="section">
                     <div class="section-header">
-                        <i class="uil uil-clipboard-notes"></i>
-                        <h1>Gestion des Commandes</h1>
+                        <h1><i class="fa-solid fa-folder-closed"></i> Gestion des Commandes</h1>
                     </div>
                     <ul class="subsection">
                         <a href="{{route('indexPendingOrders')}}"><li>En Attente</li></a>
@@ -48,8 +46,7 @@
                 </li>
                 <li class="section">
                     <div class="section-header">
-                        <i class="uil uil-envelope"></i>
-                        <h1>Support Client</h1>
+                        <h1><i class="fa-solid fa-ticket"></i> Support Client</h1>
                     </div>
                     <ul class="subsection">
                         <a href="{{route('adminIndexOngoingTickets')}}"><li>En Cours</li></a>
@@ -59,8 +56,7 @@
                 </li>
                 <li class="section">
                     <div class="section-header">
-                        <i class="uil uil-user-square"></i>
-                        <h1>Acounts</h1>
+                        <h1><i class="fa-solid fa-user-plus"></i> Acounts</h1>
                     </div>
                     <ul class="subsection">
                         <a href="{{route('users.index')}}"><li>Utilisateurs</li></a>
@@ -75,23 +71,17 @@
         </div>
         <section class="main">
             <div class="header">
-                <div class="profile">
-                    <a href="{{route('adminProfile')}}">
-                        <div class="icon user-circle" style="height: 30px;">
-                            <img src="{{URL::asset('assets/icons/user-circle.svg')}}" style="height: 100%;">
-                        </div>
+                    <a href="{{route('adminProfile')}} "style="font-size: 17px; color:white; padding:5px;">
+                        <i class="fa-solid fa-user"></i>
                     </a> 
-                </div>
-                <div class="icon bell" style="height: 30px;">
-                    <img src="{{URL::asset('assets/icons/bell.svg')}}" style="height: 100%;">
-                </div>
+                    <a href="{{route('signout')}} " style="font-size: 20px; color:white;padding:5px;">
+
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </a>
             </div>
             <section class="sub">
                 <div class="content">
                     @yield('main-content')
-                </div>
-                <div class="left-panel">
-                    @yield('left-panel')
                 </div>
             </section>
         </section>

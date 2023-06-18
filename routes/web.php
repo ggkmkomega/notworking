@@ -297,7 +297,6 @@ Route::controller(TicketController::class)->group( function () {
         ->name('adminSendMessage');
 
     Route::get('cp/tickets/{ticket}/update', 'UpdateMessageData')
-        ->middleware([AdminAuth::class])
         ->name('updateMessageData');
 
     Route::get('cp/tickets&status=ongoing', 'AdminIndexOngoingTickets')

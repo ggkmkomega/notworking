@@ -106,7 +106,6 @@
                 <td class="col_created_at">{{$item->created_at}}</td>
                 <td class="col_role">{{$item->role}}</td>
                 <td class="col_options">
-                    <a href="{{ route('admins.show' , $item) }}">Afficher</a>
                     <a href="{{ route('admins.edit' , $item) }}">Modifier</a>
                     <form action="{{ route('admins.destroy', $item) }}" method="POST">
                         @csrf

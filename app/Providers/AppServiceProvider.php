@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\View;
 use App\Models\Service;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {   
-        if(DB::table('services')){
+        if(Schema::hasTable('services')){
             $servicesList = Service::all();
 
             View::composer('*', function ($view) use ($servicesList) {
@@ -34,7 +35,7 @@ class AppServiceProvider extends ServiceProvider
             error_log('Unable to get services table');
         }
 
-        if(DB::table('order_list')){
+        if(Schema::hasTable('order_list')){
 
             $auth = $this->app['auth'];
             //compose all the views....

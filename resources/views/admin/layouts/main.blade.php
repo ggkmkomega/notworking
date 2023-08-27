@@ -9,10 +9,11 @@
     <title>@yield('title')</title>
 </head>
 <body>
+    
     <div class="wrapper">
         <div class="right-panel">
             <div class="logo">
-                <h1>U-Tech</h1>
+                <h1>SIMS</h1>
             </div>
             <ul class="nav">
                 <li class="section">

@@ -31,22 +31,23 @@
                
                
                <nav class="navigation">
-                   <ul>
-                       <li><a href="{{route('main')}}" class="home"> Acceuil</a></li>
-                       <li class="menu"><a href="{{route('main')}}#services" class="services"> Services</a> <i class="fa-sharp fa-solid fa-caret-down fa-xs dropicon" onclick="toggleDropdown()"></i>
-                        <ul class="dropdown" id="dropdown">
-                          <li><a href="{{route('hwSiteIndex')}}">Vente Matériel</a></li>
-                          <li><a href="{{route('swSiteIndex')}}">Vente Logiciel</a></li>
-                           @foreach ($servicesList as $service)
-                           <li><a href="{{route('svSiteShow', $service)}}">{{$service->name}}</a></li>
-                           @endforeach
-                           <li><a href="{{route('crSiteIndex')}}">Formation</a></li>
-                       </ul>
-                       </li>    
-                       <li><a href="{{route('newTicketForm')}}">Contact</a></li>
-                       <li><a href="{{route('main')}}#about"> À propos</a></li>
-                   </ul>
-               </nav>
+            <ul>
+                <li><a href="{{route('main')}}" class="home" > Acceuil</a></li>
+                <li class="menu">
+                  <a href="{{route('main')}}#services" id="service"  onmouseover="toggleDropdown()" class="services"> Services</a>
+                  <ul class="dropdown" id="dropdown">
+                    <li><a href="{{route('hwSiteIndex')}}">Vente Matériel</a></li>
+                    <li><a href="{{route('swSiteIndex')}}">Vente Logiciel</a></li>
+                    @foreach ($servicesList as $service)
+                    <li><a href="{{route('svSiteShow', $service)}}">{{$service->name}}</a></li>
+                    @endforeach
+                    <li><a href="{{route('crSiteIndex')}}">Formation</a></li>
+                  </ul>
+                </li>    
+                <li><a href="{{route('newTicketForm')}}">Contact</a></li>
+                <li><a href="{{route('main')}}#about"> À propos</a></li>
+            </ul>
+        </nav>
        
                <div class="icons">
                  <ul>
@@ -84,29 +85,29 @@
         <!--Footer-->
         <hr>
         <footer>
-            <div class="container">
-                <div class="flex-box">
-                      <div class="img">
-                          <img src="{{ URL::asset('images/logo.png')}}" >
-                      </div>
-     
-                      <div class="contact-foot">
-                         <h2>Contact</h2>
-                         <p>Bonjour, nous sommes toujours
-                            ouverts à la coopération et aux suggestions
-                            . Contactez-nous de l'une des manières suivantes :
-                         </p>
-                         <span>Adresse</span>
-                         <p>USTHB Bab-zouar</p>
-                         <span>phone</span>
-                         <p>+0123 4567 8910</p>
-                         <span>Email</span>
-                         <p>pfe@usthb.dz</p>
-                         <span>equipe technique</span>
-                         <p><a href="{{route('newTicketForm')}}" class="footer-contact">contactez-nous</a> </p>
+       <div class="container">
+           <div class="flex-box">
+                 <div class="img">
+                     <img  style="height=50px;width=100%;" src="images/logo.png" >
+                 </div>
+
+                 <div class="contact-foot">
+                    <h2>Contact</h2>
+                    <p>Bonjour, nous sommes toujours
+                       ouverts à la coopération et aux suggestions
+                       . Contactez-nous de l'une des manières suivantes :
+                    </p>
+                    <span>Adresse</span>
+                    <p>Saida Algerie</p>
+                    <span>Telephone</span>
+                    <p>+213 555 055 050</p>
+                    <span>Email</span>
+                    <p>mail@sims.com</p>
+                    <span>Live Chat</span>
+                    <p><a href="{{route('newTicketForm')}}" class="footer-contact">contactez-nous</a> </p>
                       </div>
                       <div class="pages">
-                         <h2> Nos pages</h2>
+                         <h2>Pages de site</h2>
                          <p><a href="{{route('main')}}#about">à propos</a></p>
                          <p><a href="{{route('swSiteIndex')}}">Vente Logiciels </a></p>
                          <p><a href="{{route('hwSiteIndex')}}">Vente Matériels </a></p>
@@ -115,15 +116,15 @@
                            <p><a href="{{route('svSiteShow', $service)}}">{{$service->name}}</a></p>
                            @endforeach
                       </div>
-                </div>
-     
-            </div>
-            
-            <div class="bottom">
-             <p>Powered by <span>Tech</span> - Designed by <span>Algerian students</span></p>
-          </div>
-        </footer>
-        <!--end footer-->
+           </div>
+
+       </div>
+       
+       <div class="bottom">
+       <p>Powered by <span>SIMS</span> - Designed by <span>FovioG13 inc</span></p>
+     </div>
+   </footer>
+    <!--end footer-->
         <script src="{{ URL::asset('js/homepage.js')}}"></script>
     </div>
 </body>

@@ -32,8 +32,9 @@
         
         <nav class="navigation">
             <ul>
-                <li><a href="{{route('main')}}" class="home"> Acceuil</a></li>
-                <li class="menu"><a href="{{route('main')}}#services" class="services"> Services</a> <i class="fa-sharp fa-solid fa-caret-down fa-xs dropicon" onclick="toggleDropdown()"></i>
+                <li><a href="{{route('main')}}" class="home" > Acceuil</a></li>
+                <li class="menu">
+                  <a href="{{route('main')}}#services" id="service"  onmouseover="toggleDropdown()" class="services"> Services</a>
                   <ul class="dropdown" id="dropdown">
                     <li><a href="{{route('hwSiteIndex')}}">Vente Matériel</a></li>
                     <li><a href="{{route('swSiteIndex')}}">Vente Logiciel</a></li>
@@ -41,7 +42,7 @@
                     <li><a href="{{route('svSiteShow', $service)}}">{{$service->name}}</a></li>
                     @endforeach
                     <li><a href="{{route('crSiteIndex')}}">Formation</a></li>
-                </ul>
+                  </ul>
                 </li>    
                 <li><a href="{{route('newTicketForm')}}">Contact</a></li>
                 <li><a href="{{route('main')}}#about"> À propos</a></li>
@@ -57,7 +58,7 @@
                 <form action="{{url('search')}}"  method="get">
                  @csrf
                  <div class="search">
-                     <input type="text" name="search" value="" class="search__input" aria-label="search" placeholder="enter your search">
+                     <input type="text" name="search" value="" class="search__input" aria-label="search" placeholder="Tapez un produit">
                      <button class="search__submit" aria-label="submit search"><i class="fa-solid fa-magnifying-glass"></i></button>
                    </div>
                  </form>
@@ -78,8 +79,8 @@
     </header>
     <div class="container">
       <div class="col-2">
-        <h1><span>Améliorez</span> votre technologie <br>avec les meilleurs matériels <br>et logiciels informatiques</h1>
-        <p>Des innovations technologiques pour stimuler<br> votre croissance et votre efficacité</p>
+        <h1><span>Bienvenue </span> chez SIMS <br>Votre partenaire  <br> en matériel et de logiciels .</h1>
+        <p>Une expertise technologique  à l'algérienne<br>  pour propulser votre entreprise vers l'excellence !</p>
         
         @if (!Auth::check())
         <a href="{{route('registerForm')}}" class="signin_btn">S'inscrire</a>
@@ -425,16 +426,16 @@
                        . Contactez-nous de l'une des manières suivantes :
                     </p>
                     <span>Adresse</span>
-                    <p>USTHB Bab-zouar</p>
-                    <span>phone</span>
-                    <p>+0123 4567 8910</p>
+                    <p>Saida Algerie</p>
+                    <span>Telephone</span>
+                    <p>+213 555 055 050</p>
                     <span>Email</span>
-                    <p>pfe@usthb.dz</p>
-                    <span>equipe technique</span>
+                    <p>mail@sims.com</p>
+                    <span>Live Chat</span>
                     <p><a href="{{route('newTicketForm')}}" class="footer-contact">contactez-nous</a> </p>
                       </div>
                       <div class="pages">
-                         <h2> Nos pages</h2>
+                         <h2>Pages de site</h2>
                          <p><a href="{{route('main')}}#about">à propos</a></p>
                          <p><a href="{{route('swSiteIndex')}}">Vente Logiciels </a></p>
                          <p><a href="{{route('hwSiteIndex')}}">Vente Matériels </a></p>
@@ -448,7 +449,7 @@
        </div>
        
        <div class="bottom">
-        <p>Powered by <span>Tech</span> - Designed by <span>Algerian students</span></p>
+       <p>Powered by <span>SIMS</span> - Designed by <span>FovioG13 inc</span></p>
      </div>
    </footer>
    <!--end footer-->

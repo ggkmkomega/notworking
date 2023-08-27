@@ -47,7 +47,7 @@
                         <form action="{{route('addProductToList', compact('category', 'id'))}}" method="get">
                             <label>Qté</label>
                             <input style="width: 60px; height: 30px" type="number" name="volume" value="1">
-                            <button type="submit" class="panier-btn">Ajouter au Panier</button>
+                            <button type="submit" class="panier-btn" ononsubmit="alert()">Ajouter au Panier</button>
                         </form>
                     </div>
                 </div>
@@ -55,3 +55,9 @@
             </div>
     </div>
     <script src="{{ URL::asset('js/pc.js')}}"></script>
+    <script >
+        function alert(){
+            alert("Order Placed ");
+        }
+    </script>
+    
